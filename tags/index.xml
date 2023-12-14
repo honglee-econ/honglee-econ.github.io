@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/tags/</link>
+      <atom:link href="https://ShishirShakya.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tags</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright><lastBuildDate>Fri, 21 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Tags</title>
+      <link>https://ShishirShakya.github.io/tags/</link>
+    </image>
+    
+    <item>
+      <title>Prediction,</title>
+      <link>https://ShishirShakya.github.io/tags/prediction/</link>
+      <pubDate>Fri, 21 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/prediction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Theory,</title>
+      <link>https://ShishirShakya.github.io/tags/theory/</link>
+      <pubDate>Fri, 21 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time series,</title>
+      <link>https://ShishirShakya.github.io/tags/time-series/</link>
+      <pubDate>Fri, 21 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/time-series/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Causal Inference,</title>
+      <link>https://ShishirShakya.github.io/tags/causal-inference/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/causal-inference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Density,</title>
+      <link>https://ShishirShakya.github.io/tags/density/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/density/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Non Parametric,</title>
+      <link>https://ShishirShakya.github.io/tags/non-parametric/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/non-parametric/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Proof,</title>
+      <link>https://ShishirShakya.github.io/tags/proof/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/proof/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R,</title>
+      <link>https://ShishirShakya.github.io/tags/r/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability,</title>
+      <link>https://ShishirShakya.github.io/tags/probability/</link>
+      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/probability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reproducible,</title>
+      <link>https://ShishirShakya.github.io/tags/reproducible/</link>
+      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/reproducible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statistics,</title>
+      <link>https://ShishirShakya.github.io/tags/statistics/</link>
+      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

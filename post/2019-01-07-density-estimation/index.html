@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic ">
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Univariate Density EstimationParametric Desity EstimationDraw from a normal distributionGiven \({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\) \(i.i.d\) draw from a normal distribution with mean of \(\mu\) and variance of \({{\sigma }^{2}}\) the joint \(PDF\) can be expressed as:\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\prod\limits_{i=1}^{n}{\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{i}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}}\]\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{1}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{2}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{n}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}\]The term \(\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}\) is a constant multiplying this term for \(n\) times gives \({{\left( \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}} \right)}^{n}}=\frac{1}{{{\left( 2\pi \sigma \right)}^{\frac{n}{2}}}}\).">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://ShishirShakya.github.io/post/2019-01-07-density-estimation/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.930280e25e7eda33df585b7fa20d4e00.css">
+
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-131353943-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://ShishirShakya.github.io/post/2019-01-07-density-estimation/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@econshishir">
+  <meta property="twitter:creator" content="@econshishir">
+  
+  <meta property="og:site_name" content="Shishir Shakya">
+  <meta property="og:url" content="https://ShishirShakya.github.io/post/2019-01-07-density-estimation/">
+  <meta property="og:title" content="Density Estimation | Shishir Shakya">
+  <meta property="og:description" content="Univariate Density EstimationParametric Desity EstimationDraw from a normal distributionGiven \({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\) \(i.i.d\) draw from a normal distribution with mean of \(\mu\) and variance of \({{\sigma }^{2}}\) the joint \(PDF\) can be expressed as:\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\prod\limits_{i=1}^{n}{\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{i}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}}\]\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{1}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{2}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{n}}-\mu \right)}^{2}}}{2{{\sigma }^{2}}}}}\]The term \(\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}\) is a constant multiplying this term for \(n\) times gives \({{\left( \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}} \right)}^{n}}=\frac{1}{{{\left( 2\pi \sigma \right)}^{\frac{n}{2}}}}\)."><meta property="og:image" content="https://ShishirShakya.github.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://ShishirShakya.github.io/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2019-01-07T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2019-01-07T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ShishirShakya.github.io/post/2019-01-07-density-estimation/"
+  },
+  "headline": "Density Estimation",
+  
+  "datePublished": "2019-01-07T00:00:00Z",
+  "dateModified": "2019-01-07T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Authors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shishir Shakya",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ShishirShakya.github.io/img/icon-512.png"
+    }
+  },
+  "description": "Univariate Density Estimation\rParametric Desity Estimation\rDraw from a normal distribution\rGiven \\({{X}_{1}},{{X}_{2}},\\ldots ,{{X}_{n}}\\) \\(i.i.d\\) draw from a normal distribution with mean of \\(\\mu\\) and variance of \\({{\\sigma }^{2}}\\) the joint \\(PDF\\) can be expressed as:\r\\[f\\left( {{X}_{1}},{{X}_{2}},\\ldots {{X}_{3}} \\right)=\\prod\\limits_{i=1}^{n}{\\frac{1}{\\sqrt{2\\pi {{\\sigma }^{2}}}}{{e}^{-\\frac{{{\\left( {{X}_{i}}-\\mu \\right)}^{2}}}{2{{\\sigma }^{2}}}}}}\\]\r\\[f\\left( {{X}_{1}},{{X}_{2}},\\ldots {{X}_{3}} \\right)=\\frac{1}{\\sqrt{2\\pi {{\\sigma }^{2}}}}{{e}^{-\\frac{{{\\left( {{X}_{1}}-\\mu \\right)}^{2}}}{2{{\\sigma }^{2}}}}}\\times \\frac{1}{\\sqrt{2\\pi {{\\sigma }^{2}}}}{{e}^{-\\frac{{{\\left( {{X}_{2}}-\\mu \\right)}^{2}}}{2{{\\sigma }^{2}}}}}\\times \\cdots \\times \\frac{1}{\\sqrt{2\\pi {{\\sigma }^{2}}}}{{e}^{-\\frac{{{\\left( {{X}_{n}}-\\mu \\right)}^{2}}}{2{{\\sigma }^{2}}}}}\\]\rThe term \\(\\frac{1}{\\sqrt{2\\pi {{\\sigma }^{2}}}}\\) is a constant multiplying this term for \\(n\\) times gives \\({{\\left( \\frac{1}{\\sqrt{2\\pi {{\\sigma }^{2}}}} \\right)}^{n}}=\\frac{1}{{{\\left( 2\\pi \\sigma \\right)}^{\\frac{n}{2}}}}\\)."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Density Estimation | Shishir Shakya</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Shishir Shakya</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#hero"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>Curriculum Vitae</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/highlights/"><span>Research Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/teaching/"><span>Teachings</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/my_resources/"><span>Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://mhdm.netlify.app/" target="_blank" rel="noopener"><span>Mostly Handsdirty Metrics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Density Estimation</h1>
+
+  
+
+  
+    
+
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 7, 2019
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    19 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/non-parametric-econometrics/">Non Parametric Econometrics</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://ShishirShakya.github.io/post/2019-01-07-density-estimation/&amp;text=Density%20Estimation" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://ShishirShakya.github.io/post/2019-01-07-density-estimation/&amp;t=Density%20Estimation" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Density%20Estimation&amp;body=https://ShishirShakya.github.io/post/2019-01-07-density-estimation/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://ShishirShakya.github.io/post/2019-01-07-density-estimation/&amp;title=Density%20Estimation" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Density%20Estimation%20https://ShishirShakya.github.io/post/2019-01-07-density-estimation/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://ShishirShakya.github.io/post/2019-01-07-density-estimation/&amp;title=Density%20Estimation" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="univariate-density-estimation" class="section level1">
+<h1>Univariate Density Estimation</h1>
+<div id="parametric-desity-estimation" class="section level2">
+<h2>Parametric Desity Estimation</h2>
+<div id="draw-from-a-normal-distribution" class="section level3">
+<h3>Draw from a normal distribution</h3>
+<p>Given <span class="math inline">\({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\)</span> <span class="math inline">\(i.i.d\)</span> draw from a normal distribution with mean of <span class="math inline">\(\mu\)</span> and variance of <span class="math inline">\({{\sigma }^{2}}\)</span> the joint <span class="math inline">\(PDF\)</span> can be expressed as:
+<span class="math display">\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\prod\limits_{i=1}^{n}{\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}}\]</span>
+<span class="math display">\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{1}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{2}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{n}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\]</span>
+The term <span class="math inline">\(\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}\)</span> is a constant multiplying this term for <span class="math inline">\(n\)</span> times gives <span class="math inline">\({{\left( \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}} \right)}^{n}}=\frac{1}{{{\left( 2\pi \sigma \right)}^{\frac{n}{2}}}}\)</span>.
+<span class="math display">\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{{{\left( 2\pi \sigma  \right)}^{\frac{n}{2}}}}{{e}^{-\frac{{{\left( {{X}_{1}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times {{e}^{-\frac{{{\left( {{X}_{2}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times {{e}^{-\frac{{{\left( {{X}_{n}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\]</span>
+With the index law of addition i.e. we can add the indices for the same base
+<span class="math display">\[{{e}^{-\frac{{{\left( {{X}_{1}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times {{e}^{-\frac{{{\left( {{X}_{2}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times {{e}^{-\frac{{{\left( {{X}_{n}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}={{e}^{-\frac{1}{2{{\sigma }^{2}}}\left\{ {{\left( {{X}_{1}}-\mu  \right)}^{2}}+{{\left( {{X}_{2}}-\mu  \right)}^{2}}+\cdots +{{\left( {{X}_{n}}-\mu  \right)}^{2}} \right\}}}={{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\limits_{i=1}^{n}{{{\left( Xi-\mu  \right)}^{2}}}}}\]</span>
+Therefore,
+<span class="math display">\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{{{\left( 2\pi {{\sigma }^{2}} \right)}^{\frac{n}{2}}}}{{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}}}\]</span></p>
+</div>
+<div id="the-log-likelihood-function" class="section level3">
+<h3>The log-likelihood function</h3>
+<p>Taking the logarithm, we get the log-likelihood function as:
+<span class="math display">\[\ln f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\ln \left[ \frac{1}{{{\left( 2\pi {{\sigma }^{2}} \right)}^{\frac{n}{2}}}}{{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}}} \right]\]</span></p>
+<p>With the property of log i.e. multiplication inside the log can be turned into addition outside the log, and vice versa or <span class="math inline">\(\ln (ab)=\ln (a)+\ln (b)\)</span>
+<span class="math display">\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln \left( \frac{1}{{{\left( 2\pi {{\sigma }^{2}} \right)}^{\frac{n}{2}}}} \right)+\ln \left( {{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}}} \right)\]</span>
+With natural log property i.e. when <span class="math inline">\({{e}^{y}}=x\)</span> then <span class="math inline">\(\ln (x)=\ln ({{e}^{y}})=y\)</span>
+<span class="math display">\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln \left( {{\left( 2\pi {{\sigma }^{2}} \right)}^{-\frac{n}{2}}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]</span>
+<span class="math display">\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv -\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln {{\sigma }^{2}}-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]</span>
+<span class="math display">\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln f\left( {{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}};\mu ,{{\sigma }^{2}} \right)=-\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]</span></p>
+</div>
+<div id="logliklihood-function-optimization" class="section level3">
+<h3>Logliklihood function optimization</h3>
+<p>To find the optimum value of
+<span class="math inline">\(L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln f\left( {{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}};\mu ,{{\sigma }^{2}} \right)=-\frac{n}{2}\ln \left( 2\pi \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu \right)}^{2}}}\)</span>, we take the first order condition w.r.t. <span class="math inline">\(\mu\)</span> and <span class="math inline">\({{\sigma }^{2}}\)</span>. The necessary first order condition w.r.t <span class="math inline">\(\mu\)</span> is given as:
+<span class="math display">\[\frac{\partial L\left( \mu ,{{\sigma }^{2}} \right)}{\partial \mu }=\frac{\partial }{\partial \mu }\left\{ -\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]</span>
+Here, <span class="math inline">\(\frac{\partial }{\partial \mu }\left\{ -\frac{n}{2}\ln \left( 2\pi \right) \right\}=0\)</span> and <span class="math inline">\(\frac{\partial }{\partial \mu }\left\{ -\frac{n}{2}\ln \left( {{\sigma }^{2}} \right) \right\}=0\)</span>, so we only need to solve for
+<span class="math display">\[\frac{\partial }{\partial \mu }\left\{ -\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]</span>
+<span class="math display">\[-\frac{1}{2{{\sigma }^{2}}}\frac{\partial }{\partial \mu }\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}=0\]</span>
+<span class="math display">\[-\frac{1}{2{{\sigma }^{2}}}\left[ \frac{\partial }{\partial \mu }\left\{ {{\left( {{X}_{1}}-\mu  \right)}^{2}}+{{\left( {{X}_{2}}-\mu  \right)}^{2}}+\cdots +{{\left( {{X}_{n}}-\mu  \right)}^{2}} \right\} \right]=0\]</span>
+<span class="math display">\[-\frac{1}{2{{\sigma }^{2}}}\left[ \frac{\partial {{\left( {{X}_{1}}-\mu  \right)}^{2}}}{\partial \mu }+\frac{\partial {{\left( {{X}_{2}}-\mu  \right)}^{2}}}{\partial \mu }+\cdots +\frac{\partial {{\left( {{X}_{n}}-\mu  \right)}^{2}}}{\partial \mu } \right]=0\]</span>
+With the chain rule i.e <span class="math inline">\(\frac{\partial {{\left( {{X}_{1}}-\mu \right)}^{2}}}{\partial \mu }=\frac{\partial {{\left( {{X}_{1}}-\mu \right)}^{2}}}{\partial \left( {{X}_{1}}-\mu \right)}\frac{\partial \left( {{X}_{1}}-\mu \right)}{\partial \mu }=2\left( {{X}_{1}}-\mu \right)\left( 1 \right)=2\left( {{X}_{1}}-\mu \right)\)</span>. Hence,
+<span class="math display">\[-\frac{1}{2{{\sigma }^{2}}}\left[ 2\left( {{X}_{1}}-\mu  \right)+2\left( {{X}_{2}}-\mu  \right)+\cdots +2\left( {{X}_{n}}-\mu  \right) \right]=0\]</span>
+<span class="math display">\[-\frac{1}{{{\sigma }^{2}}}\sum\limits_{i=1}^{n}{\left( {{X}_{i}}-\mu  \right)}=0\]</span>
+Since <span class="math inline">\({{\sigma }^{2}}\ne 0\)</span>, So,
+<span class="math display">\[\sum\limits_{i=1}^{n}{\left( {{X}_{i}}-\mu  \right)}=0\]</span>
+<span class="math display">\[\sum\limits_{i=1}^{n}{{{X}_{i}}}-\sum\limits_{i=1}^{n}{\mu }=0\]</span>
+<span class="math display">\[\sum\limits_{i=1}^{n}{{{X}_{i}}}-n\mu =0\]</span>
+<span class="math display">\[\hat{\mu }={{n}^{-1}}\sum\limits_{i=1}^{n}{{{X}_{i}}}\]</span></p>
+<p>The necessary first order condition w.r.t <span class="math inline">\({{\sigma }^{2}}\)</span> is given as:</p>
+<p><span class="math display">\[\frac{\partial L\left( \mu ,{{\sigma }^{2}} \right)}{\partial {{\sigma }^{2}}}=\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ -\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]</span></p>
+<p><span class="math display">\[-\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ \frac{n}{2}\ln \left( 2\pi  \right) \right\}-\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ -\frac{n}{2}\ln \left( {{\sigma }^{2}} \right) \right\}-\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ \frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]</span></p>
+<p><span class="math display">\[0-\frac{n}{2}\frac{1}{{{\sigma }^{2}}}-\frac{1}{2}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\frac{\partial {{\left( {{\sigma }^{2}} \right)}^{-1}}}{\partial {{\sigma }^{2}}}=0\]</span></p>
+<p><span class="math display">\[-\frac{1}{2}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\left( -1 \right){{\left( {{\sigma }^{2}} \right)}^{-2}}=\frac{n}{2{{\sigma }^{2}}}\]</span></p>
+<p><span class="math display">\[\frac{1}{2{{\left( {{\sigma }^{2}} \right)}^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}=\frac{n}{2{{\sigma }^{2}}}\]</span></p>
+<p><span class="math display">\[{{\hat{\sigma }}^{2}}={{n}^{-1}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]</span></p>
+<p><span class="math inline">\(\hat{\mu }\)</span> and <span class="math inline">\({{\hat{\sigma }}^{2}}\)</span> above are the maximum likelihood estimator of <span class="math inline">\(\mu\)</span> and <span class="math inline">\({{\sigma }^{2}}\)</span>, respectively, the resulting estimator of <span class="math inline">\(f\left( x \right)\)</span> is:
+<span class="math display">\[\hat{f}\left( x \right)=\frac{1}{\sqrt{2\pi {{{\hat{\sigma }}}^{2}}}}{{e}^{\left[ -\frac{1}{2}\left( \frac{x-\hat{\mu }}{{{{\hat{\sigma }}}^{2}}} \right) \right]}}\]</span></p>
+</div>
+<div id="simulation-example" class="section level3">
+<h3>Simulation example</h3>
+<p>Let’s simulate 10000 random observation from a normal distribution with mean of 2 and standard deviation of 1.5. To reproduce the results we will use <code>set.seed()</code> function.</p>
+<pre class="r"><code>set.seed(1234)
+N &lt;- 10000
+mu &lt;- 2
+sigma &lt;- 1.5
+x &lt;- rnorm(n = N, mean = mu, sd = sigma)</code></pre>
+<p>We can use <code>mean()</code> and <code>sd()</code> function to find the mean and sigma</p>
+<pre class="r"><code># mean
+sum(x)/length(x)</code></pre>
+<pre><code>## [1] 2.009174</code></pre>
+<pre class="r"><code>mean(x)</code></pre>
+<pre><code>## [1] 2.009174</code></pre>
+<pre class="r"><code># standard deviation
+sqrt(sum((x-mean(x))^2)/(length(x)-1))</code></pre>
+<pre><code>## [1] 1.481294</code></pre>
+<pre class="r"><code>sd(x)</code></pre>
+<pre><code>## [1] 1.481294</code></pre>
+<p>However, if can also simulate and try the optimization using the <code>mle</code> function from the <code>stat 4</code> package in R.</p>
+<pre class="r"><code>LL &lt;- function(mu, sigma){
+  R &lt;- dnorm(x, mu, sigma)
+  -sum(log(R))
+}
+
+stats4::mle(LL, start = list(mu = 1, sigma = 1))</code></pre>
+<pre><code>## 
+## Call:
+## stats4::mle(minuslogl = LL, start = list(mu = 1, sigma = 1))
+## 
+## Coefficients:
+##       mu    sigma 
+## 2.009338 1.481157</code></pre>
+<p>To supress the warnings in <code>R</code> and garanatee the solution we can use following codes.</p>
+<pre class="r"><code>stats4::mle(LL, start = list(mu = 1, sigma = 1), method = &quot;L-BFGS-B&quot;,
+            lower = c(-Inf, 0), upper = c(Inf, Inf))</code></pre>
+<pre><code>## 
+## Call:
+## stats4::mle(minuslogl = LL, start = list(mu = 1, sigma = 1), 
+##     method = &quot;L-BFGS-B&quot;, lower = c(-Inf, 0), upper = c(Inf, Inf))
+## 
+## Coefficients:
+##       mu    sigma 
+## 2.009174 1.481221</code></pre>
+</div>
+<div id="density-plot-example" class="section level3">
+<h3>Density plot example</h3>
+<p>Given the data of x = (-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59), we can estimate <span class="math inline">\(\hat{\mu }\)</span> as <code>sum(x)/length(x)</code> or <code>mean(x)</code> and <span class="math inline">\({{\hat{\sigma }}^{2}}\)</span> as <code>sum((x-mean(x))^2)/(length(x)-1)</code> or <code>var(x)</code>. Note I use the sample variance formula.</p>
+<pre class="r"><code>x &lt;- c(-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59)
+
+# mean
+sum(x)/length(x)</code></pre>
+<pre><code>## [1] 0.249</code></pre>
+<pre class="r"><code>mean(x)</code></pre>
+<pre><code>## [1] 0.249</code></pre>
+<pre class="r"><code># variance
+sum((x-mean(x))^2)/(length(x)-1)</code></pre>
+<pre><code>## [1] 0.9285211</code></pre>
+<pre class="r"><code>var(x)</code></pre>
+<pre><code>## [1] 0.9285211</code></pre>
+<p>We can also plot a parametric density function. But prior we plot, we have to sort the data.</p>
+<pre class="r"><code>x &lt;- sort(x)
+plot(x ,dnorm(x,mean=mean(x),sd=sd(x)),ylab=&quot;Density&quot;,type=&quot;l&quot;, col = &quot;blue&quot;, lwd = 3)</code></pre>
+<p><img src="/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Let’s also plot a graph of histogram using bin width ranging from -1.5 through 2.0.</p>
+<pre class="r"><code>hist(x, breaks=seq(-1.5,2,by=0.5), prob = TRUE)</code></pre>
+<p><img src="/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="univariate-nonparametric-density-estimation" class="section level1">
+<h1>Univariate NonParametric Density Estimation</h1>
+<div id="set-up" class="section level2">
+<h2>Set-up</h2>
+<p>Consider <span class="math inline">\(i.i.d\)</span> data <span class="math inline">\({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\)</span> with <span class="math inline">\(F\left( \centerdot \right)\)</span> an unknown <span class="math inline">\(CDF\)</span> where <span class="math inline">\(F\left( x \right)=P\left[ X\le x \right]\)</span> or <span class="math inline">\(CDF\)</span> of <span class="math inline">\(X\)</span> evaluated at <span class="math inline">\(x\)</span>. We can do a na?ve estimation as <span class="math inline">\(F\left( x \right)=P\left[ X\le x \right]\)</span> as cumulative sums of relative frequency as:</p>
+<p><span class="math display">\[{{F}_{n}}\left( x \right)={{n}^{-1}}\left\{ \#\ of\ {{X}_{i}}\le x \right\}\]</span> and <span class="math inline">\(n\to\infty\)</span> yields <span class="math inline">\({{F}_{n}}\left( x \right)\to F\left( x \right)\)</span>.</p>
+<p>The <span class="math inline">\(PDF\)</span> of <span class="math inline">\(F\left( x \right)=P\left[ X\le x \right]\)</span> is given as <span class="math inline">\(f\left( x \right)=\frac{d}{dx}F\left( x \right)\)</span> and an obvious estimator is:
+<span class="math display">\[\hat{f}\left( x \right)=\frac{rise}{run}=\frac{{{F}_{n}}\left( x+h \right)-{{F}_{n}}\left( x-h \right)}{x+h-\left( x-h \right)}=\frac{{{F}_{n}}\left( x+h \right)-{{F}_{n}}\left( x-h \right)}{2h}={{n}^{-1}}\frac{1}{2h}\left\{ \#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right] \right\}\]</span></p>
+</div>
+<div id="naive-kernel" class="section level2">
+<h2>Naive Kernel</h2>
+<p>The <span class="math inline">\(k\left( \centerdot \right)\)</span> can be any kernel function, If we define a uniform kernel function or also known as na?ve kernel function then
+<span class="math display">\[k\left( z \right)=\left\{ \begin{matrix}
+   {1}/{2}\; &amp; if\ \left| z \right|\le 1  \\
+   0 &amp; o.w  \\
+\end{matrix} \right.\]</span>
+Where <span class="math inline">\(\left| {{z}_{i}} \right|=\left| \frac{{{X}_{i}}-x}{h} \right|\)</span> and therefore is symmetric and hence <span class="math inline">\(\#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right]\)</span> means <span class="math inline">\(2\left( \frac{{{X}_{i}}-x}{h} \right)\)</span>. Then it is easy to see <span class="math inline">\(\hat{f}\left( x \right)\)</span> to be expressed as:
+<span class="math display">\[\hat{f}\left( x \right)=\frac{1}{2h}{{n}^{-1}}\left\{ \#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right] \right\}=\frac{1}{2h}{{n}^{-1}}\sum\limits_{i=1}^{n}{k\left( 2\frac{{{X}_{i}}-x}{h} \right)}=\frac{1}{nh}\sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)}\]</span></p>
+<p>We can use follwoing code for naive kernel.</p>
+<pre class="r"><code>x &lt;- c(-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59)
+x &lt;- sort(x)
+
+naive_kernel &lt;- function(x,y,h){
+  z &lt;- (x-y)/h
+  ifelse(abs(z) &lt;= 1, 1/2, 0)
+}
+
+naive_density &lt;- function(x, h){
+  val &lt;- c()
+  for(i in 1:length(x)) {
+    val[i] &lt;- sum(naive_kernel(x,x[i],h)/(length(x)*h))
+  }
+  val
+}
+
+H &lt;- c(0.5, 1.0, 1.5)
+
+names &lt;- as.vector(paste0(&quot;H = &quot;, H))
+density_data &lt;- list()
+for(i in 1:length(H)){
+  density_data[[i]] &lt;- naive_density(x, H[i])
+}
+density_data &lt;- do.call(cbind.data.frame, density_data)
+colnames(density_data) &lt;- names
+
+
+matplot(density_data, type = &quot;b&quot;, xlab = &quot;x&quot;,
+        ylab = &quot;Density&quot;, pch=1:length(H), col = 1:length(H),
+        main = &quot;Naive Density for various Smoothing Parameter H&quot;)
+legend(&quot;topleft&quot;, legend=names,  bty = &quot;n&quot;, pch=1:length(H), col = 1:length(H))</code></pre>
+<p><img src="/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="epanechnikov-kernel" class="section level2">
+<h2>Epanechnikov kernel</h2>
+<p>Consider another optimal kernel known as Epanechnikov kernel given by:
+<span class="math display">\[k\left( \frac{{{X}_{i}}-x}{h} \right)=\left\{ \begin{matrix}
+   \frac{3}{4\sqrt{5}}\left( 1-\frac{1}{5}{{\left( \frac{{{X}_{i}}-x}{h} \right)}^{2}} \right) &amp; if\ \left| \frac{{{X}_{i}}-x}{h} \right|&lt;5  \\
+   0 &amp; o.w  \\
+\end{matrix} \right.\]</span>
+Let’s use x = (-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59) and compute the kernel estimator of the density function of every sample realization using bandwidth of <span class="math inline">\(h=0.5\)</span>, <span class="math inline">\(h=1\)</span>, <span class="math inline">\(h=1.5\)</span>, where, <span class="math inline">\(h\)</span> is smoothing parameter restricted to lie in the range of <span class="math inline">\((0,\infty ]\)</span>. We can use follwoing codes to estimate the density using Epanechnikov kernel.</p>
+<pre class="r"><code>x &lt;- c(-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59)
+x &lt;- sort(x)
+
+epanichnikov_kernel &lt;- function(x,y,h){
+  z &lt;- (x-y)/h
+  ifelse(abs(z) &lt; sqrt(5), (1-z^2/5)*(3/(4*sqrt(5))), 0)
+}
+
+epanichnikov_density &lt;- function(x, h){
+  val &lt;- c()
+  for(i in 1:length(x)) {
+    val[i] &lt;- sum(epanichnikov_kernel(x,x[i],h)/(length(x)*h))
+  }
+  val
+}
+
+H &lt;- c(0.5, 1.0, 1.5)
+
+names &lt;- as.vector(paste0(&quot;H = &quot;, H))
+density_data &lt;- list()
+for(i in 1:length(H)){
+  density_data[[i]] &lt;- epanichnikov_density(x, H[i])
+}
+density_data &lt;- do.call(cbind.data.frame, density_data)
+colnames(density_data) &lt;- names
+
+
+matplot(density_data, type = &quot;b&quot;, xlab = &quot;x&quot;,
+        ylab = &quot;Density&quot;, pch=1:length(H), col = 1:length(H),
+        main = &quot;Epanichnikov Density for various Smoothing Parameter H&quot;)
+legend(&quot;topleft&quot;, legend=names,  bty = &quot;n&quot;, pch=1:length(H), col = 1:length(H))</code></pre>
+<p><img src="/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="three-properties-of-kernel-estimator" class="section level2">
+<h2>Three properties of kernel estimator</h2>
+<p>For any general nonnegative bounded kernel function <span class="math inline">\(k\left( v \right)\)</span> where <span class="math inline">\(v=\left( \frac{{{X}_{i}}-x}{h} \right)\)</span>, the kernel estimator <span class="math inline">\(\hat{f}\left( x \right)\)</span> is a consistent estimator of <span class="math inline">\(f\left( x \right)\)</span> that satisfies three conditions:
+First is area under a kernel to be unity.
+<span class="math display">\[\int{k(v)dv=1}\]</span></p>
+<p>Second is the symmetry kernel
+<span class="math display">\[\int{vk(v)dv=0}\]</span> which implies symmetry condition i.e. <span class="math inline">\(k(v)=k(-v)\)</span>. For asymmetric kernels see Abadir and Lawford (2004).</p>
+<p>Third is a positive constant.
+<span class="math display">\[\int{{{v}^{2}}k(v)dv={{\kappa }_{2}}&gt;0}\]</span></p>
+</div>
+<div id="the-big-o-and-small-o." class="section level2">
+<h2>The big O and small o.</h2>
+</div>
+<div id="taylor-series-expansion" class="section level2">
+<h2>Taylor series expansion</h2>
+<p>For a univariate function <span class="math inline">\(g(x)\)</span>evaluated at <span class="math inline">\({{x}_{0}}\)</span> , we can express with Taylor series expansion as:
+<span class="math display">\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m}}+\cdots \]</span>
+For a univariate function <span class="math inline">\(g(x)\)</span>evaluated at <span class="math inline">\({{x}_{0}}\)</span> that is <span class="math inline">\(m\)</span> times differentiable, we can express with Taylor series expansion as:
+<span class="math display">\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}(\xi ){{(x-{{x}_{0}})}^{m}}\]</span>
+Wwhere <span class="math inline">\({{g}^{(s)}}={{\left. \frac{{{\partial }^{s}}g(x)}{\partial {{x}^{2}}} \right|}_{x={{x}_{0}}}}\)</span> and and <span class="math inline">\(\xi\)</span> lies between <span class="math inline">\(x\)</span> and <span class="math inline">\({{x}_{0}}\)</span></p>
+</div>
+<div id="mse-variance-and-biases" class="section level2">
+<h2>MSE, variance and biases</h2>
+<p>Say <span class="math inline">\(\hat{\theta }\)</span> is an estimator for true <span class="math inline">\(\theta\)</span>, then the Mean Squared Error <span class="math inline">\(MSE\)</span> of an estimator <span class="math inline">\(\hat{\theta }\)</span> is the mean of squared deviation between <span class="math inline">\(\hat{\theta }\)</span> and <span class="math inline">\(\theta\)</span> and given as:
+<span class="math display">\[MSE=E\left[ {{\left( \hat{\theta }-\theta  \right)}^{2}} \right] \]</span>
+<span class="math display">\[MSE=E\left[ \left( {{{\hat{\theta }}}^{2}}-2\hat{\theta }\theta +{{\theta }^{2}} \right) \right] \]</span>
+<span class="math display">\[MSE=E[{{\hat{\theta }}^{2}}]+E[{{\theta }^{2}}]-2\theta E[\hat{\theta }]\]</span>
+<span class="math display">\[MSE=\underbrace{E[{{{\hat{\theta }}}^{2}}]-{{E}^{2}}[{{{\hat{\theta }}}^{2}}]}_{\operatorname{var}(\hat{\theta })}+\underbrace{{{E}^{2}}[{{{\hat{\theta }}}^{2}}]+E[{{\theta }^{2}}]-2\theta E[\hat{\theta }]}_{E{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}}\]</span>
+<span class="math display">\[MSE=\operatorname{var}(\hat{\theta })+\underbrace{E{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}}_{squared\ of\ bias\ of\ \hat{\theta }}\]</span>
+<span class="math display">\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}\]</span></p>
+<p>Note: <span class="math inline">\(\underbrace{E{{\left( \hat{\theta }-E[\hat{\theta }] \right)}^{2}}}_{\operatorname{var}(\hat{\theta })}=\underbrace{E[{{{\hat{\theta }}}^{2}}]-{{E}^{2}}[{{{\hat{\theta }}}^{2}}]}_{\operatorname{var}(\hat{\theta })}\)</span>.</p>
+<p>Another way of solution is given as :
+<span class="math display">\[MSE=E\left[ {{\left( \hat{\theta }-\theta  \right)}^{2}} \right] \]</span>
+<span class="math display">\[MSE=E\left[ {{\left( \hat{\theta }-E[\hat{\theta }]+E[\hat{\theta }]-\theta  \right)}^{2}} \right]\]</span>
+<span class="math display">\[MSE=E\left[ {{\left( \hat{\theta }-E[\hat{\theta }] \right)}^{2}}+{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}+2\left( \hat{\theta }-E[\hat{\theta }] \right)\left( E[\hat{\theta }]-\theta  \right) \right]\]</span>
+<span class="math display">\[MSE=\underbrace{E{{\left( \hat{\theta }-E[\hat{\theta }] \right)}^{2}}}_{\operatorname{var}(\hat{\theta })}+\underbrace{E{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}}_{squared\ of\ bias\ of\hat{\theta }}+2E\left[ \left( \hat{\theta }-E[\hat{\theta }] \right)\left( E[\hat{\theta }]-\theta  \right) \right]\]</span>
+<span class="math display">\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}+2E\left[ \left( \hat{\theta }E[\hat{\theta }]+\hat{\theta }\theta -E[\hat{\theta }]E[\hat{\theta }]-E[\hat{\theta }]\theta  \right) \right]\]</span>
+<span class="math display">\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}+2E\left[ \left( \underbrace{\hat{\theta }E[\hat{\theta }]-E[\hat{\theta }]E[\hat{\theta }]}_{0}+\underbrace{\hat{\theta }\theta -E[\hat{\theta }]\theta }_{0} \right) \right]\]</span>
+<span class="math display">\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}\]</span></p>
+</div>
+<div id="theorem-1.1." class="section level2">
+<h2>Theorem 1.1.</h2>
+<p>Let <span class="math inline">\({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\)</span> <span class="math inline">\(i.i.d\)</span> observation having a three-times differentiable <span class="math inline">\(PDF\)</span> <span class="math inline">\(f(x)\)</span>, and <span class="math inline">\({{f}^{s}}(x)\)</span> denote the <span class="math inline">\(s-th\)</span> order derivative of <span class="math inline">\(f(x)\ s=(1,2,3)\)</span>. Let <span class="math inline">\(x\)</span> be an interior point in the support of <span class="math inline">\(X\)</span>, and let <span class="math inline">\(\hat{f}(x)\)</span> be <span class="math inline">\(\frac{1}{2h}{{n}^{-1}}\left\{ \#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right] \right\}\)</span>. Assume that the kernel function <span class="math inline">\(k\left( \centerdot \right)\)</span> bounded and satisfies: <span class="math inline">\(\int{k(v)dv=1}\)</span>, <span class="math inline">\(k(v)=k(-v)\)</span> and <span class="math inline">\(\int{{{v}^{2}}k(v)dv={{\kappa }_{2}}&gt;0}\)</span>. And as <span class="math inline">\(n\to\infty\)</span>, <span class="math inline">\(h\to 0\)</span> and <span class="math inline">\(nh\to\infty\)</span> then, the <span class="math inline">\(MSE\)</span> of estimator <span class="math inline">\(\hat{f}(x)\)</span> is given as:
+<span class="math display">\[MSE\left( \hat{f}(x) \right)=\frac{{{h}^{4}}}{4}{{\left[ {{\kappa }_{2}}{{f}^{\left( 2 \right)}}(x) \right]}^{2}}+\frac{\kappa f(x)}{nh}+o\left( {{h}^{4}}+{{(nh)}^{-1}} \right)=O\left( {{h}^{4}}+{{(nh)}^{-1}} \right)\]</span>
+Where, <span class="math inline">\(v=\left( \frac{{{X}_{i}}-x}{h} \right)\)</span>, <span class="math inline">\({{\kappa }_{2}}=\int{{{v}^{2}}k(v)dv}\)</span> and <span class="math inline">\(\kappa =\int{{{k}^{2}}(v)dv}\)</span></p>
+</div>
+<div id="proof-of-theorem-1.1" class="section level2">
+<h2>Proof of Theorem 1.1</h2>
+<div id="mse-variance-and-biases-1" class="section level3">
+<h3>MSE, variance and biases</h3>
+<p>We can express the relationship of MSE, variance and bias of estimator <span class="math inline">\(MSE\left( \hat{f}(x) \right)\)</span> as:</p>
+<p><span class="math display">\[MSE\left( \hat{f}(x) \right)=\operatorname{var}\left( \hat{f}(x) \right)+{{\left\{ bias\left( \hat{f}(x) \right) \right\}}^{2}}\]</span></p>
+<p>Then we deal with <span class="math inline">\(\left\{ bias\left( \hat{f}(x) \right) \right\}\)</span> and <span class="math inline">\(\operatorname{var}\left( \hat{f}(x) \right)\)</span> separately.</p>
+</div>
+<div id="biases" class="section level3">
+<h3>Biases</h3>
+<p>The bias of <span class="math inline">\(\hat{f}(x)\)</span> is given as
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=E[\hat{f}(x)]-f(x)\]</span><br />
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=E\left[ \frac{1}{nh}\sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)} \right]-f(x)\]</span>
+By the identical distribution, we can write:
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\frac{1}{nh}nE\left[ k\left( \frac{{{X}_{1}}-x}{h} \right) \right]-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{h}^{-1}}\int{f({{x}_{1}})}k\left( \frac{{{x}_{1}}-x}{h} \right)d{{x}_{1}}-f(x)\]</span>
+Note: <span class="math inline">\(\frac{{{x}_{1}}-x}{h}=v\)</span>; <span class="math inline">\({{x}_{1}}-x=hv\)</span>; <span class="math inline">\({{x}_{1}}=x+hv\)</span>; <span class="math inline">\(\frac{d{{x}_{1}}}{dv}=\frac{d}{dv}\left( x+hv \right)=h\)</span> and <span class="math inline">\(d{{x}_{1}}=hdv\)</span>.
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{h}^{-1}}\int{f(x+hv)}k\left( v \right)hdv-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{h}^{-1}}h\int{f(x+hv)}k\left( v \right)dv-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\int{f(x+hv)}k\left( v \right)dv-f(x)\]</span>
+Let’s expand <span class="math inline">\(f(x+hv)\)</span> with Taylor series expansion evaluated at <span class="math inline">\(x\)</span>. Since <span class="math inline">\(f(x)\)</span> is only three times differentiable: <span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\int{\left\{ f(x)+{{f}^{(1)}}(x)(x+hv-x)+\frac{1}{2!}{{f}^{(2)}}(x){{(x+hv-x)}^{2}}+\frac{1}{3!}{{f}^{(3)}}(\tilde{x}){{(x+hv-x)}^{3}} \right\}}k\left( v \right)dv-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\int{\left\{ f(x)+{{f}^{(1)}}(x)hv+\frac{1}{2!}{{f}^{(2)}}(x){{h}^{2}}{{v}^{2}}+\frac{1}{3!}{{f}^{(3)}}(\tilde{x}){{h}^{3}}{{v}^{3}} \right\}}k\left( v \right)dv-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\int{\left\{ f(x)+{{f}^{(1)}}(x)hv+\frac{1}{2!}{{f}^{(2)}}(x){{h}^{2}}{{v}^{2}}+O({{h}^{3}}) \right\}}k\left( v \right)dv-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=f(x)\int{k\left( v \right)dv}+{{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x)\int{{{v}^{2}}}k\left( v \right)dv+\int{O({{h}^{3}})k\left( v \right)dv}-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=f(x)\underbrace{\int{k\left( v \right)dv}}_{1}+{{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x)\underbrace{\int{{{v}^{2}}}k\left( v \right)dv}_{{{\kappa }_{2}}}+\underbrace{\int{O({{h}^{3}})k\left( v \right)dv}}_{O({{h}^{3}})}-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=f(x)+{{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})-f(x)\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]</span>
+By symmetrical definition
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\left[ \left\{ \int\limits_{-\infty }^{0}{+\int\limits_{0}^{\infty }{{}}} \right\}vk\left( v \right)dv \right]+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\left[ \left\{ \int\limits_{-\infty }^{0}{vk\left( v \right)dv+\int\limits_{0}^{\infty }{vk\left( v \right)dv}} \right\} \right]+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]</span>
+Then, we can switch the bound of definite integrals. Click for <a href="https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-6/v/switching-integral-bounds">tutorial.</a>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\underbrace{\left[ \left\{ -\int\limits_{0}^{\infty }{vk\left( v \right)dv+\int\limits_{0}^{\infty }{vk\left( v \right)dv}} \right\} \right]}_{0}+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]</span>
+<span class="math display">\[bias\left\{ \hat{f}(x) \right\}=\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+o({{h}^{2}})\]</span></p>
+</div>
+<div id="variance" class="section level3">
+<h3>Variance</h3>
+<p>The variance of <span class="math inline">\(\hat{f}(x)\)</span> is given as:</p>
+<p><span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=E{{\left( \hat{f}(x)-E\left[ \hat{f}(x) \right] \right)}^{2}}=E\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]-{{E}^{2}}\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]\]</span></p>
+<p><span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\operatorname{var}\left[ \frac{1}{nh}\sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)} \right]\]</span></p>
+<p>For <span class="math inline">\(b\in \mathbb{R}\)</span> be a constant and <span class="math inline">\(y\)</span> be a random variable, then, <span class="math inline">\(\operatorname{var}[by]={{b}^{2}}\operatorname{var}[y]\)</span>, therefore,
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{{{n}^{2}}{{h}^{2}}}\operatorname{var}\left[ \sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)} \right]\]</span></p>
+<p>For <span class="math inline">\(\operatorname{var}(a+b)=\operatorname{var}(a)+\operatorname{var}(b)+2\operatorname{cov}(a,b)\)</span> and if <span class="math inline">\(a\bot b\)</span> then <span class="math inline">\(2\operatorname{cov}(a,b)=0\)</span>. In above expression <span class="math inline">\({{X}_{i}}\)</span> are independent observation therefore <span class="math inline">\({{X}_{i}}\bot {{X}_{j}}\ \forall \ i\ne j\)</span>. Hence, we can express
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{{{n}^{2}}{{h}^{2}}}\left\{ \sum\limits_{i=1}^{n}{\operatorname{var}\left[ k\left( \frac{{{X}_{i}}-x}{h} \right) \right]}+0 \right\}\]</span>
+Note, <span class="math inline">\({{X}_{i}}\)</span> are also identical, therefore <span class="math inline">\(\operatorname{var}({{X}_{i}})=\operatorname{var}({{X}_{j}})\)</span> so, <span class="math inline">\(\sum\limits_{i=1}^{n}{\operatorname{var}({{X}_{i}})}=n\operatorname{var}({{X}_{1}})\)</span>. Therefore,
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{{{n}^{2}}{{h}^{2}}}n\operatorname{var}\left[ k\left( \frac{{{X}_{1}}-x}{h} \right) \right]\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\operatorname{var}\left[ k\left( \frac{{{X}_{1}}-x}{h} \right) \right]\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ E\left[ {{k}^{2}}\left( \frac{{{X}_{1}}-x}{h} \right) \right]-\left[ E{{\left( k\left( \frac{{{X}_{1}}-x}{h} \right) \right)}^{2}} \right] \right\}\]</span>
+Which is equivalent to:
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f({{x}_{1}}){{k}^{2}}\left( \frac{{{x}_{1}}-x}{h} \right)d{{x}_{1}}}-{{\left[ \int{f({{x}_{1}})k\left( \frac{{{x}_{1}}-x}{h} \right)d{{x}_{1}}} \right]}^{2}} \right\}\]</span>
+Note: <span class="math inline">\(\frac{{{x}_{1}}-x}{h}=v\)</span>; <span class="math inline">\({{x}_{1}}-x=hv\)</span>; <span class="math inline">\({{x}_{1}}=x+hv\)</span>; <span class="math inline">\(\frac{d{{x}_{1}}}{dv}=\frac{d}{dv}\left( x+hv \right)=h\)</span> and <span class="math inline">\(d{{x}_{1}}=hdv\)</span>.
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f(x+hv){{k}^{2}}\left( v \right)hdv}-{{\left[ \int{f(x+hv)k\left( v \right)hdv} \right]}^{2}} \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\int{f(x+hv){{k}^{2}}\left( v \right)dv}-{{\left[ h\int{f(x+hv)k\left( v \right)dv} \right]}^{2}} \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f(x+hv){{k}^{2}}\left( v \right)hdv}-\underbrace{{{\left[ \int{f(x+hv)k\left( v \right)hdv} \right]}^{2}}}_{O\left( {{h}^{2}} \right)} \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f(x+hv){{k}^{2}}\left( v \right)hdv}-O\left( {{h}^{2}} \right) \right\}\]</span>
+Taylor series expansion
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\int{f(x)+{{f}^{(1)}}(\xi )(x+hv-x){{k}^{2}}\left( v \right)dv}-O\left( {{h}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\int{f(x){{k}^{2}}\left( v \right)dv}+\int{{{f}^{(1)}}(\xi )(hv){{k}^{2}}\left( v \right)dv}-O\left( {{h}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ hf(x)\underbrace{\int{{{k}^{2}}\left( v \right)dv}}_{\kappa }+\underbrace{\int{{{f}^{(1)}}(\xi )(hv){{k}^{2}}\left( v \right)dv}}_{O\left( {{h}^{2}} \right)}-O\left( {{h}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\kappa f(x)+O\left( {{h}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{nh}\left\{ \kappa f(x)+O\left( h \right) \right\}=O\left( {{(nh)}^{-1}} \right)\]</span></p>
+<p>We now know that the order of variance is <span class="math inline">\(O\left( {{(nh)}^{-1}} \right)\)</span>, the order of bias is <span class="math inline">\(O\left( {{h}^{2}} \right)\)</span> and the order of biases square is <span class="math inline">\(O\left( {{h}^{4}} \right)\)</span>. As we know the the MSE is sum of variance and square of biases and pluggin the values of variance and bias, we get,</p>
+<p><span class="math display">\[MSE\left( \hat{f}(x) \right)=\operatorname{var}\left( \hat{f}(x) \right)+{{\left\{ bias\left( \hat{f}(x) \right) \right\}}^{2}}\]</span></p>
+<p><span class="math display">\[MSE\left( \hat{f}(x) \right)=\frac{{{h}^{4}}}{4}{{\left[ {{\kappa }_{2}}{{f}^{\left( 2 \right)}}(x) \right]}^{2}}+\frac{\kappa f(x)}{nh}+o\left( {{h}^{4}}+{{(nh)}^{-1}} \right)=O\left( {{h}^{4}}+{{(nh)}^{-1}} \right)\]</span>
+Where, <span class="math inline">\(v=\left( \frac{{{X}_{i}}-x}{h} \right)\)</span>, <span class="math inline">\({{\kappa }_{2}}=\int{{{v}^{2}}k(v)dv}\)</span> and <span class="math inline">\(\kappa =\int{{{k}^{2}}(v)dv}\)</span></p>
+</div>
+</div>
+</div>
+<div id="multivariate-nonparametric-density-estimation" class="section level1">
+<h1>Multivariate NonParametric Density Estimation</h1>
+<div id="theorem" class="section level2">
+<h2>Theorem</h2>
+<p>Suppose that <span class="math inline">\({{X}_{1}},...,{{X}_{n}}\)</span> constitute an i.i.d <span class="math inline">\(q\)</span>-vector <span class="math inline">\(\left( {{X}_{i}}\in {{\mathbb{R}}^{q}} \right)\)</span> for some <span class="math inline">\(q&gt;1\)</span> having common PDF <span class="math inline">\(f(x)=f({{x}_{1}},{{x}_{2}},...,{{x}_{q}})\)</span>. Let <span class="math inline">\({{X}_{ij}}\)</span> denote the <span class="math inline">\(j-th\)</span> component of <span class="math inline">\({{X}_{i}}(j=1,...,q)\)</span>. Then the estimated pdf given by <span class="math inline">\(\hat{f}(x)\)</span>is constructed by product kernel function or the product of univariate kernel functions.</p>
+<p><span class="math display">\[\hat{f}(x)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{k\left( \frac{{{x}_{i1}}-{{x}_{1}}}{{{h}_{1}}} \right)\times k\left( \frac{{{x}_{i2}}-{{x}_{2}}}{{{h}_{2}}} \right)}\times \cdots \times k\left( \frac{{{x}_{iq}}-{{x}_{q}}}{{{h}_{q}}} \right)\]</span>
+<span class="math display">\[\hat{f}(x)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{\prod\limits_{j=1}^{q}{k\left( \frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}} \right)}}\]</span></p>
+</div>
+<div id="bias-term" class="section level2">
+<h2>Bias term</h2>
+<p>The MSE consistency of <span class="math inline">\(\hat{f}(x)\)</span>is sum of variance and square of bias term. First, we define bias given as:
+<span class="math display">\[bias\left( \hat{f}(x) \right)=E\left( \hat{f}(x) \right)-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=E\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{\prod\limits_{j=1}^{q}{k\left( \frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}} \right)}} \right)-f(x)\]</span>
+Lets define <span class="math inline">\(\prod\limits_{j=1}^{q}{k\left( \frac{{{X}_{ij}}-{{x}_{i}}}{{{h}_{j}}} \right)}=K\left( \frac{{{X}_{i}}-x}{h} \right)\)</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=E\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right)-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}E\left( \sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right)-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}n\left( E\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right] \right)-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\left( E\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right] \right)-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\left( \frac{{{X}_{i}}-x}{h} \right)f\left( {{X}_{i}} \right)d{{x}_{i}}}-f(x)\]</span>
+Note: <span class="math inline">\(d{{x}_{i}}\)</span> is vector comprise of <span class="math inline">\(d{{x}_{i1}},d{{x}_{i2}},...,d{{x}_{iq}}\)</span> and
+let’s <span class="math inline">\(\left( \frac{{{X}_{i}}-x}{h} \right)=\left( \frac{{{X}_{i1}}-{{x}_{1}}}{{{h}_{1}}},\frac{{{X}_{i1}}-{{x}_{2}}}{{{h}_{2}}},...,\frac{{{X}_{iq}}-{{x}_{q}}}{{{h}_{q}}} \right)=\psi =\left( {{\psi }_{1}},{{\psi }_{2}},...,{{\psi }_{q}} \right)\)</span>. This means, <span class="math inline">\(\frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}}={{\psi }_{j}}\)</span> and <span class="math inline">\({{x}_{ij}}={{x}_{j}}+{{\psi }_{j}}{{h}_{j}}\)</span> then <span class="math inline">\(d{{x}_{ij}}={{h}_{j}}d{{\psi }_{j}}\)</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\underbrace{\left( \frac{{{X}_{i}}-x}{h} \right)}_{\psi }\underbrace{f\left( {{X}_{i}} \right)}_{f\left( x+h\psi  \right)}\underbrace{d{{x}_{i}}}_{{{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }}-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=({{h}_{1}}{{h}_{2}}...{{h}_{q}}){{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\left( \psi  \right)f\left( x+h\psi  \right)d\psi }-f(x)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\int{K\left( \psi  \right)f\left( x+h\psi  \right)d\psi }-f(x)\]</span>
+Now perform a multivariate Taylor expansion for:
+<span class="math display">\[f\left( x+h\psi  \right)=\left\{ f(x)+{{f}^{1}}{{(x)}^{T}}\left( x+h\psi -x \right)+\frac{1}{2!}{{(x+h\psi -x)}^{T}}{{f}^{2}}(x)\left( x+h\psi -x \right)+\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( x+h\psi -x \right)}^{3}}} \right\}\]</span>
+<span class="math display">\[f\left( x+h\psi  \right)=\left\{ f(x)+{{f}^{1}}{{(x)}^{T}}\left( h\psi  \right)+\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)+\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( h\psi  \right)}^{3}}} \right\}\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\int{K\left( \psi  \right)\left\{ f(x)+{{f}^{1}}{{(x)}^{T}}\left( h\psi  \right)+\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)+\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( h\psi  \right)}^{3}}} \right\}d\psi }-f(x)\]</span>
+<span class="math display">\[\begin{matrix}
+   bias\left( \hat{f}(x) \right)= &amp; \int{f(x)K\left( \psi  \right)d\psi }+\int{{{f}^{1}}{{(x)}^{T}}\left( h\psi  \right)K\left( \psi  \right)d\psi }+\int{\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)K\left( \psi  \right)d\psi }  \\
+   {} &amp; +\int{\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( h\psi  \right)}^{3}}K\left( \psi  \right)d\psi }-f(x)}  \\
+\end{matrix}\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=f\left( x \right)\int{K\left( \psi  \right)d\psi }+{{f}^{1}}{{(x)}^{T}}h\int{\psi K\left( \psi  \right)d\psi }+\int{\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)K\left( \psi  \right)d\psi +O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)-f\left( x \right)}\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=f\left( x \right)\underbrace{\int{K\left( \psi  \right)d\psi }}_{1}+{{f}^{1}}{{(x)}^{T}}h\underbrace{\int{\psi K\left( \psi  \right)d\psi }}_{0}+\frac{{{h}^{T}}h}{2}\int{K\left( \psi  \right){{\psi }^{T}}{{f}^{2}}(x)\psi d\psi +O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)-f\left( x \right)}\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\int{{{h}^{T}}h{{\psi }^{T}}{{f}^{2}}(x)\psi K\left( \psi  \right)d\psi }+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\int{\underbrace{{{h}^{T}}h\underbrace{{{\psi }^{T}}}_{1\times q}\underbrace{{{f}^{2}}(x)}_{q\times q}\underbrace{\psi }_{q\times 1}}_{1\times 1}K\left( \psi  \right)d\psi }+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\int{{{h}^{T}}h\sum\limits_{l=1}^{q}{\sum\limits_{m=1}^{q}{f_{lm}^{\left( 2 \right)}\left( x \right){{\psi }_{l}}{{\psi }_{m}}}}K\left( \psi  \right)d\psi }+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]</span>
+For <span class="math inline">\(l\ne m\)</span> the cross derivatives will be zero hence, we can re-write as:
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\sum\limits_{l=1}^{q}{h_{l}^{2}f_{ll}^{\left( 2 \right)}\left( x \right){{\kappa }_{2}}}+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\frac{{{\kappa }_{2}}}{2}\sum\limits_{l=1}^{q}{h_{l}^{2}f_{ll}^{\left( 2 \right)}\left( x \right)}+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)=O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)\]</span>
+<span class="math display">\[bias\left( \hat{f}(x) \right)=\underbrace{\frac{{{\kappa }_{2}}}{2}\sum\limits_{l=1}^{q}{h_{l}^{2}f_{ll}^{\left( 2 \right)}\left( x \right)}}_{{{c}_{1}}}+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)=O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)\]</span></p>
+<p>Where, <span class="math inline">\({{c}_{1}}\)</span> is a constant.</p>
+</div>
+<div id="variance-term" class="section level2">
+<h2>Variance term</h2>
+<p>The variance is given as:
+<span class="math display">\[\operatorname{var}\left( \hat{f}(x) \right)=E\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{\prod\limits_{j=1}^{q}{k\left( \frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}} \right)}} \right)\]</span>
+Lets’s define <span class="math inline">\(\prod\limits_{j=1}^{q}{k\left( \frac{{{X}_{ij}}-{{x}_{i}}}{{{h}_{j}}} \right)}=K\left( \frac{{{X}_{i}}-x}{h} \right)\)</span>
+<span class="math display">\[\operatorname{var}\left( \hat{f}(x) \right)=\operatorname{var}\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right)\]</span>
+For <span class="math inline">\(b\in \mathbb{R}\)</span> be a constant and <span class="math inline">\(y\)</span> be a random variable, then, <span class="math inline">\(\operatorname{var}[by]={{b}^{2}}\operatorname{var}[y]\)</span>, therefore,
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}={{(n{{h}_{1}}...{{h}_{q}})}^{-2}}\operatorname{var}\left[ \sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right]\]</span></p>
+<p>For <span class="math inline">\(\operatorname{var}(a+b)=\operatorname{var}(a)+\operatorname{var}(b)+2\operatorname{cov}(a,b)\)</span> and if <span class="math inline">\(a\bot b\)</span> then <span class="math inline">\(2\operatorname{cov}(a,b)=0\)</span>. In above expression <span class="math inline">\({{X}_{i}}\)</span> are independent observation therefore <span class="math inline">\({{X}_{i}}\bot {{X}_{j}}\ \forall \ i\ne j\)</span>. Hence, we can express
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}={{(n{{h}_{1}}...{{h}_{q}})}^{-2}}\left\{ \sum\limits_{i=1}^{n}{\operatorname{var}\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]}+0 \right\}\]</span>
+Note, <span class="math inline">\({{X}_{i}}\)</span> are also identical, therefore <span class="math inline">\(\operatorname{var}({{X}_{i}})=\operatorname{var}({{X}_{j}})\)</span> so, <span class="math inline">\(\sum\limits_{i=1}^{n}{\operatorname{var}({{X}_{i}})}=n\operatorname{var}({{X}_{1}})\)</span>. Therefore,
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}={{(n{{h}_{1}}...{{h}_{q}})}^{-2}}n\operatorname{var}\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\operatorname{var}\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]\]</span>
+The variance is given as: <span class="math inline">\(\operatorname{var}\left\{ \hat{f}(x) \right\}=E{{\left( \hat{f}(x)-E\left[ \hat{f}(x) \right] \right)}^{2}}=E\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]-{{E}^{2}}\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]\)</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ E{{\left[ K\left( \frac{{{X}_{1}}-x}{h} \right) \right]}^{2}}-\left[ E{{\left( K\left( \frac{{{X}_{1}}-x}{h} \right) \right)}^{2}} \right] \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{f\left( {{X}_{i}} \right)\left[ {{K}^{2}}\left( \frac{{{X}_{i}}-x}{h} \right) \right]d{{x}_{i}}}-{{\left[ \int{f\left( {{X}_{i}} \right)\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]d{{x}_{i}}} \right]}^{2}}\]</span>
+Note: <span class="math inline">\(d{{x}_{i}}\)</span> is vector comprise of <span class="math inline">\(d{{x}_{i1}},d{{x}_{i2}},...,d{{x}_{iq}}\)</span> and
+let’s <span class="math inline">\(\left( \frac{{{X}_{i}}-x}{h} \right)=\left( \frac{{{X}_{i1}}-{{x}_{1}}}{{{h}_{1}}},\frac{{{X}_{i1}}-{{x}_{2}}}{{{h}_{2}}},...,\frac{{{X}_{iq}}-{{x}_{q}}}{{{h}_{q}}} \right)=\psi =\left( {{\psi }_{1}},{{\psi }_{2}},...,{{\psi }_{q}} \right)\)</span>. This means, <span class="math inline">\(\frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}}={{\psi }_{j}}\)</span> and <span class="math inline">\({{x}_{ij}}={{x}_{j}}+{{\psi }_{j}}{{h}_{j}}\)</span> then <span class="math inline">\(d{{x}_{ij}}={{h}_{j}}d{{\psi }_{j}}\)</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{\left[ {{K}^{2}}\underbrace{\left( \frac{{{X}_{i}}-x}{h} \right)}_{\psi } \right]\underbrace{f\left( {{X}_{i}} \right)}_{f\left( x+h\psi  \right)}\underbrace{d{{x}_{i}}}_{{{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }}-{{\left[ \int{f\left( {{X}_{i}} \right)\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]d{{x}_{i}}} \right]}^{2}} \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-{{\left[ \int{f\left( x+h\psi  \right)K\left( \psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi } \right]}^{2}} \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-\underbrace{{{\left[ {{({{h}_{1}}{{h}_{2}}...{{h}_{q}})}^{2}}\int{f\left( x+h\psi  \right)K\left( \psi  \right)d\psi } \right]}^{2}}}_{O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)} \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ {{h}_{1}}{{h}_{2}}...{{h}_{q}}\int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right)d\psi }-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]</span>
+Now, we perform the Taylor series expansion
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{f\left( x \right){{K}^{2}}\left( \psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }+\int{{{f}^{(1)}}\left( \xi  \right)\left( {{h}_{1}}{{h}_{2}}...{{h}_{q}}\psi  \right){{K}^{2}}\left( \psi  \right)d\psi }-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \left( {{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)f\left( x \right)\underbrace{\int{{{K}^{2}}\left( \psi  \right)d\psi }}_{\mathbf{\kappa }}+\underbrace{\int{{{f}^{(1)}}\left( \xi  \right)\left( {{h}_{1}}{{h}_{2}}...{{h}_{q}}\psi  \right){{K}^{2}}\left( \psi  \right)d\psi }}_{O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)}-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \left( {{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)f\left( x \right)\mathbf{\kappa }+O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]</span>
+<span class="math display">\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \left( {{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)f\left( x \right){{\kappa }^{q}}+O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}=O\left( \frac{1}{n{{h}_{1}}...{{h}_{q}}} \right)\]</span></p>
+</div>
+<div id="mse-term" class="section level2">
+<h2>MSE term</h2>
+<p>Summarizing, we obtain the MSE as:
+<span class="math display">\[MSE\left( \hat{f}\left( x \right) \right)=\operatorname{var}\left( \hat{f}\left( x \right) \right)+{{\left[ bias\left( \hat{f}\left( x \right) \right) \right]}^{2}}\]</span>
+<span class="math display">\[MSE\left( \hat{f}\left( x \right) \right)=O\left( \frac{1}{n{{h}_{1}}...{{h}_{q}}} \right)+{{\left[ O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right]}^{2}}=O\left( {{\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)}^{2}}+{{\left( n{{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)}^{-1}} \right)\]</span></p>
+<p>Hence, if as <span class="math inline">\(n\to \infty\)</span>, <span class="math inline">\({{\max }_{1\le l\le q}}{{h}_{l}}\to 0\)</span> and <span class="math inline">\(n{{h}_{1}}...{{h}_{q}}\to \infty\)</span> then we have <span class="math inline">\(\hat{f}\left( x \right)\to f\left( x \right)\)</span> in MSE, which <span class="math inline">\(\hat{f}\left( x \right)\to f\left( x \right)\)</span> in probability.</p>
+</div>
+<div id="the-optimal-band-width" class="section level2">
+<h2>The optimal band-width</h2>
+<p><span class="math display">\[MSE\left( \hat{f}\left( x \right) \right)={{c}_{1}}{{h}^{4}}+{{c}_{2}}{{n}^{-1}}{{h}^{-q}}\]</span></p>
+<p>Now, we can choose <span class="math inline">\(h\)</span> to find the optimal value of above function and the <span class="math inline">\(F.O.C\)</span> is given as:</p>
+<p><span class="math display">\[\frac{\partial MSE\left( \hat{f}\left( x \right) \right)}{\partial h}=\frac{{{c}_{1}}{{h}^{4}}+{{c}_{2}}{{n}^{-1}}{{h}^{-q}}}{\partial h}=0\]</span></p>
+<p><span class="math display">\[4{{c}_{1}}{{h}^{3}}+{{c}_{2}}{{n}^{-1}}(-q){{h}^{-q-1}}=0\]</span></p>
+<p><span class="math display">\[\frac{4{{c}_{1}}}{{{c}_{2}}q}n={{h}^{-q-1-3}}\]</span></p>
+<p>Let’s define <span class="math inline">\(\frac{4{{c}_{1}}}{{{c}_{2}}q}=c\)</span> then</p>
+<p><span class="math display">\[{{h}^{-q-4}}=cn\]</span></p>
+<p><span class="math display">\[{{h}^{*}}={{\left[ cn \right]}^{-\frac{1}{4+q}}}\]</span></p>
+</div>
+</div>
+<div id="asymptotic-normality-of-density-estimators" class="section level1">
+<h1>Asymptotic Normality of Density Estimators</h1>
+<p>Theorem 1.2</p>
+<p>Let <span class="math inline">\({{X}_{1}},...,{{X}_{n}}\)</span> be <span class="math inline">\(i.i.d\)</span> <span class="math inline">\(q-\)</span>vector with it’s <span class="math inline">\(PDF\)</span> <span class="math inline">\(f\left( \cdot \right)\)</span> having three-times bounded continuous derivatives. Let <span class="math inline">\(x\)</span> be an interior point of the support <span class="math inline">\(X\)</span>. If, as <span class="math inline">\(n\to \infty\)</span>, <span class="math inline">\({{h}_{s}}\to 0\)</span> for all <span class="math inline">\(s=1,...,q\)</span>, <span class="math inline">\(n{{h}_{1}}n{{h}_{2}}...n{{h}_{q}}\to \infty\)</span> and <span class="math inline">\(\left( n{{h}_{1}}n{{h}_{2}}...n{{h}_{q}} \right)\sum\nolimits_{s=1}^{q}{h_{s}^{6}}\to 0\)</span>, then,
+<span class="math display">\[\sqrt{n{{h}_{1}}n{{h}_{2}}...n{{h}_{q}}}\left[ \hat{f}\left( x \right)-f\left( x \right)-\frac{{{\kappa }_{2}}}{2}\sum\limits_{s=1}^{q}{h_{s}^{2}{{f}_{ss}}\left( x \right)} \right]\overset{d}{\mathop{\to }}\,N\left( 0,{{\kappa }^{q}}f\left( x \right) \right)\]</span></p>
+<p>Before, we begin, imagine that each band width is equal i.e. <span class="math inline">\({{h}_{1}}={{h}_{2}}=...={{h}_{q}}\)</span>. Let’s acknowledge that as <span class="math inline">\(n\to \infty\)</span>, <span class="math inline">\(h\to 0\)</span>. If this is the case then, where does <span class="math inline">\(n{{h}^{q}}\)</span> go? Does this go to zero or infinity?
+<span class="math inline">\({{h}^{q}}\)</span> doesn’t converge to zero as fast as <span class="math inline">\(n\to \infty\)</span>, then <span class="math inline">\(n{{h}^{q}}\to \infty\)</span> but <span class="math inline">\(n{{h}^{6+q}}\to 0\)</span>. Therefore, because of this reason we can set up asymptotic normality.</p>
+<p>Let begin with following equation:
+<span class="math display">\[\sqrt{n{{h}^{q}}}\left[ \hat{f}\left( x \right)-E\left[ \hat{f}\left( x \right) \right] \right]\]</span></p>
+<p>This can be re-expressed as:
+<span class="math display">\[\sqrt{n{{h}^{q}}}\frac{1}{n{{h}^{q}}}\sum\limits_{i=1}^{n}{\left[ k\left( \frac{{{X}_{i}}-x}{h} \right)-E\left[ k\left( \frac{{{X}_{i}}-x}{h} \right) \right] \right]}\]</span>
+Let’s define
+<span class="math display">\[k\left( \frac{{{X}_{i}}-x}{h} \right)={{K}_{i}}\]</span>
+then,
+<span class="math display">\[\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}=\sum\limits_{i=1}^{n}{\frac{1}{\sqrt{n{{h}^{q}}}}\left( {{K}_{i}}-E{{K}_{i}} \right)}=\sum\limits_{i=1}^{n}{{{Z}_{n,i}}}\]</span>
+Note that the <span class="math inline">\({{Z}_{n,i}}\)</span> is double array (or data frame, column indexed with different <span class="math inline">\(n\)</span> and row with different observation <span class="math inline">\(i\)</span>, each combination of <span class="math inline">\(n\)</span> and <span class="math inline">\(i\)</span> gives different value for <span class="math inline">\({{Z}_{n,i}}\)</span>)</p>
+<p>Now, we need to think for a strategy for asymptotic normality. Actually, there are four ways (at least) to think about the asymptotic normality: 1) Khinchi’s Law of Large Numbers; 2) Lindeberg-Levy Central Limit Theorem; 3) Lindelberg-Feller Central Limit Theorem and 4) Lyapunov Central Limit Theorem. We will use Lyapunov Central Limit Theorem, for brief introduction to these laws of large numbers and central limit theorem, please see the annex.</p>
+<p>We will consider following four conditions:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E\left[ {{Z}_{ni}} \right]=\frac{1}{\sqrt{n{{h}^{q}}}}\left[ E{{K}_{i}}-E{{K}_{i}} \right]=0\)</span></p></li>
+<li><p><span class="math inline">\(Var\left( {{Z}_{n,i}} \right)=\frac{1}{n{{h}^{q}}}Var\left( {{K}_{i}} \right)=\frac{1}{n{{h}^{q}}}\left[ EK_{i}^{2}-{{\left( E{{K}_{i}} \right)}^{2}} \right]={{h}^{q}}\frac{1}{n{{h}^{q}}}Var\left( {{K}_{i}} \right)={{h}^{q}}\frac{{{\kappa }^{q}}f\left( x \right)}{n{{h}^{q}}}\left( 1+o\left( 1 \right) \right)={{\kappa }^{q}}f\left( x \right)\left( 1+o\left( 1 \right) \right)\)</span></p></li>
+<li><p><span class="math inline">\(\sigma _{n}^{2}=\sum\limits_{i=1}^{n}{Var\left( {{Z}_{n,i}} \right)}={{\kappa }^{q}}f\left( x \right)\left( 1+o\left( 1 \right) \right)\)</span> and taking limits we get <span class="math inline">\(\underset{n\to \infty }{\mathop{\lim }}\,\sigma _{n}^{2}={{\kappa }^{q}}f\left( x \right)\)</span></p></li>
+<li><p><span class="math inline">\(\sum\limits_{i=1}^{n}{E{{\left| {{Z}_{n,i}} \right|}^{2+\delta }}}=nE{{\left| {{Z}_{n,i}} \right|}^{2+\delta }}\)</span> if each <span class="math inline">\(i\)</span> are i.i.d
+With Cram?r-Rao bound inequality we can write
+<span class="math display">\[n\frac{1}{{{\left| \sqrt{n{{h}^{q}}} \right|}^{2+\delta }}}E{{\left| {{K}_{i}}-E{{K}_{i}} \right|}^{2+\delta }}\le \frac{c}{{{n}^{{\delta }/{2}\;}}{{h}^{{\delta }/{2}\;}}}\frac{1}{{{h}^{q}}}\left[ E{{\left| {{K}_{i}} \right|}^{2+\delta }}+{{\left| E{{K}_{i}} \right|}^{2+\delta }} \right]\to 0\]</span>
+Note that <span class="math inline">\(n{{h}^{q}}\to \infty\)</span> so <span class="math inline">\(\left( \bullet \right)\to 0\)</span>, further <span class="math inline">\(E{{\left| {{K}_{i}} \right|}^{2+\delta }}\)</span> is higher order than <span class="math inline">\({{\left| E{{K}_{i}} \right|}^{2+\delta }}\)</span>
+With all these conditions:
+<span class="math display">\[\sigma _{n}^{-2}\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}\overset{d}{\mathop{\to }}\,N\left( 0,1 \right)\]</span>
+<span class="math display">\[\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}\overset{d}{\mathop{\to }}\,N\left( 0,\underset{n\to \infty }{\mathop{\lim }}\,\sigma _{n}^{2} \right)\]</span>
+<span class="math display">\[\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}\overset{d}{\mathop{\to }}\,N\left( 0,{{\kappa }^{q}}f\left( x \right) \right)\]</span></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/density/">Density,</a>
+  
+  <a class="badge badge-light" href="/tags/r/">R,</a>
+  
+  <a class="badge badge-light" href="/tags/non-parametric/">Non Parametric,</a>
+  
+  <a class="badge badge-light" href="/tags/theory/">Theory,</a>
+  
+  <a class="badge badge-light" href="/tags/proof/">Proof,</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  <div class="media author-card">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/2018-12-29-proof-of-hoeffding-inequality/">Probability Inequality</a></li>
+          
+          <li><a href="/post/2018-12-01-rubins-potential-outcome-framework/">Rubin&#39;s Potential Outcome Framework</a></li>
+          
+          <li><a href="/post/2018-12-26-preamble-of-reproducible-research/">Preambles for Reproducible Research</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.f8f695ea8337c0f623fb342ddda69281.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © <code>2023</code> Shishir Shakya &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

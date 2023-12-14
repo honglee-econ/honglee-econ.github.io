@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic ">
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Potential Outcome FrameworkThere are at least three different school of thoughts regarding causality: 1) granger causality; 2) Rubin’s potential outcome framework and 3) Pearl’s causality. Each of these thoughts have their own pros and cons. I will quickly discuss about the Rubin’s potential outcome framework and show the fundamental problem of causal inference.For an example, say a researcher wants to study impact of certain treatment (say performance enhancing drug say \(T\)) on some outcomes (say capacity to solve riddle quizzes say \(Y\)).">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.930280e25e7eda33df585b7fa20d4e00.css">
+
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-131353943-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@econshishir">
+  <meta property="twitter:creator" content="@econshishir">
+  
+  <meta property="og:site_name" content="Shishir Shakya">
+  <meta property="og:url" content="https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/">
+  <meta property="og:title" content="Rubin&#39;s Potential Outcome Framework | Shishir Shakya">
+  <meta property="og:description" content="Potential Outcome FrameworkThere are at least three different school of thoughts regarding causality: 1) granger causality; 2) Rubin’s potential outcome framework and 3) Pearl’s causality. Each of these thoughts have their own pros and cons. I will quickly discuss about the Rubin’s potential outcome framework and show the fundamental problem of causal inference.For an example, say a researcher wants to study impact of certain treatment (say performance enhancing drug say \(T\)) on some outcomes (say capacity to solve riddle quizzes say \(Y\))."><meta property="og:image" content="https://ShishirShakya.github.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://ShishirShakya.github.io/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2019-01-07T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2019-01-07T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/"
+  },
+  "headline": "Rubin's Potential Outcome Framework",
+  
+  "datePublished": "2019-01-07T00:00:00Z",
+  "dateModified": "2019-01-07T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Authors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shishir Shakya",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ShishirShakya.github.io/img/icon-512.png"
+    }
+  },
+  "description": "Potential Outcome Framework\rThere are at least three different school of thoughts regarding causality: 1) granger causality; 2) Rubin’s potential outcome framework and 3) Pearl’s causality. Each of these thoughts have their own pros and cons. I will quickly discuss about the Rubin’s potential outcome framework and show the fundamental problem of causal inference.\rFor an example, say a researcher wants to study impact of certain treatment (say performance enhancing drug say \\(T\\)) on some outcomes (say capacity to solve riddle quizzes say \\(Y\\))."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Rubin&#39;s Potential Outcome Framework | Shishir Shakya</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Shishir Shakya</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#hero"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>Curriculum Vitae</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/highlights/"><span>Research Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/teaching/"><span>Teachings</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/my_resources/"><span>Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://mhdm.netlify.app/" target="_blank" rel="noopener"><span>Mostly Handsdirty Metrics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Rubin&#39;s Potential Outcome Framework</h1>
+
+  
+
+  
+    
+
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 7, 2019
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/causal-inference/">Causal Inference</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/&amp;text=Rubin&amp;#39;s%20Potential%20Outcome%20Framework" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/&amp;t=Rubin&amp;#39;s%20Potential%20Outcome%20Framework" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Rubin&amp;#39;s%20Potential%20Outcome%20Framework&amp;body=https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/&amp;title=Rubin&amp;#39;s%20Potential%20Outcome%20Framework" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Rubin&amp;#39;s%20Potential%20Outcome%20Framework%20https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/&amp;title=Rubin&amp;#39;s%20Potential%20Outcome%20Framework" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="potential-outcome-framework" class="section level1">
+<h1>Potential Outcome Framework</h1>
+<p>There are at least three different school of thoughts regarding causality: 1) granger causality; 2) Rubin’s potential outcome framework and 3) Pearl’s causality. Each of these thoughts have their own pros and cons. I will quickly discuss about the Rubin’s potential outcome framework and show the fundamental problem of causal inference.
+For an example, say a researcher wants to study impact of certain treatment (say performance enhancing drug say <span class="math inline">\(T\)</span>) on some outcomes (say capacity to solve riddle quizzes say <span class="math inline">\(Y\)</span>).</p>
+<p>He randomly sampled the total population and divided the total sample population <span class="math inline">\(N\)</span> to the control group of <span class="math inline">\({{N}_{co}}\)</span> and treatment group <span class="math inline">\({{N}_{Tr}}\)</span> such that <span class="math inline">\({{N}_{co}}+{{N}_{Tr}}=N\)</span>.</p>
+<p>Say the treatment group are exposed to the treatment i.e. <span class="math inline">\(T=1\)</span> for intervening with performance enhancing drug and control group is not intervened or given a placebo i.e. <span class="math inline">\(T=0\)</span>.</p>
+<p>After this experiment, researcher takes test of all the individual and records numbers of minutes to solve the questions.</p>
+<p>The average outcome of treated group is <span class="math inline">\(E\left[ Y\left( 1 \right)|T=1 \right]\)</span> and average outcome of control group is given as <span class="math inline">\(E\left[ Y\left( 0 \right)|T=0 \right]\)</span>. Both averages can be estimated easily as the data are observed. The simple difference of means <span class="math inline">\(SDoM\)</span> between average outcome of treated and average outcome of control group given as:</p>
+<p><span class="math display">\[SDoM=E\left[ Y\left( 1 \right)|T=1 \right]-E\left[ Y\left( 0 \right)|T=0 \right]\]</span></p>
+<p>The potential outcome framework, however, look at this problem and ask a simple question i.e. “What is the counterfactual?”. In another word, what would be the outcome of those who are treated if they were not been treated i.e. <span class="math inline">\(E\left[ Y\left( 0 \right)|T=1 \right]=??\)</span>. Similarly, what would be the outcome of control if they had been treated i.e. <span class="math inline">\(E\left[ Y\left( 1 \right)|T=0 \right]=??\)</span>.
+Then, the average treatment effect is given as:</p>
+<p><span class="math display">\[ATE=\left\{ E\left[ Y\left( 1 \right)|T=1 \right]-E\left[ Y\left( 0 \right)|T=1 \right] \right\}-\left\{ E\left[ Y\left( 0 \right)|T=0 \right]-E\left[ Y\left( 1 \right)|T=0 \right] \right\}\]</span></p>
+<p>Where,</p>
+<p><span class="math inline">\(E\left[ Y\left( 1 \right)|T=1 \right]\)</span> represents, given treated, the average outcome of treated group (observed in data).
+<span class="math inline">\(E\left[ Y\left( 0 \right)|T=1 \right]\)</span> represents, given treated, the average outcome of treated group if they were controlled (unobserved).
+<span class="math inline">\(E\left[ Y\left( 0 \right)|T=0 \right]\)</span> represents, given controlled, the average outcome of controlled group (observed in data).
+<span class="math inline">\(E\left[ Y\left( 1 \right)|T=0 \right]\)</span> represents, given controlled, the average outcome of controlled group if they were treated (unobserved).</p>
+<p>We can also correct this estimate with sampling weights as:</p>
+<p><span class="math display">\[ATE=\lambda \left\{ E\left[ Y\left( 1 \right)|T=1 \right]-E\left[ Y\left( 0 \right)|T=1 \right] \right\}-\left( 1-\lambda  \right)\left\{ E\left[ Y\left( 0 \right)|T=0 \right]-E\left[ Y\left( 1 \right)|T=0 \right] \right\}\]</span></p>
+<p>Where, <span class="math inline">\(\lambda =\frac{{{N}_{Tr}}}{N}\)</span> or proportion of treated group and <span class="math inline">\(1-\lambda =1-\frac{{{N}_{Tr}}}{N}=\frac{{{N}_{co}}}{N}\)</span> proportion of control group.</p>
+<p>If we closely look at estimate of <span class="math inline">\(ATE\)</span> we find that each counterfactual of treated and control group is missing data problem, this is the fundamental problem of causal inference.</p>
+<p>.</p>
+</div>
+
+    </div>
+
+    
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/causal-inference/">Causal Inference,</a>
+  
+  <a class="badge badge-light" href="/tags/theory/">Theory,</a>
+  
+  <a class="badge badge-light" href="/tags/proof/">Proof,</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  <div class="media author-card">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/2019-01-07-density-estimation/">Density Estimation</a></li>
+          
+          <li><a href="/post/2018-12-29-proof-of-hoeffding-inequality/">Probability Inequality</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.f8f695ea8337c0f623fb342ddda69281.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © <code>2023</code> Shishir Shakya &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

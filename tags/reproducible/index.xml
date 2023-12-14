@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reproducible, | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/tags/reproducible/</link>
+      <atom:link href="https://ShishirShakya.github.io/tags/reproducible/index.xml" rel="self" type="application/rss+xml" />
+    <description>Reproducible,</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright><lastBuildDate>Wed, 26 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Reproducible,</title>
+      <link>https://ShishirShakya.github.io/tags/reproducible/</link>
+    </image>
+    
+    <item>
+      <title>Preambles for Reproducible Research</title>
+      <link>https://ShishirShakya.github.io/post/2018-12-26-preamble-of-reproducible-research/</link>
+      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/post/2018-12-26-preamble-of-reproducible-research/</guid>
+      <description>
+&lt;script src=&#34;https://ShishirShakya.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Replication can have a different meaning to the different discipline. Replication in studies that uses public data sources involve sharing codes to ensure consistency in the results. Here, I share some chunk of the codes in five steps using RStudio, that can ensure ease in shareability. These 5 steps are the preambles prior I proceed toward data management.&lt;/p&gt;
+&lt;p&gt;For this a user will require to install R &lt;a href=&#34;https://cran.r-project.org/bin/windows/base/&#34;&gt;here&lt;/a&gt; and R-Studio &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;here&lt;/a&gt;. A copy of this code is available &lt;a href=&#34;&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;clean-the-current-workspace-and-session.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Clean the current workspace and session.&lt;/h2&gt;
+&lt;p&gt;The very first step in to remove all the objects and plots from the current workspace and device in the R. For this, I use following codes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rm(list = ls())
+dev.off(dev.list()[&amp;quot;RStudioGD&amp;quot;])&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;install-and-load-r-packages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Install and load R packages&lt;/h2&gt;
+&lt;p&gt;Second step is to install the required R-packages (if r-packages don’t exist installed package directory of R) and load them into the library. In the following code, I first create a function called &lt;code&gt;load_packages()&lt;/code&gt;. This function takes list of names of packages as argument, then check if the packages are already installed in the user’s package list, and if not then installs the packages from the &lt;code&gt;cran&lt;/code&gt;. I always use &lt;code&gt;load_packages(&#34;rstudioapi&#34;)&lt;/code&gt; package and it’s a mandatory package for mywork flow. Then I use &lt;code&gt;load_packages()&lt;/code&gt; for other required packages. These packages depends upon the project. In the following example I use &lt;code&gt;haven&lt;/code&gt;, and &lt;code&gt;Hmisc&lt;/code&gt; packages.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;load_packages &amp;lt;- function(pkg){
+ new.pkg &amp;lt;- pkg[!(pkg %in% installed.packages()[, &amp;quot;Package&amp;quot;])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE,
+                     repos = &amp;quot;http://cran.us.r-project.org&amp;quot;)
+  sapply(pkg, require, character.only = TRUE)
+}
+load_packages(&amp;quot;rstudioapi&amp;quot;) # This is a mandatory package.
+load_packages (c(&amp;quot;devtools&amp;quot;,  &amp;quot;haven&amp;quot;, &amp;quot;Hmisc&amp;quot;)) # These packages depends upon the project.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;setup-working-directory.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Setup Working directory.&lt;/h2&gt;
+&lt;p&gt;Setting up the working directory is my third step. It is very important because my working directory can always be different then my coauthor’s/referee’s working directory. So, I first save the R script in the desired location manually and my coauthors are also advised to do similar. Then I use following code. This code detects where R-script is saved and sets that as working directory. Note this chunk of code uses &lt;code&gt;rstudioapi&lt;/code&gt; package, therefore it’s a mandatory package for my workflow.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;path &amp;lt;- dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(path)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-folders&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The Folders&lt;/h2&gt;
+&lt;p&gt;I never right click and create new folders. I always code to create a folder. The code helps me to track what I did in logical manner. Following codes directly create the folders in the working directory. I usually like to have folder called &lt;code&gt;rawdata&lt;/code&gt; to dump the data downloaded from the internet then I also like another folder &lt;code&gt;outcomes&lt;/code&gt; to save my final dataset for analysis, plots and tables. Sometimes, I can create folders within folder like &lt;code&gt;rawdata/beadataset&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dir.create(file.path(path, &amp;quot;rawdata&amp;quot;))
+dir.create(file.path(path, &amp;quot;outcomes&amp;quot;))
+dir.create(file.path(path, &amp;quot;rawdata/beadataset&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-data.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting data.&lt;/h2&gt;
+&lt;p&gt;Never download the data manually. If possible, always provide a download link and use script to download the data. And never touch the data. It seems counter-intuitive but, I never open data in excel. If I open data in excel, I make sure I don’t save or If I have to play around with data, I do that in separate folder and delete them ASAP.&lt;/p&gt;
+&lt;p&gt;Consider following example, the data of GDP by State by Year is available from the Bureau of Economic Analysis website. These data have stable link (the link doesn’t change over time) and content of data are consistent. The data can be download in the &lt;code&gt;.zip&lt;/code&gt; format. Again, I write script to unzip the data. The script checks if folder called &lt;code&gt;rawdata&lt;/code&gt; has &lt;code&gt;gdpstate_naics_all_C.zip&lt;/code&gt; file or not. If there exist no file, the script will download the file.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gdpbystatebyyear &amp;lt;- &amp;quot;https://www.bea.gov/regional/zip/gdpstate/gdpstate_naics_all_C.zip&amp;quot;
+if (file.exists(&amp;quot;rawdata/gdpstate_naics_all_C.zip&amp;quot;) == FALSE) { # get the zip file
+  download.file(gdpbystatebyyear,
+                destfile = &amp;quot;rawdata/gdpstate_naics_all_C.zip&amp;quot;, mode=&amp;quot;wb&amp;quot;)
+}
+unzip(&amp;quot;rawdata/gdpstate_naics_all_C.zip&amp;quot;, exdir = paste0(path,&amp;quot;/rawdata/beadataset&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Consider another example, if data is not available from in the web, I can share them via my google drive. I upload the &lt;code&gt;zip&lt;/code&gt; file in google drive then get the public shareable link. The object &lt;code&gt;gdrivepublic&lt;/code&gt; comprises of the public shareable link. Like previous chunk of code, here I check if data exist or not then download.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gdrivepublic &amp;lt;- &amp;quot;https://drive.google.com/uc?authuser=0&amp;amp;id=1AiZda_1-2nwrxI8fLD0Y6e5rTg7aocv0&amp;amp;export=download&amp;quot;
+
+if (file.exists(&amp;quot;datafromGoogleDrive.zip&amp;quot;) == FALSE) { # get the zip file
+  download.file(gsub(&amp;quot;open\\?&amp;quot;, &amp;quot;uc\\?export=download\\&amp;amp;&amp;quot;, gdrivepublic), destfile = &amp;quot;datafromGoogleDrive.zip&amp;quot;, mode=&amp;quot;wb&amp;quot;)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

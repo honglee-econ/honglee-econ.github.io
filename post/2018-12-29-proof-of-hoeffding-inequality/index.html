@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic ">
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Theorem 1: Gaussian Tail InequalityGiven \({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\) then, \(P\left( \left| X \right|&gt;\varepsilon \right)\le \frac{2{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\) and \(P\left( \left| {{{\bar{X}}}_{n}} \right|&gt;\varepsilon \right)\le \frac{2}{\sqrt{n}\varepsilon }{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\overset{l\arg e\ n}{\mathop{\le }}\,{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\).
+Proof of Gaussian Tail InequalityConsider a univariate \({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\), then the probability density function is given as \(\phi \left( x \right)=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\).Let’s take the derivative w.r.t \(x\) we get:\[\frac{d\phi \left( x \right)}{dx}={\phi }&#39;\left( x \right)=\frac{d\left( \frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{d\left( -\frac{{{x}^{2}}}{2} \right)}\frac{d\left( -\frac{{{x}^{2}}}{2} \right)}{dx}=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\left( -x \right)=-x\phi \left( x \right)\]Let’s define the gaussian tail inequality.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.930280e25e7eda33df585b7fa20d4e00.css">
+
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-131353943-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@econshishir">
+  <meta property="twitter:creator" content="@econshishir">
+  
+  <meta property="og:site_name" content="Shishir Shakya">
+  <meta property="og:url" content="https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/">
+  <meta property="og:title" content="Probability Inequality | Shishir Shakya">
+  <meta property="og:description" content="Theorem 1: Gaussian Tail InequalityGiven \({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\) then, \(P\left( \left| X \right|&gt;\varepsilon \right)\le \frac{2{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\) and \(P\left( \left| {{{\bar{X}}}_{n}} \right|&gt;\varepsilon \right)\le \frac{2}{\sqrt{n}\varepsilon }{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\overset{l\arg e\ n}{\mathop{\le }}\,{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\).
+Proof of Gaussian Tail InequalityConsider a univariate \({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\), then the probability density function is given as \(\phi \left( x \right)=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\).Let’s take the derivative w.r.t \(x\) we get:\[\frac{d\phi \left( x \right)}{dx}={\phi }&#39;\left( x \right)=\frac{d\left( \frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{d\left( -\frac{{{x}^{2}}}{2} \right)}\frac{d\left( -\frac{{{x}^{2}}}{2} \right)}{dx}=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\left( -x \right)=-x\phi \left( x \right)\]Let’s define the gaussian tail inequality."><meta property="og:image" content="https://ShishirShakya.github.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://ShishirShakya.github.io/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2018-12-26T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2018-12-26T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/"
+  },
+  "headline": "Probability Inequality",
+  
+  "datePublished": "2018-12-26T00:00:00Z",
+  "dateModified": "2018-12-26T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Authors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shishir Shakya",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ShishirShakya.github.io/img/icon-512.png"
+    }
+  },
+  "description": "Theorem 1: Gaussian Tail Inequality\rGiven \\({{x}_{1}},\\cdots ,{{x}_{n}}\\sim N\\left( 0,1 \\right)\\) then, \\(P\\left( \\left| X \\right|\u0026gt;\\varepsilon \\right)\\le \\frac{2{{e}^{-{{{\\varepsilon }^{2}}}/{2}\\;}}}{\\varepsilon }\\) and \\(P\\left( \\left| {{{\\bar{X}}}_{n}} \\right|\u0026gt;\\varepsilon \\right)\\le \\frac{2}{\\sqrt{n}\\varepsilon }{{e}^{-{n{{\\varepsilon }^{2}}}/{2}\\;}}\\overset{l\\arg e\\ n}{\\mathop{\\le }}\\,{{e}^{-{n{{\\varepsilon }^{2}}}/{2}\\;}}\\).\nProof of Gaussian Tail Inequality\rConsider a univariate \\({{x}_{1}},\\cdots ,{{x}_{n}}\\sim N\\left( 0,1 \\right)\\), then the probability density function is given as \\(\\phi \\left( x \\right)=\\frac{1}{\\sqrt{2\\pi }}{{e}^{-\\frac{{{x}^{2}}}{2}}}\\).\rLet’s take the derivative w.r.t \\(x\\) we get:\r\\[\\frac{d\\phi \\left( x \\right)}{dx}={\\phi }\u0026#39;\\left( x \\right)=\\frac{d\\left( \\frac{1}{\\sqrt{2\\pi }}{{e}^{-\\frac{{{x}^{2}}}{2}}} \\right)}{dx}=\\frac{1}{\\sqrt{2\\pi }}\\frac{d\\left( \\,{{e}^{-\\frac{{{x}^{2}}}{2}}} \\right)}{dx}=\\frac{1}{\\sqrt{2\\pi }}\\frac{d\\left( \\,{{e}^{-\\frac{{{x}^{2}}}{2}}} \\right)}{d\\left( -\\frac{{{x}^{2}}}{2} \\right)}\\frac{d\\left( -\\frac{{{x}^{2}}}{2} \\right)}{dx}=\\frac{1}{\\sqrt{2\\pi }}{{e}^{-\\frac{{{x}^{2}}}{2}}}\\left( -x \\right)=-x\\phi \\left( x \\right)\\]\rLet’s define the gaussian tail inequality."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Probability Inequality | Shishir Shakya</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Shishir Shakya</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#hero"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>Curriculum Vitae</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/highlights/"><span>Research Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/teaching/"><span>Teachings</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/my_resources/"><span>Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://mhdm.netlify.app/" target="_blank" rel="noopener"><span>Mostly Handsdirty Metrics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Probability Inequality</h1>
+
+  
+
+  
+    
+
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 26, 2018
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    11 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/theoritical-statistics/">Theoritical Statistics</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/&amp;text=Probability%20Inequality" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/&amp;t=Probability%20Inequality" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Probability%20Inequality&amp;body=https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/&amp;title=Probability%20Inequality" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Probability%20Inequality%20https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/&amp;title=Probability%20Inequality" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="theorem-1-gaussian-tail-inequality" class="section level1">
+<h1>Theorem 1: Gaussian Tail Inequality</h1>
+<p>Given <span class="math inline">\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\)</span> then, <span class="math inline">\(P\left( \left| X \right|&gt;\varepsilon \right)\le \frac{2{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\)</span> and <span class="math inline">\(P\left( \left| {{{\bar{X}}}_{n}} \right|&gt;\varepsilon \right)\le \frac{2}{\sqrt{n}\varepsilon }{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\overset{l\arg e\ n}{\mathop{\le }}\,{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\)</span>.</p>
+<div id="proof-of-gaussian-tail-inequality" class="section level2">
+<h2>Proof of Gaussian Tail Inequality</h2>
+<p>Consider a univariate <span class="math inline">\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\)</span>, then the probability density function is given as <span class="math inline">\(\phi \left( x \right)=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\)</span>.
+Let’s take the derivative w.r.t <span class="math inline">\(x\)</span> we get:
+<span class="math display">\[\frac{d\phi \left( x \right)}{dx}={\phi }&#39;\left( x \right)=\frac{d\left( \frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{d\left( -\frac{{{x}^{2}}}{2} \right)}\frac{d\left( -\frac{{{x}^{2}}}{2} \right)}{dx}=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\left( -x \right)=-x\phi \left( x \right)\]</span>
+Let’s define the gaussian tail inequality.
+<span class="math display">\[P\left( X&gt;\varepsilon  \right)\le {{\varepsilon }^{-1}}\int_{\varepsilon }^{\infty }{s\phi \left( s \right)ds}\]</span>
+<span class="math display">\[P\left( X&gt;\varepsilon  \right)\le {{\varepsilon }^{-1}}\int_{\varepsilon }^{\infty }{s\phi \left( s \right)ds}=-{{\varepsilon }^{-1}}\int_{\varepsilon }^{\infty }{{\phi }&#39;\left( s \right)ds}=-{{\varepsilon }^{-1}}\left. {\phi }&#39;\left( s \right) \right|_{\varepsilon }^{\infty }=-{{\varepsilon }^{-1}}\left[ {\phi }&#39;\left( \infty  \right)-{\phi }&#39;\left( \varepsilon  \right) \right]\]</span>
+We know that <span class="math inline">\(x\phi \left( x \right)=-{\phi }&#39;\left( x \right)\)</span>
+<span class="math display">\[P\left( X&gt;\varepsilon  \right)\le -{{\varepsilon }^{-1}}\left[ 0-{\phi }&#39;\left( \varepsilon  \right) \right]=\frac{{\phi }&#39;\left( \varepsilon  \right)}{\varepsilon }=\frac{1}{\varepsilon \sqrt{2\pi }}{{e}^{-\frac{{{\varepsilon }^{2}}}{2}}}\le \frac{{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\]</span>
+Now, by the symmetry of distribution,
+<span class="math display">\[P\left( \left| X \right|&gt;\varepsilon  \right)\le \frac{2{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\]</span></p>
+</div>
+<div id="proof-for-gaussian-tail-inequality-for-distribution-of-mean" class="section level2">
+<h2>Proof for Gaussian Tail Inequality for distribution of mean</h2>
+<p>Now, let’s consider <span class="math inline">\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\)</span> and <span class="math inline">\({{\bar{X}}_{n}}={{n}^{-1}}\sum\limits_{i=1}^{n}{{{x}_{i}}}\sim N\left( 0,{{n}^{-1}} \right)\)</span> therefore, <span class="math inline">\({{\bar{X}}_{n}}\overset{d}{\mathop{=}}\,{{n}^{-{1}/{2}\;}}Z\)</span> where <span class="math inline">\(Z\sim N\left( 0,1 \right)\)</span> and by Gaussian Tail Inequalities
+<span class="math display">\[P\left( \left| {{{\bar{X}}}_{n}} \right|&gt;\varepsilon  \right)=P\left( {{n}^{-{1}/{2}\;}}\left| Z \right|&gt;\varepsilon  \right)=P\left( \left| Z \right|&gt;\sqrt{n}\varepsilon  \right)\le \frac{2}{\sqrt{n}\varepsilon }{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\]</span></p>
+</div>
+<div id="exercise" class="section level2">
+<h2>Exercise:</h2>
+<p>Imagine <span class="math inline">\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,{{\sigma }^{2}} \right)\)</span>and prove the gaussian tail inequality that <span class="math display">\[P\left( \left| X \right|&gt;\varepsilon  \right)\le \frac{{{\sigma }^{2}}}{\varepsilon }\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}2{{e}^{-{{{\varepsilon }^{2}}}/{\left( 2{{\sigma }^{2}} \right)}\;}}\]</span></p>
+</div>
+</div>
+<div id="theorem-2-markovs-inequality" class="section level1">
+<h1>Theorem 2: Markov’s Inequality</h1>
+<p>Let <span class="math inline">\(X\)</span> be a non-negative random variable and <span class="math inline">\(E\left( X \right)\)</span> exists, For any <span class="math inline">\(t&gt;0\)</span>; <span class="math inline">\(P\left( X&gt;t \right)\le \frac{E\left( X \right)}{t}\)</span></p>
+<div id="proof-of-markovs-inequality" class="section level2">
+<h2>Proof of Markov’s Inequality</h2>
+<p>For <span class="math inline">\(X&gt;0\)</span> we can write expectation of <span class="math inline">\(X\)</span> as:
+<span class="math display">\[E\left( X \right)=\int\limits_{0}^{\infty }{xp\left( x \right)dx}=\int\limits_{0}^{t}{xp\left( x \right)dx}+\int\limits_{t}^{\infty }{xp\left( x \right)dx}\ge \int\limits_{t}^{\infty }{xp\left( x \right)dx}\]</span>
+<span class="math display">\[E\left( X \right)\ge \int\limits_{t}^{\infty }{xp\left( x \right)dx}\ge t\int\limits_{t}^{\infty }{p\left( x \right)dx}=tP\left( X&gt;t \right)\]</span>
+<span class="math display">\[\frac{E\left( X \right)}{t}\ge P\left( X&gt;t \right)\]</span>
+<span class="math display">\[P\left( X&gt;t \right)\le \frac{E\left( X \right)}{t}\]</span></p>
+</div>
+</div>
+<div id="theorem-3-chebyshevs-inequality" class="section level1">
+<h1>Theorem 3: Chebyshev’s Inequality</h1>
+<p>Let <span class="math inline">\(\mu =E\left( X \right)\)</span> and <span class="math inline">\(Var\left( X \right)={{\sigma }^{2}}\)</span>, then <span class="math inline">\(P\left( \left| X-\mu \right|\ge t \right)\le \frac{{{\sigma }^{2}}}{{{t}^{2}}}\)</span> and <span class="math inline">\(P\left( \left| Z \right|\ge k \right)\le \frac{1}{{{k}^{2}}}\)</span>where <span class="math inline">\(Z=\frac{X-\mu }{{{\sigma }^{2}}}\)</span> and in particular <span class="math inline">\(P\left( \left| Z \right|&gt;2 \right)\le \frac{1}{4}\)</span> and <span class="math inline">\(P\left( \left| Z \right|&gt;3 \right)\le \frac{1}{9}\)</span>.</p>
+<div id="proof-of-chebyshevs-inequality" class="section level2">
+<h2>Proof of Chebyshev’s Inequality</h2>
+<p>Let’s take <span class="math display">\[P\left( \left| X-\mu  \right|&gt;t \right)=P\left( {{\left| X-\mu  \right|}^{2}}&gt;{{t}^{2}} \right)\le \frac{E{{\left( X-\mu  \right)}^{2}}}{{{t}^{2}}}=\frac{{{\sigma }^{2}}}{{{t}^{2}}}\]</span>
+Let’s take <span class="math display">\[P\left( \left| \frac{X-\mu }{\sigma } \right|&gt;\sigma k \right)=P\left( {{\left| \frac{X-\mu }{\sigma } \right|}^{2}}&gt;{{\sigma }^{2}}{{k}^{2}} \right)\le \frac{E{{\left( X-\mu  \right)}^{2}}}{{{\sigma }^{2}}{{k}^{2}}}=\frac{{{\sigma }^{2}}}{{{\sigma }^{2}}{{k}^{2}}}=\frac{1}{{{k}^{2}}}\]</span></p>
+</div>
+</div>
+<div id="theorem-4-hoeffding-inequality" class="section level1">
+<h1>Theorem 4: Hoeffding Inequality</h1>
+<p>In probability theory, Hoeffding’s inequality provides an upper bound on the probability that the sum of bounded independent random variables deviates from its expected value by more than a certain amount. Hoeffding’s inequality was proven by Wassily Hoeffding in 1963. This inequality is sharper than Markov inequality and we can create upper bound without knowing the variance.</p>
+<p>If <span class="math inline">\(a&lt;X&lt;b\)</span> and <span class="math inline">\(\mu =E\left( X \right)\)</span> then <span class="math inline">\(P\left( \left| X-\mu \right|&gt;\varepsilon \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\)</span>.</p>
+<div id="proof-part-a" class="section level2">
+<h2>Proof (part-A)</h2>
+<p>Let’s assume <span class="math inline">\(\mu =0\)</span>. If data is don’t have <span class="math inline">\(\mu =0\)</span>, we can always center the data and <span class="math inline">\(a&lt;X&lt;b\)</span>. Now</p>
+<p><span class="math display">\[X=\gamma a+\left( 1-\gamma  \right)b\]</span> where <span class="math inline">\(0&lt;\gamma &lt;1\)</span> and <span class="math inline">\(\gamma =\frac{X-a}{b-a}\)</span>. With convexity we can write:
+<span class="math display">\[{{e}^{tX}}\le \gamma {{e}^{tb}}+\left( 1-\gamma  \right){{e}^{ta}}=\frac{X-a}{b-a}{{e}^{tb}}+\left( 1-\frac{X-a}{b-a} \right){{e}^{ta}}=\frac{X-a}{b-a}{{e}^{tb}}+\frac{b-X}{b-a}{{e}^{ta}}\]</span>
+<span class="math display">\[{{e}^{tX}}\le \frac{X{{e}^{tb}}-a{{e}^{tb}}+b{{e}^{ta}}-X{{e}^{ta}}}{b-a}=\left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+\frac{X\left( {{e}^{tb}}-{{e}^{ta}} \right)}{b-a}\]</span>
+Let’s take the expectation on the both sides:
+<span class="math display">\[E\left( {{e}^{tX}} \right)\le E\left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+E\frac{X\left( {{e}^{tb}}-{{e}^{ta}} \right)}{b-a}=\left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+\frac{\left( {{e}^{tb}}-{{e}^{ta}} \right)}{b-a}E\left( X \right)\]</span>
+Since <span class="math inline">\(\mu =E\left( X \right)=0\)</span> therefore,
+<span class="math display">\[E\left( {{e}^{tX}} \right)\le \left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+0\]</span>
+<span class="math display">\[E\left( {{e}^{tX}} \right)\le \left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)=\frac{{{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right)}{b-a}\]</span></p>
+<p>Let’s define
+<span class="math display">\[{{e}^{g\left( t \right)}}=\frac{{{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right)}{b-a}\]</span></p>
+<p>Taking <span class="math inline">\(log\)</span> on the both sides:</p>
+<p><span class="math display">\[\log \left( {{e}^{g\left( t \right)}} \right)=\log \left( \frac{{{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right)}{b-a} \right)\]</span></p>
+<p><span class="math display">\[g\left( t \right)=\log \left( {{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right) \right)-\log \left( b-a \right)\]</span></p>
+<p><span class="math display">\[g\left( t \right)=\log \left( {{e}^{ta}} \right)+\log \left( b-a{{e}^{t\left( b-a \right)}} \right)-\log \left( b-a \right)\]</span></p>
+<p><span class="math display">\[\begin{equation}
+g\left( t \right)=ta+\log \left( b-a{{e}^{t\left( b-a \right)}} \right)-\log \left( b-a \right)
+\end{equation}\]</span></p>
+</div>
+<div id="taylor-series-expansion" class="section level2">
+<h2>Taylor series expansion</h2>
+<p>For a univariate function <span class="math inline">\(g(x)\)</span>evaluated at <span class="math inline">\({{x}_{0}}\)</span> , we can express with Taylor series expansion as:
+<span class="math display">\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m}}+\cdots \]</span>
+For a univariate function <span class="math inline">\(g(x)\)</span>evaluated at <span class="math inline">\({{x}_{0}}\)</span> that is <span class="math inline">\(m\)</span> times differentiable, we can express with Taylor series expansion as:
+<span class="math display">\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}(\xi ){{(x-{{x}_{0}})}^{m}}\]</span>
+where <span class="math inline">\({{g}^{(s)}}={{\left. \frac{{{\partial }^{s}}g(x)}{\partial {{x}^{2}}} \right|}_{x={{x}_{0}}}}\)</span> and and <span class="math inline">\(\xi\)</span> lies between <span class="math inline">\(x\)</span> and <span class="math inline">\({{x}_{0}}\)</span>.</p>
+</div>
+<div id="proof-part-b" class="section level2">
+<h2>Proof (part-B)</h2>
+<p>Now, let’s evaluate <span class="math inline">\(g\left( t=0 \right)\)</span> we get:
+<span class="math display">\[\begin{equation}
+g\left( t=0 \right)=g\left( 0 \right)=0+\log \left( b-a \right)-\log \left( b-a \right)=0
+\end{equation}\]</span></p>
+<p>Let’s evaluate <span class="math inline">\({g}&#39;\left( t=0 \right)\)</span> but before that lets find <span class="math inline">\({g}&#39;\left( t \right)\)</span>.
+<span class="math display">\[\frac{dg\left( t \right)}{dt}={g}&#39;\left( t \right)=\frac{d\left( ta+\log \left( b-a{{e}^{t\left( b-a \right)}} \right)-\log \left( b-a \right) \right)}{dt}\]</span>
+<span class="math display">\[{g}&#39;\left( t \right)=\frac{d\left( ta \right)}{dt}+\frac{d\log \left( b-a{{e}^{t\left( b-a \right)}} \right)}{dt}+\frac{d\left( -\log \left( b-a \right) \right)}{dt}\]</span>
+<span class="math display">\[{g}&#39;\left( t \right)=a+\frac{d\log \left( b-a{{e}^{t\left( b-a \right)}} \right)}{d\left( b-a{{e}^{t\left( b-a \right)}} \right)}\frac{d\left( b-a{{e}^{t\left( b-a \right)}} \right)}{dt}+\underbrace{\frac{d\left( -\log \left( b-a \right) \right)}{dt}}_{0}\]</span>
+<span class="math display">\[{g}&#39;\left( t \right)=a+\frac{-a\left( b-a \right){{e}^{t\left( b-a \right)}}}{b-a{{e}^{t\left( b-a \right)}}}\]</span>
+Consider the second term:
+<span class="math display">\[\frac{-a\left( b-a \right){{e}^{t\left( b-a \right)}}}{b-a{{e}^{t\left( b-a \right)}}}=\frac{-a\left( b-a \right)}{\left( b-a{{e}^{t\left( b-a \right)}} \right){{e}^{-t\left( b-a \right)}}}=\frac{-a\left( b-a \right)}{b{{e}^{-t\left( b-a \right)}}-a{{e}^{t\left( b-a \right)}}{{e}^{-t\left( b-a \right)}}}=\frac{-a\left( b-a \right)}{b{{e}^{-t\left( b-a \right)}}-a}=\frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}}\]</span>
+<span class="math display">\[{g}&#39;\left( t \right)=a+\frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}}\]</span>
+Now Let’s evaluate <span class="math inline">\({g}&#39;\left( t=0 \right)\)</span>, we get
+<span class="math display">\[\begin{equation}
+{g}&#39;\left( t=0 \right)=a+\frac{-a\left( b-a \right){{e}^{0\left( b-a \right)}}}{b-a{{e}^{0\left( b-a \right)}}}=a+\frac{-a\left( b-a \right)}{b-a}=0
+\end{equation}\]</span></p>
+<p>Now let’s take<span class="math inline">\({{g}&#39;}&#39;\left( t \right)\)</span>.</p>
+<p><span class="math display">\[\frac{d{g}&#39;\left( t \right)}{dt}={{g}&#39;}&#39;\left( t \right)=\frac{d\left( a+\frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}} \right)}{dt}=\frac{d\left( \frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}} \right)}{dt}\]</span></p>
+<p><span class="math display">\[{{g}&#39;}&#39;\left( t \right)=\frac{-a\left( b-a \right)\left( -b \right)\left( -\left( b-a \right){{e}^{-t\left( b-a \right)}} \right)}{{{\left( a+b{{e}^{-t\left( b-a \right)}} \right)}^{2}}}=\frac{ab{{\left( b-a \right)}^{2}}\left[ -{{e}^{t\left( b-a \right)}} \right]}{{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}}\]</span></p>
+<p>Now we can compare following two terms.
+<span class="math display">\[a{{e}^{t\left( b-a \right)}}\ge a\]</span></p>
+<p>Negate <span class="math inline">\(b\)</span> and square on the both sides:</p>
+<p><span class="math display">\[{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}\ge {{\left( a-b \right)}^{2}}={{\left( b-a \right)}^{2}}\]</span></p>
+<p><span class="math display">\[\frac{1}{{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}}\le \frac{1}{{{\left( b-a \right)}^{2}}}\]</span></p>
+<p>From above inequality, we can write:</p>
+<p><span class="math display">\[{{g}&#39;}&#39;\left( t \right)=\frac{-ab{{\left( b-a \right)}^{2}}\left[ {{e}^{t\left( b-a \right)}} \right]}{{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}}\le \frac{-ab{{\left( b-a \right)}^{2}}}{{{\left( b-a \right)}^{2}}}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+{g}&#39;&#39;\left( t \right)\le -ab=\frac{{{\left( a-b \right)}^{2}}-{{\left( b-a \right)}^{2}}}{4}\le \frac{{{\left( b-a \right)}^{2}}}{4}
+\end{equation}\]</span></p>
+<p>Now, with Taylor series expansion we have:</p>
+<p><span class="math display">\[g\left( t \right)=g\left( 0 \right)+t{g}&#39;\left( 0 \right)+\frac{1}{2!}{{t}^{2}}{{g}&#39;}&#39;\left( 0 \right)+\cdots\]</span></p>
+<p>And with truncating Taylor series expansion, we can write. (Note this is not approximation, its exact)</p>
+<p><span class="math display">\[g\left( t \right)=g\left( 0 \right)+t{g}&#39;\left( 0 \right)+\frac{1}{2!}{{t}^{2}}{{g}&#39;}&#39;\left( \xi  \right)=\frac{1}{2!}{{t}^{2}}{{g}&#39;}&#39;\left( \xi  \right)\le \frac{1}{2!}{{t}^{2}}\frac{{{\left( b-a \right)}^{2}}}{4}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+g\left( t \right)\le \frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}
+\end{equation}\]</span></p>
+</div>
+<div id="proof-part-c" class="section level2">
+<h2>Proof (part-C)</h2>
+<p>We have bound <span class="math inline">\(E\left[ {{e}^{tX}} \right]\le {{e}^{g\left( t \right)}}\)</span> and <span class="math inline">\({{e}^{g\left( t \right)}}\le {{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}\)</span> .</p>
+<p>Consider
+<span class="math display">\[P\left( X&gt;\varepsilon  \right)=P\left( {{e}^{X}}&gt;{{e}^{\varepsilon }} \right)=P\left( {{e}^{tX}}&gt;{{e}^{t\varepsilon }} \right)\]</span></p>
+<p>And Now with Markov inequality:</p>
+<p><span class="math display">\[P\left( {{e}^{tX}}&gt;{{e}^{t\varepsilon }} \right)\le \frac{E\left( {{e}^{tX}} \right)}{{{e}^{t\varepsilon }}}={{e}^{-t\varepsilon }}E\left( {{e}^{tX}} \right)\le {{e}^{-t\varepsilon }}{{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}={{e}^{^{-t\varepsilon +\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}}\]</span></p>
+<p>Now we can make it sharper by following argument:</p>
+<p><span class="math display">\[P\left( {{e}^{tX}}&gt;{{e}^{t\varepsilon }} \right)\le \underset{t\ge 0}{\mathop{\inf }}\,\frac{E\left( {{e}^{tX}} \right)}{{{e}^{t\varepsilon }}}={{e}^{-t\varepsilon }}E\left( {{e}^{tX}} \right)\le {{e}^{-t\varepsilon }}{{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}={{e}^{^{-t\varepsilon +\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}}\]</span></p>
+</div>
+<div id="proof-for-sharper-version-with-chernoffs-method" class="section level2">
+<h2>Proof for sharper version with Chernoff’s method</h2>
+<p>let define: <span class="math inline">\(u=t\varepsilon -\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}\)</span> and find the minima as setting FOC as <span class="math inline">\({u}&#39;\left( t \right)=\varepsilon -\frac{2t{{\left( b-a \right)}^{2}}}{8}\overset{set}{\mathop{=}}\,0\)</span> and <span class="math inline">\({{t}^{*}}=\frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}\)</span> then substituting to get:</p>
+<p><span class="math display">\[{{u}_{\min }}=t\varepsilon -\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}=\varepsilon \frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}-{{\left( \frac{4\varepsilon }{{{\left( b-a \right)}^{2}}} \right)}^{2}}\frac{{{\left( b-a \right)}^{2}}}{8}\]</span></p>
+<p><span class="math display">\[{{u}_{\min }}=\varepsilon \frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}=\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}\]</span></p>
+<p>The reason we want to get <span class="math inline">\({{u}_{\min }}\)</span> is to make sharper argument for the inequality or alternatively we would like to bound for the minima. Now substituting:</p>
+<p><span class="math display">\[P\left( X&gt;\varepsilon  \right)=P\left( {{e}^{X}}&gt;{{e}^{\varepsilon }} \right)=P\left( {{e}^{tX}}&gt;{{e}^{t\varepsilon }} \right)\le {{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]</span></p>
+<p><span class="math display">\[P\left( \left| X \right|&gt;\varepsilon  \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]</span></p>
+<p>This is very important results, because there is no mean or variance, so this result is very cogitative. If we observe any type of random variable whose functional form is unknown, the above statement is true.</p>
+</div>
+<div id="proof-for-random-variable-with-non-zero-mean." class="section level2">
+<h2>Proof for random variable with non zero mean.</h2>
+<p>Now we can apply with the mean ie. <span class="math inline">\(\mu =E\left( X \right)\)</span> and <span class="math inline">\(Y=x-\mu\)</span> i.e. <span class="math inline">\(a-\mu &lt;Y&lt;b-\mu\)</span>. And:</p>
+<p><span class="math display">\[P\left( \left| Y \right|&gt;\varepsilon  \right)=P\left( \left| X-\mu  \right|&gt;\varepsilon  \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-\mu -a+\mu  \right)}^{2}}}}}=2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]</span></p>
+<p>So, <span class="math inline">\(P\left( \left| X-\mu \right|&gt;\varepsilon \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\)</span> is known as Hoeffding’s Inequality. This shows that the variation of the random variable beyond its mean by certain amount <span class="math inline">\(\varepsilon\)</span> is upper bounded by <span class="math inline">\(2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\)</span>. This is true for any random variable so it’s very powerful generalization.</p>
+</div>
+<div id="proof-for-bound-of-mean" class="section level2">
+<h2>Proof for bound of mean</h2>
+<p>Let’s define <span class="math inline">\({{\bar{Y}}_{n}}=\sum\limits_{i=1}^{n}{{{Y}_{i}}}\)</span> and <span class="math inline">\({{Y}_{i}}\)</span> are i.id then let’s bound it as:</p>
+<p><span class="math display">\[P\left( {{{\bar{Y}}}_{n}}&gt;\varepsilon  \right)=P\left( {{n}^{-1}}\sum\limits_{i=1}^{n}{{{Y}_{i}}}&gt;\varepsilon  \right)=P\left( \sum\limits_{i=1}^{n}{{{Y}_{i}}}&gt;n\varepsilon  \right)=P\left( {{e}^{\sum\limits_{i=1}^{n}{{{Y}_{i}}}}}&gt;{{e}^{n\varepsilon }} \right)=P\left( {{e}^{t\sum\limits_{i=1}^{n}{{{Y}_{i}}}}}&gt;{{e}^{tn\varepsilon }} \right)\]</span></p>
+<p>Note, we introduce <span class="math inline">\(t\)</span> there that’s for the flexibility that later, I can choose <span class="math inline">\(t\)</span>. Now with Markov inequality we can write under the assumption of i.i.d of <span class="math inline">\({{Y}_{i}}\)</span></p>
+<p><span class="math display">\[P\left( {{{\bar{Y}}}_{n}}&gt;\varepsilon  \right)=P\left( {{e}^{t\sum\limits_{i=1}^{n}{{{Y}_{i}}}}}&gt;{{e}^{tn\varepsilon }} \right)\le {{e}^{-tn\varepsilon }}E\left[ {{e}^{t\sum\limits_{i=1}^{n}{{{Y}_{i}}}}} \right]={{e}^{-tn\varepsilon }}{{\left( E{{e}^{t{{Y}_{i}}}} \right)}^{n}}\]</span></p>
+<p>Since, we have bound <span class="math inline">\(E\left[ {{e}^{tX}} \right]\le {{e}^{g\left( t \right)}}\)</span> as <span class="math inline">\({{e}^{g\left( t \right)}}\le {{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}\)</span> , therefore,</p>
+<p><span class="math display">\[P\left( {{{\bar{Y}}}_{n}}&gt;\varepsilon  \right)\le {{e}^{-tn\varepsilon }}{{\left( E{{e}^{t{{Y}_{i}}}} \right)}^{n}}\le {{e}^{-tn\varepsilon }}{{e}^{n\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}\]</span></p>
+<p>Let’s try to put sharper bound and try and solve for <span class="math inline">\(u\left( t \right)=tn\varepsilon -n\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}\)</span> and the FOC is
+<span class="math inline">\({u}&#39;\left( t \right)=n\varepsilon -n\frac{2t{{\left( b-a \right)}^{2}}}{8}\overset{set}{\mathop{=}}\,0\)</span> and solving we get <span class="math display">\[{{t}^{*}}=\frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}\]</span> and the plugging the value of <span class="math inline">\({{t}^{*}}\)</span> on <span class="math inline">\(u\left( t \right)\)</span> gives:</p>
+<p><span class="math display">\[{{u}_{\min }}={{t}^{*}}n\varepsilon -n\frac{{{t}^{*}}^{2}{{\left( b-a \right)}^{2}}}{8}=\frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}n\varepsilon -n\frac{{{\left( 4\varepsilon  \right)}^{2}}}{{{\left( {{\left( b-a \right)}^{2}} \right)}^{2}}}\frac{{{\left( b-a \right)}^{2}}}{8}=\frac{4n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}-\frac{2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}=\frac{2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[P\left( {{{\bar{Y}}}_{n}}&gt;\varepsilon  \right)\le \underset{t\ge 0}{\mathop{\inf }}\,{{e}^{-tn\varepsilon }}{{e}^{n\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}={{e}^{\frac{-2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[P\left( \left| {{{\bar{Y}}}_{n}} \right|&gt;\varepsilon  \right)\le 2{{e}^{\frac{2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]</span></p>
+<p>Hence, this gives the bound on the mean.</p>
+</div>
+<div id="proof-for-binominal" class="section level2">
+<h2>Proof for Binominal</h2>
+<p>Hoeffding’s inequality for the <span class="math inline">\({{Y}_{1}}\sim Ber\left( p \right)\)</span> and it’s upper bound is <span class="math inline">\(1\)</span> and lower bound is <span class="math inline">\(0\)</span> so <span class="math inline">\({{\left( b-a \right)}^{2}}=1\)</span> and with Hoeffding inequality <span class="math display">\[P\left( \left| {{{\bar{X}}}_{n}}-p \right|&gt;\varepsilon  \right)\le 2{{e}^{-2n{{\varepsilon }^{2}}}}\]</span></p>
+</div>
+</div>
+<div id="theorem-5-kullback-leibler-distance" class="section level1">
+<h1>Theorem 5: Kullback Leibler Distance</h1>
+<div id="proof-for-distance-between-density-is-greater-than-zero." class="section level2">
+<h2>Proof for distance between density is greater than zero.</h2>
+<p>Proof that the distance between any two density <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> whose random variable is <span class="math inline">\(X\tilde{\ }p\)</span> (<span class="math inline">\(p\)</span> is some distribution) is always greater than or equal to zero.</p>
+<p>Prior answering this, let’s quickly note two inequality, namely Cauchy-Swartz Inequality and Jensen’s inequality.</p>
+<div id="cauchy-swartz-inequality" class="section level3">
+<h3>Cauchy-Swartz Inequality</h3>
+<p><span class="math inline">\(\left| EXY \right|\le E\left| XY \right|\le \sqrt{E\left( {{X}^{2}} \right)}\sqrt{E\left( {{Y}^{2}} \right)}\)</span>.</p>
+</div>
+<div id="jensens-inequality" class="section level3">
+<h3>Jensen’s inequality</h3>
+<p>If <span class="math inline">\(g\)</span> is convex then<span class="math inline">\(Eg\left( X \right)\ge g\left( EX \right)\)</span>. If <span class="math inline">\(g\)</span> is concave, then<span class="math inline">\(Eg\left( X \right)\le g\left( EX \right)\)</span>.</p>
+</div>
+<div id="kullback-leibler-distance" class="section level3">
+<h3>Kullback Leibler Distance</h3>
+<p>The distance between two density <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> is defined by the Kullback Leibler Distance, and given as:</p>
+<p><span class="math display">\[D\left( p,q \right)=\int{p\left( x \right)\log \left( \frac{p\left( x \right)}{q\left( x \right)} \right)}dx\]</span></p>
+<p>Before, I move ahead, note that the self-distance between density <span class="math inline">\(p\)</span> to <span class="math inline">\(p\)</span> is zero and given as: <span class="math inline">\(D\left( p,p \right)=0\)</span> and by definition distance is always greater than and equal to zero so, one thing we have to confirm is that distance between two density <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> i.e. <span class="math inline">\(D\left( p,q \right)\ge 0\)</span>. But we will use Jensen inequality to proof <span class="math inline">\(D\left( p,q \right)\ge 0\)</span>. Since the <span class="math inline">\(\log\)</span> function is concave in nature, so we can write, Jensen inequality that:</p>
+<p><span class="math display">\[-D\left( p,q \right)=E\left[ \log \left( \frac{p\left( x \right)}{q\left( x \right)} \right) \right]\le \log \left[ E\left( \frac{p\left( x \right)}{q\left( x \right)} \right) \right]=\log \int{p\left( x \right)\frac{q\left( x \right)}{p\left( x \right)}dx}=\log \int{q\left( x \right)dx}=\log \left( 1 \right)=0\]</span></p>
+<p>i.e</p>
+<p><span class="math display">\[-D\left( p,q \right)\le 0\]</span> i.e. <span class="math display">\[D\left( p,q \right)\ge 0\]</span></p>
+</div>
+</div>
+</div>
+<div id="theorem-6-maximum-of-a-random-variable" class="section level1">
+<h1>Theorem 6: Maximum of a random variable</h1>
+<p>Let <span class="math inline">\({{X}_{i}},\ldots {{X}_{n}}\)</span> be random variable. Suppose there exist <span class="math inline">\(\sigma &gt;0\)</span> such that <span class="math inline">\(E\left( {{e}^{t{{X}_{i}}}} \right)\le {{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\)</span>. Then, <span class="math inline">\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \sigma \sqrt{2\log n}\)</span>.</p>
+<p>Maximum of a random variable represents how to bound maximum value of a random variable? i.e. Say the random variable is <span class="math inline">\({{X}_{1}},\ldots ,{{X}_{n}}\)</span> and say it is arranged in ascending order such that <span class="math inline">\({{X}_{\left( 1 \right)}}\le {{X}_{\left( 2 \right)}}\le \ldots \le {{X}_{\left( n \right)}}\)</span> and <span class="math inline">\({{X}_{\left( n \right)}}={{E}_{\max }}\left\{ {{X}_{1}},\cdots ,{{X}_{n}} \right\}\)</span>how to compute the distribution of that maximum value? Now the interesting thing is, say, that we don’t know the exact distribution of <span class="math inline">\(X\)</span>, so can we say in general without knowing the distribution that what is the maximum of a random variable?</p>
+<p>Let’s start with the expectation of the moment generating function given as: <span class="math inline">\(E{{e}^{t{{X}_{i}}}}\)</span> then, it is bounded by <span class="math inline">\(E{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\)</span> i.e. <span class="math inline">\(E{{e}^{t{{X}_{i}}}}\le E{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\)</span>. Now, can we bound the maximum of <span class="math inline">\(E{{e}^{t{{X}_{i}}}}\)</span>or alternatively, what is the <span class="math inline">\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\)</span> ?</p>
+<p>Let’s, start with <span class="math inline">\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\)</span> and pre-multiply this with <span class="math inline">\(t\)</span> and exponentiate. i.e. <span class="math inline">\(\exp \left\{ tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}} \right\}\)</span>, bounding this gives also is same as bounding <span class="math inline">\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\)</span>. Now with Jensen’s inequality we can write:</p>
+<p><span class="math display">\[{{e}^{tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}}}\le E{{e}^{t\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}}}=E\underset{1\le i\le n}{\mathop{\max }}\,{{e}^{t{{X}_{i}}}}\le \sum\limits_{i=1}^{n}{E{{e}^{t{{X}_{i}}}}}\le n{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\]</span>
+<span class="math display">\[{{e}^{tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}}}\le n{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\]</span>
+Taking <span class="math inline">\(\log\)</span> on the both sides
+<span class="math display">\[tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \log n+\log {{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\]</span>
+<span class="math display">\[tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \log n+\frac{{{t}^{2}}{{\sigma }^{2}}}{2}\]</span>
+Dividing both sides by <span class="math inline">\(t\)</span>, we get
+<span class="math display">\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \frac{\log n}{t}+\frac{t{{\sigma }^{2}}}{2}\]</span>
+Now, let’s take this <span class="math inline">\(\frac{\log n}{t}+\frac{t{{\sigma }^{2}}}{2}\)</span> and optimize w.r.t <span class="math inline">\(t\)</span> we get: <span class="math inline">\(\log n=\frac{{{t}^{2}}{{\sigma }^{2}}}{2}\)</span> and <span class="math inline">\(t={{\sigma }^{-1}}\sqrt{2\log n}\)</span>. Now plugging this value, we get:</p>
+<p><span class="math display">\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \frac{\log n}{t}+\frac{t{{\sigma }^{2}}}{2}=\frac{2\log n+{{t}^{2}}{{\sigma }^{2}}}{2t}=\frac{2\log n+{{\left( {{\sigma }^{-1}}\sqrt{2\log n} \right)}^{2}}{{\sigma }^{2}}}{2{{\sigma }^{-1}}\sqrt{2\log n}}\]</span>
+<span class="math display">\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \frac{2\log n+{{\sigma }^{-2}}2\log n{{\sigma }^{2}}}{2{{\sigma }^{-1}}\sqrt{2\log n}}=\frac{2\sqrt{2}\sqrt{2}\log n}{2{{\sigma }^{-1}}\sqrt{2}\sqrt{\log n}}=\sigma \sqrt{2\log n}\]</span>
+Hence
+<span class="math display">\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \sigma \sqrt{2\log n}\]</span></p>
+</div>
+
+    </div>
+
+    
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/probability/">Probability,</a>
+  
+  <a class="badge badge-light" href="/tags/r/">R,</a>
+  
+  <a class="badge badge-light" href="/tags/statistics/">Statistics,</a>
+  
+  <a class="badge badge-light" href="/tags/theory/">Theory,</a>
+  
+  <a class="badge badge-light" href="/tags/proof/">Proof,</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  <div class="media author-card">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/2018-12-26-preamble-of-reproducible-research/">Preambles for Reproducible Research</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.f8f695ea8337c0f623fb342ddda69281.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © <code>2023</code> Shishir Shakya &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Density, | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/tags/density/</link>
+      <atom:link href="https://ShishirShakya.github.io/tags/density/index.xml" rel="self" type="application/rss+xml" />
+    <description>Density,</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright><lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Density,</title>
+      <link>https://ShishirShakya.github.io/tags/density/</link>
+    </image>
+    
+    <item>
+      <title>Density Estimation</title>
+      <link>https://ShishirShakya.github.io/post/2019-01-07-density-estimation/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/post/2019-01-07-density-estimation/</guid>
+      <description>
+&lt;script src=&#34;https://ShishirShakya.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;univariate-density-estimation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Univariate Density Estimation&lt;/h1&gt;
+&lt;div id=&#34;parametric-desity-estimation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Parametric Desity Estimation&lt;/h2&gt;
+&lt;div id=&#34;draw-from-a-normal-distribution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Draw from a normal distribution&lt;/h3&gt;
+&lt;p&gt;Given &lt;span class=&#34;math inline&#34;&gt;\({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(i.i.d\)&lt;/span&gt; draw from a normal distribution with mean of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; and variance of &lt;span class=&#34;math inline&#34;&gt;\({{\sigma }^{2}}\)&lt;/span&gt; the joint &lt;span class=&#34;math inline&#34;&gt;\(PDF\)&lt;/span&gt; can be expressed as:
+&lt;span class=&#34;math display&#34;&gt;\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\prod\limits_{i=1}^{n}{\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{1}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{2}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}{{e}^{-\frac{{{\left( {{X}_{n}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\]&lt;/span&gt;
+The term &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}\)&lt;/span&gt; is a constant multiplying this term for &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; times gives &lt;span class=&#34;math inline&#34;&gt;\({{\left( \frac{1}{\sqrt{2\pi {{\sigma }^{2}}}} \right)}^{n}}=\frac{1}{{{\left( 2\pi \sigma \right)}^{\frac{n}{2}}}}\)&lt;/span&gt;.
+&lt;span class=&#34;math display&#34;&gt;\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{{{\left( 2\pi \sigma  \right)}^{\frac{n}{2}}}}{{e}^{-\frac{{{\left( {{X}_{1}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times {{e}^{-\frac{{{\left( {{X}_{2}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times {{e}^{-\frac{{{\left( {{X}_{n}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\]&lt;/span&gt;
+With the index law of addition i.e. we can add the indices for the same base
+&lt;span class=&#34;math display&#34;&gt;\[{{e}^{-\frac{{{\left( {{X}_{1}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times {{e}^{-\frac{{{\left( {{X}_{2}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}\times \cdots \times {{e}^{-\frac{{{\left( {{X}_{n}}-\mu  \right)}^{2}}}{2{{\sigma }^{2}}}}}={{e}^{-\frac{1}{2{{\sigma }^{2}}}\left\{ {{\left( {{X}_{1}}-\mu  \right)}^{2}}+{{\left( {{X}_{2}}-\mu  \right)}^{2}}+\cdots +{{\left( {{X}_{n}}-\mu  \right)}^{2}} \right\}}}={{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\limits_{i=1}^{n}{{{\left( Xi-\mu  \right)}^{2}}}}}\]&lt;/span&gt;
+Therefore,
+&lt;span class=&#34;math display&#34;&gt;\[f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\frac{1}{{{\left( 2\pi {{\sigma }^{2}} \right)}^{\frac{n}{2}}}}{{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-log-likelihood-function&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The log-likelihood function&lt;/h3&gt;
+&lt;p&gt;Taking the logarithm, we get the log-likelihood function as:
+&lt;span class=&#34;math display&#34;&gt;\[\ln f\left( {{X}_{1}},{{X}_{2}},\ldots {{X}_{3}} \right)=\ln \left[ \frac{1}{{{\left( 2\pi {{\sigma }^{2}} \right)}^{\frac{n}{2}}}}{{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}}} \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;With the property of log i.e. multiplication inside the log can be turned into addition outside the log, and vice versa or &lt;span class=&#34;math inline&#34;&gt;\(\ln (ab)=\ln (a)+\ln (b)\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln \left( \frac{1}{{{\left( 2\pi {{\sigma }^{2}} \right)}^{\frac{n}{2}}}} \right)+\ln \left( {{e}^{-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}}} \right)\]&lt;/span&gt;
+With natural log property i.e. when &lt;span class=&#34;math inline&#34;&gt;\({{e}^{y}}=x\)&lt;/span&gt; then &lt;span class=&#34;math inline&#34;&gt;\(\ln (x)=\ln ({{e}^{y}})=y\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln \left( {{\left( 2\pi {{\sigma }^{2}} \right)}^{-\frac{n}{2}}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv -\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln {{\sigma }^{2}}-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln f\left( {{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}};\mu ,{{\sigma }^{2}} \right)=-\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;logliklihood-function-optimization&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Logliklihood function optimization&lt;/h3&gt;
+&lt;p&gt;To find the optimum value of
+&lt;span class=&#34;math inline&#34;&gt;\(L\left( \mu ,{{\sigma }^{2}} \right)\equiv \ln f\left( {{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}};\mu ,{{\sigma }^{2}} \right)=-\frac{n}{2}\ln \left( 2\pi \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu \right)}^{2}}}\)&lt;/span&gt;, we take the first order condition w.r.t. &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{\sigma }^{2}}\)&lt;/span&gt;. The necessary first order condition w.r.t &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; is given as:
+&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial L\left( \mu ,{{\sigma }^{2}} \right)}{\partial \mu }=\frac{\partial }{\partial \mu }\left\{ -\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]&lt;/span&gt;
+Here, &lt;span class=&#34;math inline&#34;&gt;\(\frac{\partial }{\partial \mu }\left\{ -\frac{n}{2}\ln \left( 2\pi \right) \right\}=0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\frac{\partial }{\partial \mu }\left\{ -\frac{n}{2}\ln \left( {{\sigma }^{2}} \right) \right\}=0\)&lt;/span&gt;, so we only need to solve for
+&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial }{\partial \mu }\left\{ -\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[-\frac{1}{2{{\sigma }^{2}}}\frac{\partial }{\partial \mu }\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}=0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[-\frac{1}{2{{\sigma }^{2}}}\left[ \frac{\partial }{\partial \mu }\left\{ {{\left( {{X}_{1}}-\mu  \right)}^{2}}+{{\left( {{X}_{2}}-\mu  \right)}^{2}}+\cdots +{{\left( {{X}_{n}}-\mu  \right)}^{2}} \right\} \right]=0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[-\frac{1}{2{{\sigma }^{2}}}\left[ \frac{\partial {{\left( {{X}_{1}}-\mu  \right)}^{2}}}{\partial \mu }+\frac{\partial {{\left( {{X}_{2}}-\mu  \right)}^{2}}}{\partial \mu }+\cdots +\frac{\partial {{\left( {{X}_{n}}-\mu  \right)}^{2}}}{\partial \mu } \right]=0\]&lt;/span&gt;
+With the chain rule i.e &lt;span class=&#34;math inline&#34;&gt;\(\frac{\partial {{\left( {{X}_{1}}-\mu \right)}^{2}}}{\partial \mu }=\frac{\partial {{\left( {{X}_{1}}-\mu \right)}^{2}}}{\partial \left( {{X}_{1}}-\mu \right)}\frac{\partial \left( {{X}_{1}}-\mu \right)}{\partial \mu }=2\left( {{X}_{1}}-\mu \right)\left( 1 \right)=2\left( {{X}_{1}}-\mu \right)\)&lt;/span&gt;. Hence,
+&lt;span class=&#34;math display&#34;&gt;\[-\frac{1}{2{{\sigma }^{2}}}\left[ 2\left( {{X}_{1}}-\mu  \right)+2\left( {{X}_{2}}-\mu  \right)+\cdots +2\left( {{X}_{n}}-\mu  \right) \right]=0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[-\frac{1}{{{\sigma }^{2}}}\sum\limits_{i=1}^{n}{\left( {{X}_{i}}-\mu  \right)}=0\]&lt;/span&gt;
+Since &lt;span class=&#34;math inline&#34;&gt;\({{\sigma }^{2}}\ne 0\)&lt;/span&gt;, So,
+&lt;span class=&#34;math display&#34;&gt;\[\sum\limits_{i=1}^{n}{\left( {{X}_{i}}-\mu  \right)}=0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\sum\limits_{i=1}^{n}{{{X}_{i}}}-\sum\limits_{i=1}^{n}{\mu }=0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\sum\limits_{i=1}^{n}{{{X}_{i}}}-n\mu =0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\hat{\mu }={{n}^{-1}}\sum\limits_{i=1}^{n}{{{X}_{i}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The necessary first order condition w.r.t &lt;span class=&#34;math inline&#34;&gt;\({{\sigma }^{2}}\)&lt;/span&gt; is given as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial L\left( \mu ,{{\sigma }^{2}} \right)}{\partial {{\sigma }^{2}}}=\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ -\frac{n}{2}\ln \left( 2\pi  \right)-\frac{n}{2}\ln \left( {{\sigma }^{2}} \right)-\frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[-\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ \frac{n}{2}\ln \left( 2\pi  \right) \right\}-\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ -\frac{n}{2}\ln \left( {{\sigma }^{2}} \right) \right\}-\frac{\partial }{\partial {{\sigma }^{2}}}\left\{ \frac{1}{2{{\sigma }^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}} \right\}=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[0-\frac{n}{2}\frac{1}{{{\sigma }^{2}}}-\frac{1}{2}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\frac{\partial {{\left( {{\sigma }^{2}} \right)}^{-1}}}{\partial {{\sigma }^{2}}}=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[-\frac{1}{2}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\left( -1 \right){{\left( {{\sigma }^{2}} \right)}^{-2}}=\frac{n}{2{{\sigma }^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{2{{\left( {{\sigma }^{2}} \right)}^{2}}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}=\frac{n}{2{{\sigma }^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{\hat{\sigma }}^{2}}={{n}^{-1}}\sum\nolimits_{i=1}^{n}{{{\left( {{X}_{i}}-\mu  \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu }\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{\hat{\sigma }}^{2}}\)&lt;/span&gt; above are the maximum likelihood estimator of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{\sigma }^{2}}\)&lt;/span&gt;, respectively, the resulting estimator of &lt;span class=&#34;math inline&#34;&gt;\(f\left( x \right)\)&lt;/span&gt; is:
+&lt;span class=&#34;math display&#34;&gt;\[\hat{f}\left( x \right)=\frac{1}{\sqrt{2\pi {{{\hat{\sigma }}}^{2}}}}{{e}^{\left[ -\frac{1}{2}\left( \frac{x-\hat{\mu }}{{{{\hat{\sigma }}}^{2}}} \right) \right]}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simulation-example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Simulation example&lt;/h3&gt;
+&lt;p&gt;Let’s simulate 10000 random observation from a normal distribution with mean of 2 and standard deviation of 1.5. To reproduce the results we will use &lt;code&gt;set.seed()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(1234)
+N &amp;lt;- 10000
+mu &amp;lt;- 2
+sigma &amp;lt;- 1.5
+x &amp;lt;- rnorm(n = N, mean = mu, sd = sigma)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can use &lt;code&gt;mean()&lt;/code&gt; and &lt;code&gt;sd()&lt;/code&gt; function to find the mean and sigma&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# mean
+sum(x)/length(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.009174&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.009174&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# standard deviation
+sqrt(sum((x-mean(x))^2)/(length(x)-1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.481294&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sd(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.481294&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, if can also simulate and try the optimization using the &lt;code&gt;mle&lt;/code&gt; function from the &lt;code&gt;stat 4&lt;/code&gt; package in R.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;LL &amp;lt;- function(mu, sigma){
+  R &amp;lt;- dnorm(x, mu, sigma)
+  -sum(log(R))
+}
+
+stats4::mle(LL, start = list(mu = 1, sigma = 1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## stats4::mle(minuslogl = LL, start = list(mu = 1, sigma = 1))
+## 
+## Coefficients:
+##       mu    sigma 
+## 2.009338 1.481157&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To supress the warnings in &lt;code&gt;R&lt;/code&gt; and garanatee the solution we can use following codes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stats4::mle(LL, start = list(mu = 1, sigma = 1), method = &amp;quot;L-BFGS-B&amp;quot;,
+            lower = c(-Inf, 0), upper = c(Inf, Inf))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## stats4::mle(minuslogl = LL, start = list(mu = 1, sigma = 1), 
+##     method = &amp;quot;L-BFGS-B&amp;quot;, lower = c(-Inf, 0), upper = c(Inf, Inf))
+## 
+## Coefficients:
+##       mu    sigma 
+## 2.009174 1.481221&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;density-plot-example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Density plot example&lt;/h3&gt;
+&lt;p&gt;Given the data of x = (-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59), we can estimate &lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu }\)&lt;/span&gt; as &lt;code&gt;sum(x)/length(x)&lt;/code&gt; or &lt;code&gt;mean(x)&lt;/code&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{\hat{\sigma }}^{2}}\)&lt;/span&gt; as &lt;code&gt;sum((x-mean(x))^2)/(length(x)-1)&lt;/code&gt; or &lt;code&gt;var(x)&lt;/code&gt;. Note I use the sample variance formula.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- c(-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59)
+
+# mean
+sum(x)/length(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.249&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.249&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# variance
+sum((x-mean(x))^2)/(length(x)-1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9285211&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;var(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9285211&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also plot a parametric density function. But prior we plot, we have to sort the data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- sort(x)
+plot(x ,dnorm(x,mean=mean(x),sd=sd(x)),ylab=&amp;quot;Density&amp;quot;,type=&amp;quot;l&amp;quot;, col = &amp;quot;blue&amp;quot;, lwd = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://ShishirShakya.github.io/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s also plot a graph of histogram using bin width ranging from -1.5 through 2.0.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hist(x, breaks=seq(-1.5,2,by=0.5), prob = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://ShishirShakya.github.io/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;univariate-nonparametric-density-estimation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Univariate NonParametric Density Estimation&lt;/h1&gt;
+&lt;div id=&#34;set-up&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Set-up&lt;/h2&gt;
+&lt;p&gt;Consider &lt;span class=&#34;math inline&#34;&gt;\(i.i.d\)&lt;/span&gt; data &lt;span class=&#34;math inline&#34;&gt;\({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(F\left( \centerdot \right)\)&lt;/span&gt; an unknown &lt;span class=&#34;math inline&#34;&gt;\(CDF\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(F\left( x \right)=P\left[ X\le x \right]\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(CDF\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; evaluated at &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;. We can do a na?ve estimation as &lt;span class=&#34;math inline&#34;&gt;\(F\left( x \right)=P\left[ X\le x \right]\)&lt;/span&gt; as cumulative sums of relative frequency as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{F}_{n}}\left( x \right)={{n}^{-1}}\left\{ \#\ of\ {{X}_{i}}\le x \right\}\]&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\to\infty\)&lt;/span&gt; yields &lt;span class=&#34;math inline&#34;&gt;\({{F}_{n}}\left( x \right)\to F\left( x \right)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(PDF\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(F\left( x \right)=P\left[ X\le x \right]\)&lt;/span&gt; is given as &lt;span class=&#34;math inline&#34;&gt;\(f\left( x \right)=\frac{d}{dx}F\left( x \right)\)&lt;/span&gt; and an obvious estimator is:
+&lt;span class=&#34;math display&#34;&gt;\[\hat{f}\left( x \right)=\frac{rise}{run}=\frac{{{F}_{n}}\left( x+h \right)-{{F}_{n}}\left( x-h \right)}{x+h-\left( x-h \right)}=\frac{{{F}_{n}}\left( x+h \right)-{{F}_{n}}\left( x-h \right)}{2h}={{n}^{-1}}\frac{1}{2h}\left\{ \#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right] \right\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;naive-kernel&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Naive Kernel&lt;/h2&gt;
+&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(k\left( \centerdot \right)\)&lt;/span&gt; can be any kernel function, If we define a uniform kernel function or also known as na?ve kernel function then
+&lt;span class=&#34;math display&#34;&gt;\[k\left( z \right)=\left\{ \begin{matrix}
+   {1}/{2}\; &amp;amp; if\ \left| z \right|\le 1  \\
+   0 &amp;amp; o.w  \\
+\end{matrix} \right.\]&lt;/span&gt;
+Where &lt;span class=&#34;math inline&#34;&gt;\(\left| {{z}_{i}} \right|=\left| \frac{{{X}_{i}}-x}{h} \right|\)&lt;/span&gt; and therefore is symmetric and hence &lt;span class=&#34;math inline&#34;&gt;\(\#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right]\)&lt;/span&gt; means &lt;span class=&#34;math inline&#34;&gt;\(2\left( \frac{{{X}_{i}}-x}{h} \right)\)&lt;/span&gt;. Then it is easy to see &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}\left( x \right)\)&lt;/span&gt; to be expressed as:
+&lt;span class=&#34;math display&#34;&gt;\[\hat{f}\left( x \right)=\frac{1}{2h}{{n}^{-1}}\left\{ \#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right] \right\}=\frac{1}{2h}{{n}^{-1}}\sum\limits_{i=1}^{n}{k\left( 2\frac{{{X}_{i}}-x}{h} \right)}=\frac{1}{nh}\sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We can use follwoing code for naive kernel.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- c(-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59)
+x &amp;lt;- sort(x)
+
+naive_kernel &amp;lt;- function(x,y,h){
+  z &amp;lt;- (x-y)/h
+  ifelse(abs(z) &amp;lt;= 1, 1/2, 0)
+}
+
+naive_density &amp;lt;- function(x, h){
+  val &amp;lt;- c()
+  for(i in 1:length(x)) {
+    val[i] &amp;lt;- sum(naive_kernel(x,x[i],h)/(length(x)*h))
+  }
+  val
+}
+
+H &amp;lt;- c(0.5, 1.0, 1.5)
+
+names &amp;lt;- as.vector(paste0(&amp;quot;H = &amp;quot;, H))
+density_data &amp;lt;- list()
+for(i in 1:length(H)){
+  density_data[[i]] &amp;lt;- naive_density(x, H[i])
+}
+density_data &amp;lt;- do.call(cbind.data.frame, density_data)
+colnames(density_data) &amp;lt;- names
+
+
+matplot(density_data, type = &amp;quot;b&amp;quot;, xlab = &amp;quot;x&amp;quot;,
+        ylab = &amp;quot;Density&amp;quot;, pch=1:length(H), col = 1:length(H),
+        main = &amp;quot;Naive Density for various Smoothing Parameter H&amp;quot;)
+legend(&amp;quot;topleft&amp;quot;, legend=names,  bty = &amp;quot;n&amp;quot;, pch=1:length(H), col = 1:length(H))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://ShishirShakya.github.io/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;epanechnikov-kernel&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Epanechnikov kernel&lt;/h2&gt;
+&lt;p&gt;Consider another optimal kernel known as Epanechnikov kernel given by:
+&lt;span class=&#34;math display&#34;&gt;\[k\left( \frac{{{X}_{i}}-x}{h} \right)=\left\{ \begin{matrix}
+   \frac{3}{4\sqrt{5}}\left( 1-\frac{1}{5}{{\left( \frac{{{X}_{i}}-x}{h} \right)}^{2}} \right) &amp;amp; if\ \left| \frac{{{X}_{i}}-x}{h} \right|&amp;lt;5  \\
+   0 &amp;amp; o.w  \\
+\end{matrix} \right.\]&lt;/span&gt;
+Let’s use x = (-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59) and compute the kernel estimator of the density function of every sample realization using bandwidth of &lt;span class=&#34;math inline&#34;&gt;\(h=0.5\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(h=1\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(h=1.5\)&lt;/span&gt;, where, &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; is smoothing parameter restricted to lie in the range of &lt;span class=&#34;math inline&#34;&gt;\((0,\infty ]\)&lt;/span&gt;. We can use follwoing codes to estimate the density using Epanechnikov kernel.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- c(-0.57, 0.25, -0.08, 1.40, -1.05, 1.00, 0.37, -1.15, 0.73, 1.59)
+x &amp;lt;- sort(x)
+
+epanichnikov_kernel &amp;lt;- function(x,y,h){
+  z &amp;lt;- (x-y)/h
+  ifelse(abs(z) &amp;lt; sqrt(5), (1-z^2/5)*(3/(4*sqrt(5))), 0)
+}
+
+epanichnikov_density &amp;lt;- function(x, h){
+  val &amp;lt;- c()
+  for(i in 1:length(x)) {
+    val[i] &amp;lt;- sum(epanichnikov_kernel(x,x[i],h)/(length(x)*h))
+  }
+  val
+}
+
+H &amp;lt;- c(0.5, 1.0, 1.5)
+
+names &amp;lt;- as.vector(paste0(&amp;quot;H = &amp;quot;, H))
+density_data &amp;lt;- list()
+for(i in 1:length(H)){
+  density_data[[i]] &amp;lt;- epanichnikov_density(x, H[i])
+}
+density_data &amp;lt;- do.call(cbind.data.frame, density_data)
+colnames(density_data) &amp;lt;- names
+
+
+matplot(density_data, type = &amp;quot;b&amp;quot;, xlab = &amp;quot;x&amp;quot;,
+        ylab = &amp;quot;Density&amp;quot;, pch=1:length(H), col = 1:length(H),
+        main = &amp;quot;Epanichnikov Density for various Smoothing Parameter H&amp;quot;)
+legend(&amp;quot;topleft&amp;quot;, legend=names,  bty = &amp;quot;n&amp;quot;, pch=1:length(H), col = 1:length(H))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://ShishirShakya.github.io/post/2019-01-07-Density-Estimation_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;three-properties-of-kernel-estimator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Three properties of kernel estimator&lt;/h2&gt;
+&lt;p&gt;For any general nonnegative bounded kernel function &lt;span class=&#34;math inline&#34;&gt;\(k\left( v \right)\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(v=\left( \frac{{{X}_{i}}-x}{h} \right)\)&lt;/span&gt;, the kernel estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}\left( x \right)\)&lt;/span&gt; is a consistent estimator of &lt;span class=&#34;math inline&#34;&gt;\(f\left( x \right)\)&lt;/span&gt; that satisfies three conditions:
+First is area under a kernel to be unity.
+&lt;span class=&#34;math display&#34;&gt;\[\int{k(v)dv=1}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Second is the symmetry kernel
+&lt;span class=&#34;math display&#34;&gt;\[\int{vk(v)dv=0}\]&lt;/span&gt; which implies symmetry condition i.e. &lt;span class=&#34;math inline&#34;&gt;\(k(v)=k(-v)\)&lt;/span&gt;. For asymmetric kernels see Abadir and Lawford (2004).&lt;/p&gt;
+&lt;p&gt;Third is a positive constant.
+&lt;span class=&#34;math display&#34;&gt;\[\int{{{v}^{2}}k(v)dv={{\kappa }_{2}}&amp;gt;0}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-big-o-and-small-o.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The big O and small o.&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;taylor-series-expansion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Taylor series expansion&lt;/h2&gt;
+&lt;p&gt;For a univariate function &lt;span class=&#34;math inline&#34;&gt;\(g(x)\)&lt;/span&gt;evaluated at &lt;span class=&#34;math inline&#34;&gt;\({{x}_{0}}\)&lt;/span&gt; , we can express with Taylor series expansion as:
+&lt;span class=&#34;math display&#34;&gt;\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m}}+\cdots \]&lt;/span&gt;
+For a univariate function &lt;span class=&#34;math inline&#34;&gt;\(g(x)\)&lt;/span&gt;evaluated at &lt;span class=&#34;math inline&#34;&gt;\({{x}_{0}}\)&lt;/span&gt; that is &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; times differentiable, we can express with Taylor series expansion as:
+&lt;span class=&#34;math display&#34;&gt;\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}(\xi ){{(x-{{x}_{0}})}^{m}}\]&lt;/span&gt;
+Wwhere &lt;span class=&#34;math inline&#34;&gt;\({{g}^{(s)}}={{\left. \frac{{{\partial }^{s}}g(x)}{\partial {{x}^{2}}} \right|}_{x={{x}_{0}}}}\)&lt;/span&gt; and and &lt;span class=&#34;math inline&#34;&gt;\(\xi\)&lt;/span&gt; lies between &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{x}_{0}}\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mse-variance-and-biases&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;MSE, variance and biases&lt;/h2&gt;
+&lt;p&gt;Say &lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta }\)&lt;/span&gt; is an estimator for true &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, then the Mean Squared Error &lt;span class=&#34;math inline&#34;&gt;\(MSE\)&lt;/span&gt; of an estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta }\)&lt;/span&gt; is the mean of squared deviation between &lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta }\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; and given as:
+&lt;span class=&#34;math display&#34;&gt;\[MSE=E\left[ {{\left( \hat{\theta }-\theta  \right)}^{2}} \right] \]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=E\left[ \left( {{{\hat{\theta }}}^{2}}-2\hat{\theta }\theta +{{\theta }^{2}} \right) \right] \]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=E[{{\hat{\theta }}^{2}}]+E[{{\theta }^{2}}]-2\theta E[\hat{\theta }]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\underbrace{E[{{{\hat{\theta }}}^{2}}]-{{E}^{2}}[{{{\hat{\theta }}}^{2}}]}_{\operatorname{var}(\hat{\theta })}+\underbrace{{{E}^{2}}[{{{\hat{\theta }}}^{2}}]+E[{{\theta }^{2}}]-2\theta E[\hat{\theta }]}_{E{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\operatorname{var}(\hat{\theta })+\underbrace{E{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}}_{squared\ of\ bias\ of\ \hat{\theta }}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Note: &lt;span class=&#34;math inline&#34;&gt;\(\underbrace{E{{\left( \hat{\theta }-E[\hat{\theta }] \right)}^{2}}}_{\operatorname{var}(\hat{\theta })}=\underbrace{E[{{{\hat{\theta }}}^{2}}]-{{E}^{2}}[{{{\hat{\theta }}}^{2}}]}_{\operatorname{var}(\hat{\theta })}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Another way of solution is given as :
+&lt;span class=&#34;math display&#34;&gt;\[MSE=E\left[ {{\left( \hat{\theta }-\theta  \right)}^{2}} \right] \]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=E\left[ {{\left( \hat{\theta }-E[\hat{\theta }]+E[\hat{\theta }]-\theta  \right)}^{2}} \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=E\left[ {{\left( \hat{\theta }-E[\hat{\theta }] \right)}^{2}}+{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}+2\left( \hat{\theta }-E[\hat{\theta }] \right)\left( E[\hat{\theta }]-\theta  \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\underbrace{E{{\left( \hat{\theta }-E[\hat{\theta }] \right)}^{2}}}_{\operatorname{var}(\hat{\theta })}+\underbrace{E{{\left( E[\hat{\theta }]-\theta  \right)}^{2}}}_{squared\ of\ bias\ of\hat{\theta }}+2E\left[ \left( \hat{\theta }-E[\hat{\theta }] \right)\left( E[\hat{\theta }]-\theta  \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}+2E\left[ \left( \hat{\theta }E[\hat{\theta }]+\hat{\theta }\theta -E[\hat{\theta }]E[\hat{\theta }]-E[\hat{\theta }]\theta  \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}+2E\left[ \left( \underbrace{\hat{\theta }E[\hat{\theta }]-E[\hat{\theta }]E[\hat{\theta }]}_{0}+\underbrace{\hat{\theta }\theta -E[\hat{\theta }]\theta }_{0} \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE=\operatorname{var}(\hat{\theta })+{{\left\{ bias(\hat{\theta }) \right\}}^{2}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-1.1.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Theorem 1.1.&lt;/h2&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\({{X}_{1}},{{X}_{2}},\ldots ,{{X}_{n}}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(i.i.d\)&lt;/span&gt; observation having a three-times differentiable &lt;span class=&#34;math inline&#34;&gt;\(PDF\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\({{f}^{s}}(x)\)&lt;/span&gt; denote the &lt;span class=&#34;math inline&#34;&gt;\(s-th\)&lt;/span&gt; order derivative of &lt;span class=&#34;math inline&#34;&gt;\(f(x)\ s=(1,2,3)\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; be an interior point in the support of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; be &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{2h}{{n}^{-1}}\left\{ \#\ of\ {{X}_{i}}\ in\ between\ \left[ x-h,x+h \right] \right\}\)&lt;/span&gt;. Assume that the kernel function &lt;span class=&#34;math inline&#34;&gt;\(k\left( \centerdot \right)\)&lt;/span&gt; bounded and satisfies: &lt;span class=&#34;math inline&#34;&gt;\(\int{k(v)dv=1}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(k(v)=k(-v)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\int{{{v}^{2}}k(v)dv={{\kappa }_{2}}&amp;gt;0}\)&lt;/span&gt;. And as &lt;span class=&#34;math inline&#34;&gt;\(n\to\infty\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(h\to 0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(nh\to\infty\)&lt;/span&gt; then, the &lt;span class=&#34;math inline&#34;&gt;\(MSE\)&lt;/span&gt; of estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; is given as:
+&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}(x) \right)=\frac{{{h}^{4}}}{4}{{\left[ {{\kappa }_{2}}{{f}^{\left( 2 \right)}}(x) \right]}^{2}}+\frac{\kappa f(x)}{nh}+o\left( {{h}^{4}}+{{(nh)}^{-1}} \right)=O\left( {{h}^{4}}+{{(nh)}^{-1}} \right)\]&lt;/span&gt;
+Where, &lt;span class=&#34;math inline&#34;&gt;\(v=\left( \frac{{{X}_{i}}-x}{h} \right)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\({{\kappa }_{2}}=\int{{{v}^{2}}k(v)dv}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\kappa =\int{{{k}^{2}}(v)dv}\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-of-theorem-1.1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof of Theorem 1.1&lt;/h2&gt;
+&lt;div id=&#34;mse-variance-and-biases-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;MSE, variance and biases&lt;/h3&gt;
+&lt;p&gt;We can express the relationship of MSE, variance and bias of estimator &lt;span class=&#34;math inline&#34;&gt;\(MSE\left( \hat{f}(x) \right)\)&lt;/span&gt; as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}(x) \right)=\operatorname{var}\left( \hat{f}(x) \right)+{{\left\{ bias\left( \hat{f}(x) \right) \right\}}^{2}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then we deal with &lt;span class=&#34;math inline&#34;&gt;\(\left\{ bias\left( \hat{f}(x) \right) \right\}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}\left( \hat{f}(x) \right)\)&lt;/span&gt; separately.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;biases&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Biases&lt;/h3&gt;
+&lt;p&gt;The bias of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; is given as
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=E[\hat{f}(x)]-f(x)\]&lt;/span&gt;&lt;br /&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=E\left[ \frac{1}{nh}\sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)} \right]-f(x)\]&lt;/span&gt;
+By the identical distribution, we can write:
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\frac{1}{nh}nE\left[ k\left( \frac{{{X}_{1}}-x}{h} \right) \right]-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{h}^{-1}}\int{f({{x}_{1}})}k\left( \frac{{{x}_{1}}-x}{h} \right)d{{x}_{1}}-f(x)\]&lt;/span&gt;
+Note: &lt;span class=&#34;math inline&#34;&gt;\(\frac{{{x}_{1}}-x}{h}=v\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}}-x=hv\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}}=x+hv\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\(\frac{d{{x}_{1}}}{dv}=\frac{d}{dv}\left( x+hv \right)=h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{1}}=hdv\)&lt;/span&gt;.
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{h}^{-1}}\int{f(x+hv)}k\left( v \right)hdv-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{h}^{-1}}h\int{f(x+hv)}k\left( v \right)dv-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\int{f(x+hv)}k\left( v \right)dv-f(x)\]&lt;/span&gt;
+Let’s expand &lt;span class=&#34;math inline&#34;&gt;\(f(x+hv)\)&lt;/span&gt; with Taylor series expansion evaluated at &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; is only three times differentiable: &lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\int{\left\{ f(x)+{{f}^{(1)}}(x)(x+hv-x)+\frac{1}{2!}{{f}^{(2)}}(x){{(x+hv-x)}^{2}}+\frac{1}{3!}{{f}^{(3)}}(\tilde{x}){{(x+hv-x)}^{3}} \right\}}k\left( v \right)dv-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\int{\left\{ f(x)+{{f}^{(1)}}(x)hv+\frac{1}{2!}{{f}^{(2)}}(x){{h}^{2}}{{v}^{2}}+\frac{1}{3!}{{f}^{(3)}}(\tilde{x}){{h}^{3}}{{v}^{3}} \right\}}k\left( v \right)dv-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\int{\left\{ f(x)+{{f}^{(1)}}(x)hv+\frac{1}{2!}{{f}^{(2)}}(x){{h}^{2}}{{v}^{2}}+O({{h}^{3}}) \right\}}k\left( v \right)dv-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=f(x)\int{k\left( v \right)dv}+{{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x)\int{{{v}^{2}}}k\left( v \right)dv+\int{O({{h}^{3}})k\left( v \right)dv}-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=f(x)\underbrace{\int{k\left( v \right)dv}}_{1}+{{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x)\underbrace{\int{{{v}^{2}}}k\left( v \right)dv}_{{{\kappa }_{2}}}+\underbrace{\int{O({{h}^{3}})k\left( v \right)dv}}_{O({{h}^{3}})}-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=f(x)+{{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\int{v}k\left( v \right)dv+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]&lt;/span&gt;
+By symmetrical definition
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\left[ \left\{ \int\limits_{-\infty }^{0}{+\int\limits_{0}^{\infty }{{}}} \right\}vk\left( v \right)dv \right]+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\left[ \left\{ \int\limits_{-\infty }^{0}{vk\left( v \right)dv+\int\limits_{0}^{\infty }{vk\left( v \right)dv}} \right\} \right]+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]&lt;/span&gt;
+Then, we can switch the bound of definite integrals. Click for &lt;a href=&#34;https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-6/v/switching-integral-bounds&#34;&gt;tutorial.&lt;/a&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}={{f}^{(1)}}(x)h\underbrace{\left[ \left\{ -\int\limits_{0}^{\infty }{vk\left( v \right)dv+\int\limits_{0}^{\infty }{vk\left( v \right)dv}} \right\} \right]}_{0}+\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+O({{h}^{3}})\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left\{ \hat{f}(x) \right\}=\frac{{{h}^{2}}}{2!}{{f}^{(2)}}(x){{\kappa }_{2}}+o({{h}^{2}})\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variance&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Variance&lt;/h3&gt;
+&lt;p&gt;The variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; is given as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=E{{\left( \hat{f}(x)-E\left[ \hat{f}(x) \right] \right)}^{2}}=E\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]-{{E}^{2}}\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\operatorname{var}\left[ \frac{1}{nh}\sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)} \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;span class=&#34;math inline&#34;&gt;\(b\in \mathbb{R}\)&lt;/span&gt; be a constant and &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; be a random variable, then, &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}[by]={{b}^{2}}\operatorname{var}[y]\)&lt;/span&gt;, therefore,
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{{{n}^{2}}{{h}^{2}}}\operatorname{var}\left[ \sum\limits_{i=1}^{n}{k\left( \frac{{{X}_{i}}-x}{h} \right)} \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}(a+b)=\operatorname{var}(a)+\operatorname{var}(b)+2\operatorname{cov}(a,b)\)&lt;/span&gt; and if &lt;span class=&#34;math inline&#34;&gt;\(a\bot b\)&lt;/span&gt; then &lt;span class=&#34;math inline&#34;&gt;\(2\operatorname{cov}(a,b)=0\)&lt;/span&gt;. In above expression &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}\)&lt;/span&gt; are independent observation therefore &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}\bot {{X}_{j}}\ \forall \ i\ne j\)&lt;/span&gt;. Hence, we can express
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{{{n}^{2}}{{h}^{2}}}\left\{ \sum\limits_{i=1}^{n}{\operatorname{var}\left[ k\left( \frac{{{X}_{i}}-x}{h} \right) \right]}+0 \right\}\]&lt;/span&gt;
+Note, &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}\)&lt;/span&gt; are also identical, therefore &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}({{X}_{i}})=\operatorname{var}({{X}_{j}})\)&lt;/span&gt; so, &lt;span class=&#34;math inline&#34;&gt;\(\sum\limits_{i=1}^{n}{\operatorname{var}({{X}_{i}})}=n\operatorname{var}({{X}_{1}})\)&lt;/span&gt;. Therefore,
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{{{n}^{2}}{{h}^{2}}}n\operatorname{var}\left[ k\left( \frac{{{X}_{1}}-x}{h} \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\operatorname{var}\left[ k\left( \frac{{{X}_{1}}-x}{h} \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ E\left[ {{k}^{2}}\left( \frac{{{X}_{1}}-x}{h} \right) \right]-\left[ E{{\left( k\left( \frac{{{X}_{1}}-x}{h} \right) \right)}^{2}} \right] \right\}\]&lt;/span&gt;
+Which is equivalent to:
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f({{x}_{1}}){{k}^{2}}\left( \frac{{{x}_{1}}-x}{h} \right)d{{x}_{1}}}-{{\left[ \int{f({{x}_{1}})k\left( \frac{{{x}_{1}}-x}{h} \right)d{{x}_{1}}} \right]}^{2}} \right\}\]&lt;/span&gt;
+Note: &lt;span class=&#34;math inline&#34;&gt;\(\frac{{{x}_{1}}-x}{h}=v\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}}-x=hv\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}}=x+hv\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\(\frac{d{{x}_{1}}}{dv}=\frac{d}{dv}\left( x+hv \right)=h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{1}}=hdv\)&lt;/span&gt;.
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f(x+hv){{k}^{2}}\left( v \right)hdv}-{{\left[ \int{f(x+hv)k\left( v \right)hdv} \right]}^{2}} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\int{f(x+hv){{k}^{2}}\left( v \right)dv}-{{\left[ h\int{f(x+hv)k\left( v \right)dv} \right]}^{2}} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f(x+hv){{k}^{2}}\left( v \right)hdv}-\underbrace{{{\left[ \int{f(x+hv)k\left( v \right)hdv} \right]}^{2}}}_{O\left( {{h}^{2}} \right)} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ \int{f(x+hv){{k}^{2}}\left( v \right)hdv}-O\left( {{h}^{2}} \right) \right\}\]&lt;/span&gt;
+Taylor series expansion
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\int{f(x)+{{f}^{(1)}}(\xi )(x+hv-x){{k}^{2}}\left( v \right)dv}-O\left( {{h}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\int{f(x){{k}^{2}}\left( v \right)dv}+\int{{{f}^{(1)}}(\xi )(hv){{k}^{2}}\left( v \right)dv}-O\left( {{h}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ hf(x)\underbrace{\int{{{k}^{2}}\left( v \right)dv}}_{\kappa }+\underbrace{\int{{{f}^{(1)}}(\xi )(hv){{k}^{2}}\left( v \right)dv}}_{O\left( {{h}^{2}} \right)}-O\left( {{h}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{n{{h}^{2}}}\left\{ h\kappa f(x)+O\left( {{h}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=\frac{1}{nh}\left\{ \kappa f(x)+O\left( h \right) \right\}=O\left( {{(nh)}^{-1}} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We now know that the order of variance is &lt;span class=&#34;math inline&#34;&gt;\(O\left( {{(nh)}^{-1}} \right)\)&lt;/span&gt;, the order of bias is &lt;span class=&#34;math inline&#34;&gt;\(O\left( {{h}^{2}} \right)\)&lt;/span&gt; and the order of biases square is &lt;span class=&#34;math inline&#34;&gt;\(O\left( {{h}^{4}} \right)\)&lt;/span&gt;. As we know the the MSE is sum of variance and square of biases and pluggin the values of variance and bias, we get,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}(x) \right)=\operatorname{var}\left( \hat{f}(x) \right)+{{\left\{ bias\left( \hat{f}(x) \right) \right\}}^{2}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}(x) \right)=\frac{{{h}^{4}}}{4}{{\left[ {{\kappa }_{2}}{{f}^{\left( 2 \right)}}(x) \right]}^{2}}+\frac{\kappa f(x)}{nh}+o\left( {{h}^{4}}+{{(nh)}^{-1}} \right)=O\left( {{h}^{4}}+{{(nh)}^{-1}} \right)\]&lt;/span&gt;
+Where, &lt;span class=&#34;math inline&#34;&gt;\(v=\left( \frac{{{X}_{i}}-x}{h} \right)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\({{\kappa }_{2}}=\int{{{v}^{2}}k(v)dv}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\kappa =\int{{{k}^{2}}(v)dv}\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multivariate-nonparametric-density-estimation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Multivariate NonParametric Density Estimation&lt;/h1&gt;
+&lt;div id=&#34;theorem&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Theorem&lt;/h2&gt;
+&lt;p&gt;Suppose that &lt;span class=&#34;math inline&#34;&gt;\({{X}_{1}},...,{{X}_{n}}\)&lt;/span&gt; constitute an i.i.d &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;-vector &lt;span class=&#34;math inline&#34;&gt;\(\left( {{X}_{i}}\in {{\mathbb{R}}^{q}} \right)\)&lt;/span&gt; for some &lt;span class=&#34;math inline&#34;&gt;\(q&amp;gt;1\)&lt;/span&gt; having common PDF &lt;span class=&#34;math inline&#34;&gt;\(f(x)=f({{x}_{1}},{{x}_{2}},...,{{x}_{q}})\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\({{X}_{ij}}\)&lt;/span&gt; denote the &lt;span class=&#34;math inline&#34;&gt;\(j-th\)&lt;/span&gt; component of &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}(j=1,...,q)\)&lt;/span&gt;. Then the estimated pdf given by &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt;is constructed by product kernel function or the product of univariate kernel functions.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{f}(x)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{k\left( \frac{{{x}_{i1}}-{{x}_{1}}}{{{h}_{1}}} \right)\times k\left( \frac{{{x}_{i2}}-{{x}_{2}}}{{{h}_{2}}} \right)}\times \cdots \times k\left( \frac{{{x}_{iq}}-{{x}_{q}}}{{{h}_{q}}} \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\hat{f}(x)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{\prod\limits_{j=1}^{q}{k\left( \frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}} \right)}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bias-term&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bias term&lt;/h2&gt;
+&lt;p&gt;The MSE consistency of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt;is sum of variance and square of bias term. First, we define bias given as:
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=E\left( \hat{f}(x) \right)-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=E\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{\prod\limits_{j=1}^{q}{k\left( \frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}} \right)}} \right)-f(x)\]&lt;/span&gt;
+Lets define &lt;span class=&#34;math inline&#34;&gt;\(\prod\limits_{j=1}^{q}{k\left( \frac{{{X}_{ij}}-{{x}_{i}}}{{{h}_{j}}} \right)}=K\left( \frac{{{X}_{i}}-x}{h} \right)\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=E\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right)-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}E\left( \sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right)-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)={{(n{{h}_{1}}...{{h}_{q}})}^{-1}}n\left( E\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right] \right)-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\left( E\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right] \right)-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\left( \frac{{{X}_{i}}-x}{h} \right)f\left( {{X}_{i}} \right)d{{x}_{i}}}-f(x)\]&lt;/span&gt;
+Note: &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{i}}\)&lt;/span&gt; is vector comprise of &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{i1}},d{{x}_{i2}},...,d{{x}_{iq}}\)&lt;/span&gt; and
+let’s &lt;span class=&#34;math inline&#34;&gt;\(\left( \frac{{{X}_{i}}-x}{h} \right)=\left( \frac{{{X}_{i1}}-{{x}_{1}}}{{{h}_{1}}},\frac{{{X}_{i1}}-{{x}_{2}}}{{{h}_{2}}},...,\frac{{{X}_{iq}}-{{x}_{q}}}{{{h}_{q}}} \right)=\psi =\left( {{\psi }_{1}},{{\psi }_{2}},...,{{\psi }_{q}} \right)\)&lt;/span&gt;. This means, &lt;span class=&#34;math inline&#34;&gt;\(\frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}}={{\psi }_{j}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{x}_{ij}}={{x}_{j}}+{{\psi }_{j}}{{h}_{j}}\)&lt;/span&gt; then &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{ij}}={{h}_{j}}d{{\psi }_{j}}\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\underbrace{\left( \frac{{{X}_{i}}-x}{h} \right)}_{\psi }\underbrace{f\left( {{X}_{i}} \right)}_{f\left( x+h\psi  \right)}\underbrace{d{{x}_{i}}}_{{{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }}-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)={{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=({{h}_{1}}{{h}_{2}}...{{h}_{q}}){{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{K\left( \psi  \right)f\left( x+h\psi  \right)d\psi }-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\int{K\left( \psi  \right)f\left( x+h\psi  \right)d\psi }-f(x)\]&lt;/span&gt;
+Now perform a multivariate Taylor expansion for:
+&lt;span class=&#34;math display&#34;&gt;\[f\left( x+h\psi  \right)=\left\{ f(x)+{{f}^{1}}{{(x)}^{T}}\left( x+h\psi -x \right)+\frac{1}{2!}{{(x+h\psi -x)}^{T}}{{f}^{2}}(x)\left( x+h\psi -x \right)+\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( x+h\psi -x \right)}^{3}}} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[f\left( x+h\psi  \right)=\left\{ f(x)+{{f}^{1}}{{(x)}^{T}}\left( h\psi  \right)+\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)+\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( h\psi  \right)}^{3}}} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\int{K\left( \psi  \right)\left\{ f(x)+{{f}^{1}}{{(x)}^{T}}\left( h\psi  \right)+\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)+\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( h\psi  \right)}^{3}}} \right\}d\psi }-f(x)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{matrix}
+   bias\left( \hat{f}(x) \right)= &amp;amp; \int{f(x)K\left( \psi  \right)d\psi }+\int{{{f}^{1}}{{(x)}^{T}}\left( h\psi  \right)K\left( \psi  \right)d\psi }+\int{\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)K\left( \psi  \right)d\psi }  \\
+   {} &amp;amp; +\int{\frac{1}{3!}\sum\limits_{|l|=3}{{{D}_{l}}f\left( {\tilde{x}} \right){{\left( h\psi  \right)}^{3}}K\left( \psi  \right)d\psi }-f(x)}  \\
+\end{matrix}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=f\left( x \right)\int{K\left( \psi  \right)d\psi }+{{f}^{1}}{{(x)}^{T}}h\int{\psi K\left( \psi  \right)d\psi }+\int{\frac{1}{2!}{{(h\psi )}^{T}}{{f}^{2}}(x)\left( h\psi  \right)K\left( \psi  \right)d\psi +O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)-f\left( x \right)}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=f\left( x \right)\underbrace{\int{K\left( \psi  \right)d\psi }}_{1}+{{f}^{1}}{{(x)}^{T}}h\underbrace{\int{\psi K\left( \psi  \right)d\psi }}_{0}+\frac{{{h}^{T}}h}{2}\int{K\left( \psi  \right){{\psi }^{T}}{{f}^{2}}(x)\psi d\psi +O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)-f\left( x \right)}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\int{{{h}^{T}}h{{\psi }^{T}}{{f}^{2}}(x)\psi K\left( \psi  \right)d\psi }+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\int{\underbrace{{{h}^{T}}h\underbrace{{{\psi }^{T}}}_{1\times q}\underbrace{{{f}^{2}}(x)}_{q\times q}\underbrace{\psi }_{q\times 1}}_{1\times 1}K\left( \psi  \right)d\psi }+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\int{{{h}^{T}}h\sum\limits_{l=1}^{q}{\sum\limits_{m=1}^{q}{f_{lm}^{\left( 2 \right)}\left( x \right){{\psi }_{l}}{{\psi }_{m}}}}K\left( \psi  \right)d\psi }+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]&lt;/span&gt;
+For &lt;span class=&#34;math inline&#34;&gt;\(l\ne m\)&lt;/span&gt; the cross derivatives will be zero hence, we can re-write as:
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\frac{1}{2}\sum\limits_{l=1}^{q}{h_{l}^{2}f_{ll}^{\left( 2 \right)}\left( x \right){{\kappa }_{2}}}+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\frac{{{\kappa }_{2}}}{2}\sum\limits_{l=1}^{q}{h_{l}^{2}f_{ll}^{\left( 2 \right)}\left( x \right)}+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)=O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[bias\left( \hat{f}(x) \right)=\underbrace{\frac{{{\kappa }_{2}}}{2}\sum\limits_{l=1}^{q}{h_{l}^{2}f_{ll}^{\left( 2 \right)}\left( x \right)}}_{{{c}_{1}}}+O\left( \sum\limits_{j=1}^{q}{h_{j}^{3}} \right)=O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where, &lt;span class=&#34;math inline&#34;&gt;\({{c}_{1}}\)&lt;/span&gt; is a constant.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variance-term&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Variance term&lt;/h2&gt;
+&lt;p&gt;The variance is given as:
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left( \hat{f}(x) \right)=E\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{\prod\limits_{j=1}^{q}{k\left( \frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}} \right)}} \right)\]&lt;/span&gt;
+Lets’s define &lt;span class=&#34;math inline&#34;&gt;\(\prod\limits_{j=1}^{q}{k\left( \frac{{{X}_{ij}}-{{x}_{i}}}{{{h}_{j}}} \right)}=K\left( \frac{{{X}_{i}}-x}{h} \right)\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left( \hat{f}(x) \right)=\operatorname{var}\left( {{(n{{h}_{1}}...{{h}_{q}})}^{-1}}\sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right)\]&lt;/span&gt;
+For &lt;span class=&#34;math inline&#34;&gt;\(b\in \mathbb{R}\)&lt;/span&gt; be a constant and &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; be a random variable, then, &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}[by]={{b}^{2}}\operatorname{var}[y]\)&lt;/span&gt;, therefore,
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}={{(n{{h}_{1}}...{{h}_{q}})}^{-2}}\operatorname{var}\left[ \sum\limits_{i=1}^{n}{K\left( \frac{{{X}_{i}}-x}{h} \right)} \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}(a+b)=\operatorname{var}(a)+\operatorname{var}(b)+2\operatorname{cov}(a,b)\)&lt;/span&gt; and if &lt;span class=&#34;math inline&#34;&gt;\(a\bot b\)&lt;/span&gt; then &lt;span class=&#34;math inline&#34;&gt;\(2\operatorname{cov}(a,b)=0\)&lt;/span&gt;. In above expression &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}\)&lt;/span&gt; are independent observation therefore &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}\bot {{X}_{j}}\ \forall \ i\ne j\)&lt;/span&gt;. Hence, we can express
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}={{(n{{h}_{1}}...{{h}_{q}})}^{-2}}\left\{ \sum\limits_{i=1}^{n}{\operatorname{var}\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]}+0 \right\}\]&lt;/span&gt;
+Note, &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}}\)&lt;/span&gt; are also identical, therefore &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}({{X}_{i}})=\operatorname{var}({{X}_{j}})\)&lt;/span&gt; so, &lt;span class=&#34;math inline&#34;&gt;\(\sum\limits_{i=1}^{n}{\operatorname{var}({{X}_{i}})}=n\operatorname{var}({{X}_{1}})\)&lt;/span&gt;. Therefore,
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}={{(n{{h}_{1}}...{{h}_{q}})}^{-2}}n\operatorname{var}\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\operatorname{var}\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]\]&lt;/span&gt;
+The variance is given as: &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{var}\left\{ \hat{f}(x) \right\}=E{{\left( \hat{f}(x)-E\left[ \hat{f}(x) \right] \right)}^{2}}=E\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]-{{E}^{2}}\left[ {{\left( \hat{f}(x) \right)}^{2}} \right]\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ E{{\left[ K\left( \frac{{{X}_{1}}-x}{h} \right) \right]}^{2}}-\left[ E{{\left( K\left( \frac{{{X}_{1}}-x}{h} \right) \right)}^{2}} \right] \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\int{f\left( {{X}_{i}} \right)\left[ {{K}^{2}}\left( \frac{{{X}_{i}}-x}{h} \right) \right]d{{x}_{i}}}-{{\left[ \int{f\left( {{X}_{i}} \right)\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]d{{x}_{i}}} \right]}^{2}}\]&lt;/span&gt;
+Note: &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{i}}\)&lt;/span&gt; is vector comprise of &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{i1}},d{{x}_{i2}},...,d{{x}_{iq}}\)&lt;/span&gt; and
+let’s &lt;span class=&#34;math inline&#34;&gt;\(\left( \frac{{{X}_{i}}-x}{h} \right)=\left( \frac{{{X}_{i1}}-{{x}_{1}}}{{{h}_{1}}},\frac{{{X}_{i1}}-{{x}_{2}}}{{{h}_{2}}},...,\frac{{{X}_{iq}}-{{x}_{q}}}{{{h}_{q}}} \right)=\psi =\left( {{\psi }_{1}},{{\psi }_{2}},...,{{\psi }_{q}} \right)\)&lt;/span&gt;. This means, &lt;span class=&#34;math inline&#34;&gt;\(\frac{{{x}_{ij}}-{{x}_{j}}}{{{h}_{j}}}={{\psi }_{j}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{x}_{ij}}={{x}_{j}}+{{\psi }_{j}}{{h}_{j}}\)&lt;/span&gt; then &lt;span class=&#34;math inline&#34;&gt;\(d{{x}_{ij}}={{h}_{j}}d{{\psi }_{j}}\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{\left[ {{K}^{2}}\underbrace{\left( \frac{{{X}_{i}}-x}{h} \right)}_{\psi } \right]\underbrace{f\left( {{X}_{i}} \right)}_{f\left( x+h\psi  \right)}\underbrace{d{{x}_{i}}}_{{{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }}-{{\left[ \int{f\left( {{X}_{i}} \right)\left[ K\left( \frac{{{X}_{i}}-x}{h} \right) \right]d{{x}_{i}}} \right]}^{2}} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-{{\left[ \int{f\left( x+h\psi  \right)K\left( \psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi } \right]}^{2}} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-\underbrace{{{\left[ {{({{h}_{1}}{{h}_{2}}...{{h}_{q}})}^{2}}\int{f\left( x+h\psi  \right)K\left( \psi  \right)d\psi } \right]}^{2}}}_{O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)} \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ {{h}_{1}}{{h}_{2}}...{{h}_{q}}\int{{{K}^{2}}\left( \psi  \right)f\left( x+h\psi  \right)d\psi }-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]&lt;/span&gt;
+Now, we perform the Taylor series expansion
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \int{f\left( x \right){{K}^{2}}\left( \psi  \right){{h}_{1}}{{h}_{2}}...{{h}_{q}}d\psi }+\int{{{f}^{(1)}}\left( \xi  \right)\left( {{h}_{1}}{{h}_{2}}...{{h}_{q}}\psi  \right){{K}^{2}}\left( \psi  \right)d\psi }-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \left( {{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)f\left( x \right)\underbrace{\int{{{K}^{2}}\left( \psi  \right)d\psi }}_{\mathbf{\kappa }}+\underbrace{\int{{{f}^{(1)}}\left( \xi  \right)\left( {{h}_{1}}{{h}_{2}}...{{h}_{q}}\psi  \right){{K}^{2}}\left( \psi  \right)d\psi }}_{O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)}-O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \left( {{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)f\left( x \right)\mathbf{\kappa }+O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\operatorname{var}\left\{ \hat{f}(x) \right\}=n{{({{h}_{1}}...{{h}_{q}})}^{-1}}\left\{ \left( {{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)f\left( x \right){{\kappa }^{q}}+O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right\}=O\left( \frac{1}{n{{h}_{1}}...{{h}_{q}}} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mse-term&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;MSE term&lt;/h2&gt;
+&lt;p&gt;Summarizing, we obtain the MSE as:
+&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}\left( x \right) \right)=\operatorname{var}\left( \hat{f}\left( x \right) \right)+{{\left[ bias\left( \hat{f}\left( x \right) \right) \right]}^{2}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}\left( x \right) \right)=O\left( \frac{1}{n{{h}_{1}}...{{h}_{q}}} \right)+{{\left[ O\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right) \right]}^{2}}=O\left( {{\left( \sum\limits_{l=1}^{q}{h_{l}^{2}} \right)}^{2}}+{{\left( n{{h}_{1}}{{h}_{2}}...{{h}_{q}} \right)}^{-1}} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Hence, if as &lt;span class=&#34;math inline&#34;&gt;\(n\to \infty\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\({{\max }_{1\le l\le q}}{{h}_{l}}\to 0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n{{h}_{1}}...{{h}_{q}}\to \infty\)&lt;/span&gt; then we have &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}\left( x \right)\to f\left( x \right)\)&lt;/span&gt; in MSE, which &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}\left( x \right)\to f\left( x \right)\)&lt;/span&gt; in probability.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-optimal-band-width&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The optimal band-width&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MSE\left( \hat{f}\left( x \right) \right)={{c}_{1}}{{h}^{4}}+{{c}_{2}}{{n}^{-1}}{{h}^{-q}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now, we can choose &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; to find the optimal value of above function and the &lt;span class=&#34;math inline&#34;&gt;\(F.O.C\)&lt;/span&gt; is given as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial MSE\left( \hat{f}\left( x \right) \right)}{\partial h}=\frac{{{c}_{1}}{{h}^{4}}+{{c}_{2}}{{n}^{-1}}{{h}^{-q}}}{\partial h}=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[4{{c}_{1}}{{h}^{3}}+{{c}_{2}}{{n}^{-1}}(-q){{h}^{-q-1}}=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{4{{c}_{1}}}{{{c}_{2}}q}n={{h}^{-q-1-3}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s define &lt;span class=&#34;math inline&#34;&gt;\(\frac{4{{c}_{1}}}{{{c}_{2}}q}=c\)&lt;/span&gt; then&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{h}^{-q-4}}=cn\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{h}^{*}}={{\left[ cn \right]}^{-\frac{1}{4+q}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;asymptotic-normality-of-density-estimators&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Asymptotic Normality of Density Estimators&lt;/h1&gt;
+&lt;p&gt;Theorem 1.2&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\({{X}_{1}},...,{{X}_{n}}\)&lt;/span&gt; be &lt;span class=&#34;math inline&#34;&gt;\(i.i.d\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(q-\)&lt;/span&gt;vector with it’s &lt;span class=&#34;math inline&#34;&gt;\(PDF\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(f\left( \cdot \right)\)&lt;/span&gt; having three-times bounded continuous derivatives. Let &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; be an interior point of the support &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;. If, as &lt;span class=&#34;math inline&#34;&gt;\(n\to \infty\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\({{h}_{s}}\to 0\)&lt;/span&gt; for all &lt;span class=&#34;math inline&#34;&gt;\(s=1,...,q\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(n{{h}_{1}}n{{h}_{2}}...n{{h}_{q}}\to \infty\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\left( n{{h}_{1}}n{{h}_{2}}...n{{h}_{q}} \right)\sum\nolimits_{s=1}^{q}{h_{s}^{6}}\to 0\)&lt;/span&gt;, then,
+&lt;span class=&#34;math display&#34;&gt;\[\sqrt{n{{h}_{1}}n{{h}_{2}}...n{{h}_{q}}}\left[ \hat{f}\left( x \right)-f\left( x \right)-\frac{{{\kappa }_{2}}}{2}\sum\limits_{s=1}^{q}{h_{s}^{2}{{f}_{ss}}\left( x \right)} \right]\overset{d}{\mathop{\to }}\,N\left( 0,{{\kappa }^{q}}f\left( x \right) \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Before, we begin, imagine that each band width is equal i.e. &lt;span class=&#34;math inline&#34;&gt;\({{h}_{1}}={{h}_{2}}=...={{h}_{q}}\)&lt;/span&gt;. Let’s acknowledge that as &lt;span class=&#34;math inline&#34;&gt;\(n\to \infty\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(h\to 0\)&lt;/span&gt;. If this is the case then, where does &lt;span class=&#34;math inline&#34;&gt;\(n{{h}^{q}}\)&lt;/span&gt; go? Does this go to zero or infinity?
+&lt;span class=&#34;math inline&#34;&gt;\({{h}^{q}}\)&lt;/span&gt; doesn’t converge to zero as fast as &lt;span class=&#34;math inline&#34;&gt;\(n\to \infty\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(n{{h}^{q}}\to \infty\)&lt;/span&gt; but &lt;span class=&#34;math inline&#34;&gt;\(n{{h}^{6+q}}\to 0\)&lt;/span&gt;. Therefore, because of this reason we can set up asymptotic normality.&lt;/p&gt;
+&lt;p&gt;Let begin with following equation:
+&lt;span class=&#34;math display&#34;&gt;\[\sqrt{n{{h}^{q}}}\left[ \hat{f}\left( x \right)-E\left[ \hat{f}\left( x \right) \right] \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This can be re-expressed as:
+&lt;span class=&#34;math display&#34;&gt;\[\sqrt{n{{h}^{q}}}\frac{1}{n{{h}^{q}}}\sum\limits_{i=1}^{n}{\left[ k\left( \frac{{{X}_{i}}-x}{h} \right)-E\left[ k\left( \frac{{{X}_{i}}-x}{h} \right) \right] \right]}\]&lt;/span&gt;
+Let’s define
+&lt;span class=&#34;math display&#34;&gt;\[k\left( \frac{{{X}_{i}}-x}{h} \right)={{K}_{i}}\]&lt;/span&gt;
+then,
+&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}=\sum\limits_{i=1}^{n}{\frac{1}{\sqrt{n{{h}^{q}}}}\left( {{K}_{i}}-E{{K}_{i}} \right)}=\sum\limits_{i=1}^{n}{{{Z}_{n,i}}}\]&lt;/span&gt;
+Note that the &lt;span class=&#34;math inline&#34;&gt;\({{Z}_{n,i}}\)&lt;/span&gt; is double array (or data frame, column indexed with different &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; and row with different observation &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, each combination of &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; gives different value for &lt;span class=&#34;math inline&#34;&gt;\({{Z}_{n,i}}\)&lt;/span&gt;)&lt;/p&gt;
+&lt;p&gt;Now, we need to think for a strategy for asymptotic normality. Actually, there are four ways (at least) to think about the asymptotic normality: 1) Khinchi’s Law of Large Numbers; 2) Lindeberg-Levy Central Limit Theorem; 3) Lindelberg-Feller Central Limit Theorem and 4) Lyapunov Central Limit Theorem. We will use Lyapunov Central Limit Theorem, for brief introduction to these laws of large numbers and central limit theorem, please see the annex.&lt;/p&gt;
+&lt;p&gt;We will consider following four conditions:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(E\left[ {{Z}_{ni}} \right]=\frac{1}{\sqrt{n{{h}^{q}}}}\left[ E{{K}_{i}}-E{{K}_{i}} \right]=0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Var\left( {{Z}_{n,i}} \right)=\frac{1}{n{{h}^{q}}}Var\left( {{K}_{i}} \right)=\frac{1}{n{{h}^{q}}}\left[ EK_{i}^{2}-{{\left( E{{K}_{i}} \right)}^{2}} \right]={{h}^{q}}\frac{1}{n{{h}^{q}}}Var\left( {{K}_{i}} \right)={{h}^{q}}\frac{{{\kappa }^{q}}f\left( x \right)}{n{{h}^{q}}}\left( 1+o\left( 1 \right) \right)={{\kappa }^{q}}f\left( x \right)\left( 1+o\left( 1 \right) \right)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sigma _{n}^{2}=\sum\limits_{i=1}^{n}{Var\left( {{Z}_{n,i}} \right)}={{\kappa }^{q}}f\left( x \right)\left( 1+o\left( 1 \right) \right)\)&lt;/span&gt; and taking limits we get &lt;span class=&#34;math inline&#34;&gt;\(\underset{n\to \infty }{\mathop{\lim }}\,\sigma _{n}^{2}={{\kappa }^{q}}f\left( x \right)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sum\limits_{i=1}^{n}{E{{\left| {{Z}_{n,i}} \right|}^{2+\delta }}}=nE{{\left| {{Z}_{n,i}} \right|}^{2+\delta }}\)&lt;/span&gt; if each &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; are i.i.d
+With Cram?r-Rao bound inequality we can write
+&lt;span class=&#34;math display&#34;&gt;\[n\frac{1}{{{\left| \sqrt{n{{h}^{q}}} \right|}^{2+\delta }}}E{{\left| {{K}_{i}}-E{{K}_{i}} \right|}^{2+\delta }}\le \frac{c}{{{n}^{{\delta }/{2}\;}}{{h}^{{\delta }/{2}\;}}}\frac{1}{{{h}^{q}}}\left[ E{{\left| {{K}_{i}} \right|}^{2+\delta }}+{{\left| E{{K}_{i}} \right|}^{2+\delta }} \right]\to 0\]&lt;/span&gt;
+Note that &lt;span class=&#34;math inline&#34;&gt;\(n{{h}^{q}}\to \infty\)&lt;/span&gt; so &lt;span class=&#34;math inline&#34;&gt;\(\left( \bullet \right)\to 0\)&lt;/span&gt;, further &lt;span class=&#34;math inline&#34;&gt;\(E{{\left| {{K}_{i}} \right|}^{2+\delta }}\)&lt;/span&gt; is higher order than &lt;span class=&#34;math inline&#34;&gt;\({{\left| E{{K}_{i}} \right|}^{2+\delta }}\)&lt;/span&gt;
+With all these conditions:
+&lt;span class=&#34;math display&#34;&gt;\[\sigma _{n}^{-2}\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}\overset{d}{\mathop{\to }}\,N\left( 0,1 \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}\overset{d}{\mathop{\to }}\,N\left( 0,\underset{n\to \infty }{\mathop{\lim }}\,\sigma _{n}^{2} \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{\sqrt{n{{h}^{q}}}}\sum\limits_{i=1}^{n}{\left( {{K}_{i}}-E{{K}_{i}} \right)}\overset{d}{\mathop{\to }}\,N\left( 0,{{\kappa }^{q}}f\left( x \right) \right)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

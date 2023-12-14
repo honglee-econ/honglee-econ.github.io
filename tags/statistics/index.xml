@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics, | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/tags/statistics/</link>
+      <atom:link href="https://ShishirShakya.github.io/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Statistics,</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright><lastBuildDate>Wed, 26 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Statistics,</title>
+      <link>https://ShishirShakya.github.io/tags/statistics/</link>
+    </image>
+    
+    <item>
+      <title>Probability Inequality</title>
+      <link>https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/</link>
+      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/post/2018-12-29-proof-of-hoeffding-inequality/</guid>
+      <description>
+&lt;script src=&#34;https://ShishirShakya.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;theorem-1-gaussian-tail-inequality&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Theorem 1: Gaussian Tail Inequality&lt;/h1&gt;
+&lt;p&gt;Given &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\)&lt;/span&gt; then, &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| X \right|&amp;gt;\varepsilon \right)\le \frac{2{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| {{{\bar{X}}}_{n}} \right|&amp;gt;\varepsilon \right)\le \frac{2}{\sqrt{n}\varepsilon }{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\overset{l\arg e\ n}{\mathop{\le }}\,{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;proof-of-gaussian-tail-inequality&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof of Gaussian Tail Inequality&lt;/h2&gt;
+&lt;p&gt;Consider a univariate &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\)&lt;/span&gt;, then the probability density function is given as &lt;span class=&#34;math inline&#34;&gt;\(\phi \left( x \right)=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\)&lt;/span&gt;.
+Let’s take the derivative w.r.t &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; we get:
+&lt;span class=&#34;math display&#34;&gt;\[\frac{d\phi \left( x \right)}{dx}={\phi }&amp;#39;\left( x \right)=\frac{d\left( \frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{dx}=\frac{1}{\sqrt{2\pi }}\frac{d\left( \,{{e}^{-\frac{{{x}^{2}}}{2}}} \right)}{d\left( -\frac{{{x}^{2}}}{2} \right)}\frac{d\left( -\frac{{{x}^{2}}}{2} \right)}{dx}=\frac{1}{\sqrt{2\pi }}{{e}^{-\frac{{{x}^{2}}}{2}}}\left( -x \right)=-x\phi \left( x \right)\]&lt;/span&gt;
+Let’s define the gaussian tail inequality.
+&lt;span class=&#34;math display&#34;&gt;\[P\left( X&amp;gt;\varepsilon  \right)\le {{\varepsilon }^{-1}}\int_{\varepsilon }^{\infty }{s\phi \left( s \right)ds}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left( X&amp;gt;\varepsilon  \right)\le {{\varepsilon }^{-1}}\int_{\varepsilon }^{\infty }{s\phi \left( s \right)ds}=-{{\varepsilon }^{-1}}\int_{\varepsilon }^{\infty }{{\phi }&amp;#39;\left( s \right)ds}=-{{\varepsilon }^{-1}}\left. {\phi }&amp;#39;\left( s \right) \right|_{\varepsilon }^{\infty }=-{{\varepsilon }^{-1}}\left[ {\phi }&amp;#39;\left( \infty  \right)-{\phi }&amp;#39;\left( \varepsilon  \right) \right]\]&lt;/span&gt;
+We know that &lt;span class=&#34;math inline&#34;&gt;\(x\phi \left( x \right)=-{\phi }&amp;#39;\left( x \right)\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left( X&amp;gt;\varepsilon  \right)\le -{{\varepsilon }^{-1}}\left[ 0-{\phi }&amp;#39;\left( \varepsilon  \right) \right]=\frac{{\phi }&amp;#39;\left( \varepsilon  \right)}{\varepsilon }=\frac{1}{\varepsilon \sqrt{2\pi }}{{e}^{-\frac{{{\varepsilon }^{2}}}{2}}}\le \frac{{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\]&lt;/span&gt;
+Now, by the symmetry of distribution,
+&lt;span class=&#34;math display&#34;&gt;\[P\left( \left| X \right|&amp;gt;\varepsilon  \right)\le \frac{2{{e}^{-{{{\varepsilon }^{2}}}/{2}\;}}}{\varepsilon }\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-for-gaussian-tail-inequality-for-distribution-of-mean&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof for Gaussian Tail Inequality for distribution of mean&lt;/h2&gt;
+&lt;p&gt;Now, let’s consider &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,1 \right)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{\bar{X}}_{n}}={{n}^{-1}}\sum\limits_{i=1}^{n}{{{x}_{i}}}\sim N\left( 0,{{n}^{-1}} \right)\)&lt;/span&gt; therefore, &lt;span class=&#34;math inline&#34;&gt;\({{\bar{X}}_{n}}\overset{d}{\mathop{=}}\,{{n}^{-{1}/{2}\;}}Z\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(Z\sim N\left( 0,1 \right)\)&lt;/span&gt; and by Gaussian Tail Inequalities
+&lt;span class=&#34;math display&#34;&gt;\[P\left( \left| {{{\bar{X}}}_{n}} \right|&amp;gt;\varepsilon  \right)=P\left( {{n}^{-{1}/{2}\;}}\left| Z \right|&amp;gt;\varepsilon  \right)=P\left( \left| Z \right|&amp;gt;\sqrt{n}\varepsilon  \right)\le \frac{2}{\sqrt{n}\varepsilon }{{e}^{-{n{{\varepsilon }^{2}}}/{2}\;}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exercise&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exercise:&lt;/h2&gt;
+&lt;p&gt;Imagine &lt;span class=&#34;math inline&#34;&gt;\({{x}_{1}},\cdots ,{{x}_{n}}\sim N\left( 0,{{\sigma }^{2}} \right)\)&lt;/span&gt;and prove the gaussian tail inequality that &lt;span class=&#34;math display&#34;&gt;\[P\left( \left| X \right|&amp;gt;\varepsilon  \right)\le \frac{{{\sigma }^{2}}}{\varepsilon }\frac{1}{\sqrt{2\pi {{\sigma }^{2}}}}2{{e}^{-{{{\varepsilon }^{2}}}/{\left( 2{{\sigma }^{2}} \right)}\;}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-2-markovs-inequality&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Theorem 2: Markov’s Inequality&lt;/h1&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be a non-negative random variable and &lt;span class=&#34;math inline&#34;&gt;\(E\left( X \right)\)&lt;/span&gt; exists, For any &lt;span class=&#34;math inline&#34;&gt;\(t&amp;gt;0\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\(P\left( X&amp;gt;t \right)\le \frac{E\left( X \right)}{t}\)&lt;/span&gt;&lt;/p&gt;
+&lt;div id=&#34;proof-of-markovs-inequality&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof of Markov’s Inequality&lt;/h2&gt;
+&lt;p&gt;For &lt;span class=&#34;math inline&#34;&gt;\(X&amp;gt;0\)&lt;/span&gt; we can write expectation of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; as:
+&lt;span class=&#34;math display&#34;&gt;\[E\left( X \right)=\int\limits_{0}^{\infty }{xp\left( x \right)dx}=\int\limits_{0}^{t}{xp\left( x \right)dx}+\int\limits_{t}^{\infty }{xp\left( x \right)dx}\ge \int\limits_{t}^{\infty }{xp\left( x \right)dx}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[E\left( X \right)\ge \int\limits_{t}^{\infty }{xp\left( x \right)dx}\ge t\int\limits_{t}^{\infty }{p\left( x \right)dx}=tP\left( X&amp;gt;t \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\frac{E\left( X \right)}{t}\ge P\left( X&amp;gt;t \right)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left( X&amp;gt;t \right)\le \frac{E\left( X \right)}{t}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-3-chebyshevs-inequality&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Theorem 3: Chebyshev’s Inequality&lt;/h1&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\mu =E\left( X \right)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Var\left( X \right)={{\sigma }^{2}}\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| X-\mu \right|\ge t \right)\le \frac{{{\sigma }^{2}}}{{{t}^{2}}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| Z \right|\ge k \right)\le \frac{1}{{{k}^{2}}}\)&lt;/span&gt;where &lt;span class=&#34;math inline&#34;&gt;\(Z=\frac{X-\mu }{{{\sigma }^{2}}}\)&lt;/span&gt; and in particular &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| Z \right|&amp;gt;2 \right)\le \frac{1}{4}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| Z \right|&amp;gt;3 \right)\le \frac{1}{9}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;proof-of-chebyshevs-inequality&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof of Chebyshev’s Inequality&lt;/h2&gt;
+&lt;p&gt;Let’s take &lt;span class=&#34;math display&#34;&gt;\[P\left( \left| X-\mu  \right|&amp;gt;t \right)=P\left( {{\left| X-\mu  \right|}^{2}}&amp;gt;{{t}^{2}} \right)\le \frac{E{{\left( X-\mu  \right)}^{2}}}{{{t}^{2}}}=\frac{{{\sigma }^{2}}}{{{t}^{2}}}\]&lt;/span&gt;
+Let’s take &lt;span class=&#34;math display&#34;&gt;\[P\left( \left| \frac{X-\mu }{\sigma } \right|&amp;gt;\sigma k \right)=P\left( {{\left| \frac{X-\mu }{\sigma } \right|}^{2}}&amp;gt;{{\sigma }^{2}}{{k}^{2}} \right)\le \frac{E{{\left( X-\mu  \right)}^{2}}}{{{\sigma }^{2}}{{k}^{2}}}=\frac{{{\sigma }^{2}}}{{{\sigma }^{2}}{{k}^{2}}}=\frac{1}{{{k}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-4-hoeffding-inequality&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Theorem 4: Hoeffding Inequality&lt;/h1&gt;
+&lt;p&gt;In probability theory, Hoeffding’s inequality provides an upper bound on the probability that the sum of bounded independent random variables deviates from its expected value by more than a certain amount. Hoeffding’s inequality was proven by Wassily Hoeffding in 1963. This inequality is sharper than Markov inequality and we can create upper bound without knowing the variance.&lt;/p&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(a&amp;lt;X&amp;lt;b\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mu =E\left( X \right)\)&lt;/span&gt; then &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| X-\mu \right|&amp;gt;\varepsilon \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;proof-part-a&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof (part-A)&lt;/h2&gt;
+&lt;p&gt;Let’s assume &lt;span class=&#34;math inline&#34;&gt;\(\mu =0\)&lt;/span&gt;. If data is don’t have &lt;span class=&#34;math inline&#34;&gt;\(\mu =0\)&lt;/span&gt;, we can always center the data and &lt;span class=&#34;math inline&#34;&gt;\(a&amp;lt;X&amp;lt;b\)&lt;/span&gt;. Now&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[X=\gamma a+\left( 1-\gamma  \right)b\]&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(0&amp;lt;\gamma &amp;lt;1\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\gamma =\frac{X-a}{b-a}\)&lt;/span&gt;. With convexity we can write:
+&lt;span class=&#34;math display&#34;&gt;\[{{e}^{tX}}\le \gamma {{e}^{tb}}+\left( 1-\gamma  \right){{e}^{ta}}=\frac{X-a}{b-a}{{e}^{tb}}+\left( 1-\frac{X-a}{b-a} \right){{e}^{ta}}=\frac{X-a}{b-a}{{e}^{tb}}+\frac{b-X}{b-a}{{e}^{ta}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[{{e}^{tX}}\le \frac{X{{e}^{tb}}-a{{e}^{tb}}+b{{e}^{ta}}-X{{e}^{ta}}}{b-a}=\left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+\frac{X\left( {{e}^{tb}}-{{e}^{ta}} \right)}{b-a}\]&lt;/span&gt;
+Let’s take the expectation on the both sides:
+&lt;span class=&#34;math display&#34;&gt;\[E\left( {{e}^{tX}} \right)\le E\left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+E\frac{X\left( {{e}^{tb}}-{{e}^{ta}} \right)}{b-a}=\left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+\frac{\left( {{e}^{tb}}-{{e}^{ta}} \right)}{b-a}E\left( X \right)\]&lt;/span&gt;
+Since &lt;span class=&#34;math inline&#34;&gt;\(\mu =E\left( X \right)=0\)&lt;/span&gt; therefore,
+&lt;span class=&#34;math display&#34;&gt;\[E\left( {{e}^{tX}} \right)\le \left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)+0\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[E\left( {{e}^{tX}} \right)\le \left( \frac{-a{{e}^{tb}}+b{{e}^{ta}}}{b-a} \right)=\frac{{{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right)}{b-a}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s define
+&lt;span class=&#34;math display&#34;&gt;\[{{e}^{g\left( t \right)}}=\frac{{{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right)}{b-a}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Taking &lt;span class=&#34;math inline&#34;&gt;\(log\)&lt;/span&gt; on the both sides:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\log \left( {{e}^{g\left( t \right)}} \right)=\log \left( \frac{{{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right)}{b-a} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[g\left( t \right)=\log \left( {{e}^{ta}}\left( b-a{{e}^{t\left( b-a \right)}} \right) \right)-\log \left( b-a \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[g\left( t \right)=\log \left( {{e}^{ta}} \right)+\log \left( b-a{{e}^{t\left( b-a \right)}} \right)-\log \left( b-a \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+g\left( t \right)=ta+\log \left( b-a{{e}^{t\left( b-a \right)}} \right)-\log \left( b-a \right)
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;taylor-series-expansion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Taylor series expansion&lt;/h2&gt;
+&lt;p&gt;For a univariate function &lt;span class=&#34;math inline&#34;&gt;\(g(x)\)&lt;/span&gt;evaluated at &lt;span class=&#34;math inline&#34;&gt;\({{x}_{0}}\)&lt;/span&gt; , we can express with Taylor series expansion as:
+&lt;span class=&#34;math display&#34;&gt;\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m}}+\cdots \]&lt;/span&gt;
+For a univariate function &lt;span class=&#34;math inline&#34;&gt;\(g(x)\)&lt;/span&gt;evaluated at &lt;span class=&#34;math inline&#34;&gt;\({{x}_{0}}\)&lt;/span&gt; that is &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; times differentiable, we can express with Taylor series expansion as:
+&lt;span class=&#34;math display&#34;&gt;\[g(x)=g({{x}_{0}})+{{g}^{(1)}}({{x}_{0}})(x-{{x}_{0}})+\frac{1}{2!}{{g}^{(2)}}({{x}_{0}}){{(x-{{x}_{0}})}^{2}}+\cdots +\frac{1}{(m-1)!}{{g}^{(m-1)}}({{x}_{0}}){{(x-{{x}_{0}})}^{m-1}}+\frac{1}{(m)!}{{g}^{(m)}}(\xi ){{(x-{{x}_{0}})}^{m}}\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\({{g}^{(s)}}={{\left. \frac{{{\partial }^{s}}g(x)}{\partial {{x}^{2}}} \right|}_{x={{x}_{0}}}}\)&lt;/span&gt; and and &lt;span class=&#34;math inline&#34;&gt;\(\xi\)&lt;/span&gt; lies between &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{x}_{0}}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-part-b&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof (part-B)&lt;/h2&gt;
+&lt;p&gt;Now, let’s evaluate &lt;span class=&#34;math inline&#34;&gt;\(g\left( t=0 \right)\)&lt;/span&gt; we get:
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+g\left( t=0 \right)=g\left( 0 \right)=0+\log \left( b-a \right)-\log \left( b-a \right)=0
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s evaluate &lt;span class=&#34;math inline&#34;&gt;\({g}&amp;#39;\left( t=0 \right)\)&lt;/span&gt; but before that lets find &lt;span class=&#34;math inline&#34;&gt;\({g}&amp;#39;\left( t \right)\)&lt;/span&gt;.
+&lt;span class=&#34;math display&#34;&gt;\[\frac{dg\left( t \right)}{dt}={g}&amp;#39;\left( t \right)=\frac{d\left( ta+\log \left( b-a{{e}^{t\left( b-a \right)}} \right)-\log \left( b-a \right) \right)}{dt}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[{g}&amp;#39;\left( t \right)=\frac{d\left( ta \right)}{dt}+\frac{d\log \left( b-a{{e}^{t\left( b-a \right)}} \right)}{dt}+\frac{d\left( -\log \left( b-a \right) \right)}{dt}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[{g}&amp;#39;\left( t \right)=a+\frac{d\log \left( b-a{{e}^{t\left( b-a \right)}} \right)}{d\left( b-a{{e}^{t\left( b-a \right)}} \right)}\frac{d\left( b-a{{e}^{t\left( b-a \right)}} \right)}{dt}+\underbrace{\frac{d\left( -\log \left( b-a \right) \right)}{dt}}_{0}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[{g}&amp;#39;\left( t \right)=a+\frac{-a\left( b-a \right){{e}^{t\left( b-a \right)}}}{b-a{{e}^{t\left( b-a \right)}}}\]&lt;/span&gt;
+Consider the second term:
+&lt;span class=&#34;math display&#34;&gt;\[\frac{-a\left( b-a \right){{e}^{t\left( b-a \right)}}}{b-a{{e}^{t\left( b-a \right)}}}=\frac{-a\left( b-a \right)}{\left( b-a{{e}^{t\left( b-a \right)}} \right){{e}^{-t\left( b-a \right)}}}=\frac{-a\left( b-a \right)}{b{{e}^{-t\left( b-a \right)}}-a{{e}^{t\left( b-a \right)}}{{e}^{-t\left( b-a \right)}}}=\frac{-a\left( b-a \right)}{b{{e}^{-t\left( b-a \right)}}-a}=\frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[{g}&amp;#39;\left( t \right)=a+\frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}}\]&lt;/span&gt;
+Now Let’s evaluate &lt;span class=&#34;math inline&#34;&gt;\({g}&amp;#39;\left( t=0 \right)\)&lt;/span&gt;, we get
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+{g}&amp;#39;\left( t=0 \right)=a+\frac{-a\left( b-a \right){{e}^{0\left( b-a \right)}}}{b-a{{e}^{0\left( b-a \right)}}}=a+\frac{-a\left( b-a \right)}{b-a}=0
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now let’s take&lt;span class=&#34;math inline&#34;&gt;\({{g}&amp;#39;}&amp;#39;\left( t \right)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{d{g}&amp;#39;\left( t \right)}{dt}={{g}&amp;#39;}&amp;#39;\left( t \right)=\frac{d\left( a+\frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}} \right)}{dt}=\frac{d\left( \frac{a\left( b-a \right)}{a+b{{e}^{-t\left( b-a \right)}}} \right)}{dt}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{g}&amp;#39;}&amp;#39;\left( t \right)=\frac{-a\left( b-a \right)\left( -b \right)\left( -\left( b-a \right){{e}^{-t\left( b-a \right)}} \right)}{{{\left( a+b{{e}^{-t\left( b-a \right)}} \right)}^{2}}}=\frac{ab{{\left( b-a \right)}^{2}}\left[ -{{e}^{t\left( b-a \right)}} \right]}{{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now we can compare following two terms.
+&lt;span class=&#34;math display&#34;&gt;\[a{{e}^{t\left( b-a \right)}}\ge a\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Negate &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt; and square on the both sides:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}\ge {{\left( a-b \right)}^{2}}={{\left( b-a \right)}^{2}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}}\le \frac{1}{{{\left( b-a \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From above inequality, we can write:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{g}&amp;#39;}&amp;#39;\left( t \right)=\frac{-ab{{\left( b-a \right)}^{2}}\left[ {{e}^{t\left( b-a \right)}} \right]}{{{\left( a{{e}^{t\left( b-a \right)}}-b \right)}^{2}}}\le \frac{-ab{{\left( b-a \right)}^{2}}}{{{\left( b-a \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+{g}&amp;#39;&amp;#39;\left( t \right)\le -ab=\frac{{{\left( a-b \right)}^{2}}-{{\left( b-a \right)}^{2}}}{4}\le \frac{{{\left( b-a \right)}^{2}}}{4}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now, with Taylor series expansion we have:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[g\left( t \right)=g\left( 0 \right)+t{g}&amp;#39;\left( 0 \right)+\frac{1}{2!}{{t}^{2}}{{g}&amp;#39;}&amp;#39;\left( 0 \right)+\cdots\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And with truncating Taylor series expansion, we can write. (Note this is not approximation, its exact)&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[g\left( t \right)=g\left( 0 \right)+t{g}&amp;#39;\left( 0 \right)+\frac{1}{2!}{{t}^{2}}{{g}&amp;#39;}&amp;#39;\left( \xi  \right)=\frac{1}{2!}{{t}^{2}}{{g}&amp;#39;}&amp;#39;\left( \xi  \right)\le \frac{1}{2!}{{t}^{2}}\frac{{{\left( b-a \right)}^{2}}}{4}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+g\left( t \right)\le \frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-part-c&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof (part-C)&lt;/h2&gt;
+&lt;p&gt;We have bound &lt;span class=&#34;math inline&#34;&gt;\(E\left[ {{e}^{tX}} \right]\le {{e}^{g\left( t \right)}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{e}^{g\left( t \right)}}\le {{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}\)&lt;/span&gt; .&lt;/p&gt;
+&lt;p&gt;Consider
+&lt;span class=&#34;math display&#34;&gt;\[P\left( X&amp;gt;\varepsilon  \right)=P\left( {{e}^{X}}&amp;gt;{{e}^{\varepsilon }} \right)=P\left( {{e}^{tX}}&amp;gt;{{e}^{t\varepsilon }} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And Now with Markov inequality:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( {{e}^{tX}}&amp;gt;{{e}^{t\varepsilon }} \right)\le \frac{E\left( {{e}^{tX}} \right)}{{{e}^{t\varepsilon }}}={{e}^{-t\varepsilon }}E\left( {{e}^{tX}} \right)\le {{e}^{-t\varepsilon }}{{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}={{e}^{^{-t\varepsilon +\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now we can make it sharper by following argument:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( {{e}^{tX}}&amp;gt;{{e}^{t\varepsilon }} \right)\le \underset{t\ge 0}{\mathop{\inf }}\,\frac{E\left( {{e}^{tX}} \right)}{{{e}^{t\varepsilon }}}={{e}^{-t\varepsilon }}E\left( {{e}^{tX}} \right)\le {{e}^{-t\varepsilon }}{{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}={{e}^{^{-t\varepsilon +\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-for-sharper-version-with-chernoffs-method&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof for sharper version with Chernoff’s method&lt;/h2&gt;
+&lt;p&gt;let define: &lt;span class=&#34;math inline&#34;&gt;\(u=t\varepsilon -\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}\)&lt;/span&gt; and find the minima as setting FOC as &lt;span class=&#34;math inline&#34;&gt;\({u}&amp;#39;\left( t \right)=\varepsilon -\frac{2t{{\left( b-a \right)}^{2}}}{8}\overset{set}{\mathop{=}}\,0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{t}^{*}}=\frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}\)&lt;/span&gt; then substituting to get:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{u}_{\min }}=t\varepsilon -\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}=\varepsilon \frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}-{{\left( \frac{4\varepsilon }{{{\left( b-a \right)}^{2}}} \right)}^{2}}\frac{{{\left( b-a \right)}^{2}}}{8}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{u}_{\min }}=\varepsilon \frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}=\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The reason we want to get &lt;span class=&#34;math inline&#34;&gt;\({{u}_{\min }}\)&lt;/span&gt; is to make sharper argument for the inequality or alternatively we would like to bound for the minima. Now substituting:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( X&amp;gt;\varepsilon  \right)=P\left( {{e}^{X}}&amp;gt;{{e}^{\varepsilon }} \right)=P\left( {{e}^{tX}}&amp;gt;{{e}^{t\varepsilon }} \right)\le {{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( \left| X \right|&amp;gt;\varepsilon  \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This is very important results, because there is no mean or variance, so this result is very cogitative. If we observe any type of random variable whose functional form is unknown, the above statement is true.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-for-random-variable-with-non-zero-mean.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof for random variable with non zero mean.&lt;/h2&gt;
+&lt;p&gt;Now we can apply with the mean ie. &lt;span class=&#34;math inline&#34;&gt;\(\mu =E\left( X \right)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y=x-\mu\)&lt;/span&gt; i.e. &lt;span class=&#34;math inline&#34;&gt;\(a-\mu &amp;lt;Y&amp;lt;b-\mu\)&lt;/span&gt;. And:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( \left| Y \right|&amp;gt;\varepsilon  \right)=P\left( \left| X-\mu  \right|&amp;gt;\varepsilon  \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-\mu -a+\mu  \right)}^{2}}}}}=2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;So, &lt;span class=&#34;math inline&#34;&gt;\(P\left( \left| X-\mu \right|&amp;gt;\varepsilon \right)\le 2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\)&lt;/span&gt; is known as Hoeffding’s Inequality. This shows that the variation of the random variable beyond its mean by certain amount &lt;span class=&#34;math inline&#34;&gt;\(\varepsilon\)&lt;/span&gt; is upper bounded by &lt;span class=&#34;math inline&#34;&gt;\(2{{e}^{-\frac{2{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\)&lt;/span&gt;. This is true for any random variable so it’s very powerful generalization.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-for-bound-of-mean&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof for bound of mean&lt;/h2&gt;
+&lt;p&gt;Let’s define &lt;span class=&#34;math inline&#34;&gt;\({{\bar{Y}}_{n}}=\sum\limits_{i=1}^{n}{{{Y}_{i}}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{Y}_{i}}\)&lt;/span&gt; are i.id then let’s bound it as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( {{{\bar{Y}}}_{n}}&amp;gt;\varepsilon  \right)=P\left( {{n}^{-1}}\sum\limits_{i=1}^{n}{{{Y}_{i}}}&amp;gt;\varepsilon  \right)=P\left( \sum\limits_{i=1}^{n}{{{Y}_{i}}}&amp;gt;n\varepsilon  \right)=P\left( {{e}^{\sum\limits_{i=1}^{n}{{{Y}_{i}}}}}&amp;gt;{{e}^{n\varepsilon }} \right)=P\left( {{e}^{t\sum\limits_{i=1}^{n}{{{Y}_{i}}}}}&amp;gt;{{e}^{tn\varepsilon }} \right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Note, we introduce &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; there that’s for the flexibility that later, I can choose &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Now with Markov inequality we can write under the assumption of i.i.d of &lt;span class=&#34;math inline&#34;&gt;\({{Y}_{i}}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( {{{\bar{Y}}}_{n}}&amp;gt;\varepsilon  \right)=P\left( {{e}^{t\sum\limits_{i=1}^{n}{{{Y}_{i}}}}}&amp;gt;{{e}^{tn\varepsilon }} \right)\le {{e}^{-tn\varepsilon }}E\left[ {{e}^{t\sum\limits_{i=1}^{n}{{{Y}_{i}}}}} \right]={{e}^{-tn\varepsilon }}{{\left( E{{e}^{t{{Y}_{i}}}} \right)}^{n}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Since, we have bound &lt;span class=&#34;math inline&#34;&gt;\(E\left[ {{e}^{tX}} \right]\le {{e}^{g\left( t \right)}}\)&lt;/span&gt; as &lt;span class=&#34;math inline&#34;&gt;\({{e}^{g\left( t \right)}}\le {{e}^{\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}\)&lt;/span&gt; , therefore,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( {{{\bar{Y}}}_{n}}&amp;gt;\varepsilon  \right)\le {{e}^{-tn\varepsilon }}{{\left( E{{e}^{t{{Y}_{i}}}} \right)}^{n}}\le {{e}^{-tn\varepsilon }}{{e}^{n\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s try to put sharper bound and try and solve for &lt;span class=&#34;math inline&#34;&gt;\(u\left( t \right)=tn\varepsilon -n\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}\)&lt;/span&gt; and the FOC is
+&lt;span class=&#34;math inline&#34;&gt;\({u}&amp;#39;\left( t \right)=n\varepsilon -n\frac{2t{{\left( b-a \right)}^{2}}}{8}\overset{set}{\mathop{=}}\,0\)&lt;/span&gt; and solving we get &lt;span class=&#34;math display&#34;&gt;\[{{t}^{*}}=\frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}\]&lt;/span&gt; and the plugging the value of &lt;span class=&#34;math inline&#34;&gt;\({{t}^{*}}\)&lt;/span&gt; on &lt;span class=&#34;math inline&#34;&gt;\(u\left( t \right)\)&lt;/span&gt; gives:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{u}_{\min }}={{t}^{*}}n\varepsilon -n\frac{{{t}^{*}}^{2}{{\left( b-a \right)}^{2}}}{8}=\frac{4\varepsilon }{{{\left( b-a \right)}^{2}}}n\varepsilon -n\frac{{{\left( 4\varepsilon  \right)}^{2}}}{{{\left( {{\left( b-a \right)}^{2}} \right)}^{2}}}\frac{{{\left( b-a \right)}^{2}}}{8}=\frac{4n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}-\frac{2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}=\frac{2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( {{{\bar{Y}}}_{n}}&amp;gt;\varepsilon  \right)\le \underset{t\ge 0}{\mathop{\inf }}\,{{e}^{-tn\varepsilon }}{{e}^{n\frac{{{t}^{2}}{{\left( b-a \right)}^{2}}}{8}}}={{e}^{\frac{-2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( \left| {{{\bar{Y}}}_{n}} \right|&amp;gt;\varepsilon  \right)\le 2{{e}^{\frac{2n{{\varepsilon }^{2}}}{{{\left( b-a \right)}^{2}}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Hence, this gives the bound on the mean.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof-for-binominal&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof for Binominal&lt;/h2&gt;
+&lt;p&gt;Hoeffding’s inequality for the &lt;span class=&#34;math inline&#34;&gt;\({{Y}_{1}}\sim Ber\left( p \right)\)&lt;/span&gt; and it’s upper bound is &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; and lower bound is &lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt; so &lt;span class=&#34;math inline&#34;&gt;\({{\left( b-a \right)}^{2}}=1\)&lt;/span&gt; and with Hoeffding inequality &lt;span class=&#34;math display&#34;&gt;\[P\left( \left| {{{\bar{X}}}_{n}}-p \right|&amp;gt;\varepsilon  \right)\le 2{{e}^{-2n{{\varepsilon }^{2}}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-5-kullback-leibler-distance&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Theorem 5: Kullback Leibler Distance&lt;/h1&gt;
+&lt;div id=&#34;proof-for-distance-between-density-is-greater-than-zero.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Proof for distance between density is greater than zero.&lt;/h2&gt;
+&lt;p&gt;Proof that the distance between any two density &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; whose random variable is &lt;span class=&#34;math inline&#34;&gt;\(X\tilde{\ }p\)&lt;/span&gt; (&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is some distribution) is always greater than or equal to zero.&lt;/p&gt;
+&lt;p&gt;Prior answering this, let’s quickly note two inequality, namely Cauchy-Swartz Inequality and Jensen’s inequality.&lt;/p&gt;
+&lt;div id=&#34;cauchy-swartz-inequality&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Cauchy-Swartz Inequality&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\left| EXY \right|\le E\left| XY \right|\le \sqrt{E\left( {{X}^{2}} \right)}\sqrt{E\left( {{Y}^{2}} \right)}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;jensens-inequality&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Jensen’s inequality&lt;/h3&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; is convex then&lt;span class=&#34;math inline&#34;&gt;\(Eg\left( X \right)\ge g\left( EX \right)\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; is concave, then&lt;span class=&#34;math inline&#34;&gt;\(Eg\left( X \right)\le g\left( EX \right)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;kullback-leibler-distance&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Kullback Leibler Distance&lt;/h3&gt;
+&lt;p&gt;The distance between two density &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; is defined by the Kullback Leibler Distance, and given as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[D\left( p,q \right)=\int{p\left( x \right)\log \left( \frac{p\left( x \right)}{q\left( x \right)} \right)}dx\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Before, I move ahead, note that the self-distance between density &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; to &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is zero and given as: &lt;span class=&#34;math inline&#34;&gt;\(D\left( p,p \right)=0\)&lt;/span&gt; and by definition distance is always greater than and equal to zero so, one thing we have to confirm is that distance between two density &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; i.e. &lt;span class=&#34;math inline&#34;&gt;\(D\left( p,q \right)\ge 0\)&lt;/span&gt;. But we will use Jensen inequality to proof &lt;span class=&#34;math inline&#34;&gt;\(D\left( p,q \right)\ge 0\)&lt;/span&gt;. Since the &lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt; function is concave in nature, so we can write, Jensen inequality that:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[-D\left( p,q \right)=E\left[ \log \left( \frac{p\left( x \right)}{q\left( x \right)} \right) \right]\le \log \left[ E\left( \frac{p\left( x \right)}{q\left( x \right)} \right) \right]=\log \int{p\left( x \right)\frac{q\left( x \right)}{p\left( x \right)}dx}=\log \int{q\left( x \right)dx}=\log \left( 1 \right)=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;i.e&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[-D\left( p,q \right)\le 0\]&lt;/span&gt; i.e. &lt;span class=&#34;math display&#34;&gt;\[D\left( p,q \right)\ge 0\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-6-maximum-of-a-random-variable&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Theorem 6: Maximum of a random variable&lt;/h1&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\({{X}_{i}},\ldots {{X}_{n}}\)&lt;/span&gt; be random variable. Suppose there exist &lt;span class=&#34;math inline&#34;&gt;\(\sigma &amp;gt;0\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(E\left( {{e}^{t{{X}_{i}}}} \right)\le {{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\)&lt;/span&gt;. Then, &lt;span class=&#34;math inline&#34;&gt;\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \sigma \sqrt{2\log n}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Maximum of a random variable represents how to bound maximum value of a random variable? i.e. Say the random variable is &lt;span class=&#34;math inline&#34;&gt;\({{X}_{1}},\ldots ,{{X}_{n}}\)&lt;/span&gt; and say it is arranged in ascending order such that &lt;span class=&#34;math inline&#34;&gt;\({{X}_{\left( 1 \right)}}\le {{X}_{\left( 2 \right)}}\le \ldots \le {{X}_{\left( n \right)}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\({{X}_{\left( n \right)}}={{E}_{\max }}\left\{ {{X}_{1}},\cdots ,{{X}_{n}} \right\}\)&lt;/span&gt;how to compute the distribution of that maximum value? Now the interesting thing is, say, that we don’t know the exact distribution of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, so can we say in general without knowing the distribution that what is the maximum of a random variable?&lt;/p&gt;
+&lt;p&gt;Let’s start with the expectation of the moment generating function given as: &lt;span class=&#34;math inline&#34;&gt;\(E{{e}^{t{{X}_{i}}}}\)&lt;/span&gt; then, it is bounded by &lt;span class=&#34;math inline&#34;&gt;\(E{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\)&lt;/span&gt; i.e. &lt;span class=&#34;math inline&#34;&gt;\(E{{e}^{t{{X}_{i}}}}\le E{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\)&lt;/span&gt;. Now, can we bound the maximum of &lt;span class=&#34;math inline&#34;&gt;\(E{{e}^{t{{X}_{i}}}}\)&lt;/span&gt;or alternatively, what is the &lt;span class=&#34;math inline&#34;&gt;\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\)&lt;/span&gt; ?&lt;/p&gt;
+&lt;p&gt;Let’s, start with &lt;span class=&#34;math inline&#34;&gt;\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\)&lt;/span&gt; and pre-multiply this with &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; and exponentiate. i.e. &lt;span class=&#34;math inline&#34;&gt;\(\exp \left\{ tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}} \right\}\)&lt;/span&gt;, bounding this gives also is same as bounding &lt;span class=&#34;math inline&#34;&gt;\(E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\)&lt;/span&gt;. Now with Jensen’s inequality we can write:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[{{e}^{tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}}}\le E{{e}^{t\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}}}=E\underset{1\le i\le n}{\mathop{\max }}\,{{e}^{t{{X}_{i}}}}\le \sum\limits_{i=1}^{n}{E{{e}^{t{{X}_{i}}}}}\le n{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[{{e}^{tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}}}\le n{{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\]&lt;/span&gt;
+Taking &lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt; on the both sides
+&lt;span class=&#34;math display&#34;&gt;\[tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \log n+\log {{e}^{\frac{{{t}^{2}}{{\sigma }^{2}}}{2}}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[tE\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \log n+\frac{{{t}^{2}}{{\sigma }^{2}}}{2}\]&lt;/span&gt;
+Dividing both sides by &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;, we get
+&lt;span class=&#34;math display&#34;&gt;\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \frac{\log n}{t}+\frac{t{{\sigma }^{2}}}{2}\]&lt;/span&gt;
+Now, let’s take this &lt;span class=&#34;math inline&#34;&gt;\(\frac{\log n}{t}+\frac{t{{\sigma }^{2}}}{2}\)&lt;/span&gt; and optimize w.r.t &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; we get: &lt;span class=&#34;math inline&#34;&gt;\(\log n=\frac{{{t}^{2}}{{\sigma }^{2}}}{2}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(t={{\sigma }^{-1}}\sqrt{2\log n}\)&lt;/span&gt;. Now plugging this value, we get:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \frac{\log n}{t}+\frac{t{{\sigma }^{2}}}{2}=\frac{2\log n+{{t}^{2}}{{\sigma }^{2}}}{2t}=\frac{2\log n+{{\left( {{\sigma }^{-1}}\sqrt{2\log n} \right)}^{2}}{{\sigma }^{2}}}{2{{\sigma }^{-1}}\sqrt{2\log n}}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \frac{2\log n+{{\sigma }^{-2}}2\log n{{\sigma }^{2}}}{2{{\sigma }^{-1}}\sqrt{2\log n}}=\frac{2\sqrt{2}\sqrt{2}\log n}{2{{\sigma }^{-1}}\sqrt{2}\sqrt{\log n}}=\sigma \sqrt{2\log n}\]&lt;/span&gt;
+Hence
+&lt;span class=&#34;math display&#34;&gt;\[E\underset{1\le i\le n}{\mathop{\max }}\,{{X}_{i}}\le \sigma \sqrt{2\log n}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
