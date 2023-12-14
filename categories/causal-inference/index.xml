@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Causal Inference | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/categories/causal-inference/</link>
+      <atom:link href="https://ShishirShakya.github.io/categories/causal-inference/index.xml" rel="self" type="application/rss+xml" />
+    <description>Causal Inference</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright><lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Causal Inference</title>
+      <link>https://ShishirShakya.github.io/categories/causal-inference/</link>
+    </image>
+    
+    <item>
+      <title>Rubin&#39;s Potential Outcome Framework</title>
+      <link>https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/post/2018-12-01-rubins-potential-outcome-framework/</guid>
+      <description>
+&lt;script src=&#34;https://ShishirShakya.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;potential-outcome-framework&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Potential Outcome Framework&lt;/h1&gt;
+&lt;p&gt;There are at least three different school of thoughts regarding causality: 1) granger causality; 2) Rubin’s potential outcome framework and 3) Pearl’s causality. Each of these thoughts have their own pros and cons. I will quickly discuss about the Rubin’s potential outcome framework and show the fundamental problem of causal inference.
+For an example, say a researcher wants to study impact of certain treatment (say performance enhancing drug say &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;) on some outcomes (say capacity to solve riddle quizzes say &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;).&lt;/p&gt;
+&lt;p&gt;He randomly sampled the total population and divided the total sample population &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt; to the control group of &lt;span class=&#34;math inline&#34;&gt;\({{N}_{co}}\)&lt;/span&gt; and treatment group &lt;span class=&#34;math inline&#34;&gt;\({{N}_{Tr}}\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\({{N}_{co}}+{{N}_{Tr}}=N\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Say the treatment group are exposed to the treatment i.e. &lt;span class=&#34;math inline&#34;&gt;\(T=1\)&lt;/span&gt; for intervening with performance enhancing drug and control group is not intervened or given a placebo i.e. &lt;span class=&#34;math inline&#34;&gt;\(T=0\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;After this experiment, researcher takes test of all the individual and records numbers of minutes to solve the questions.&lt;/p&gt;
+&lt;p&gt;The average outcome of treated group is &lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 1 \right)|T=1 \right]\)&lt;/span&gt; and average outcome of control group is given as &lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 0 \right)|T=0 \right]\)&lt;/span&gt;. Both averages can be estimated easily as the data are observed. The simple difference of means &lt;span class=&#34;math inline&#34;&gt;\(SDoM\)&lt;/span&gt; between average outcome of treated and average outcome of control group given as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[SDoM=E\left[ Y\left( 1 \right)|T=1 \right]-E\left[ Y\left( 0 \right)|T=0 \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The potential outcome framework, however, look at this problem and ask a simple question i.e. “What is the counterfactual?”. In another word, what would be the outcome of those who are treated if they were not been treated i.e. &lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 0 \right)|T=1 \right]=??\)&lt;/span&gt;. Similarly, what would be the outcome of control if they had been treated i.e. &lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 1 \right)|T=0 \right]=??\)&lt;/span&gt;.
+Then, the average treatment effect is given as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ATE=\left\{ E\left[ Y\left( 1 \right)|T=1 \right]-E\left[ Y\left( 0 \right)|T=1 \right] \right\}-\left\{ E\left[ Y\left( 0 \right)|T=0 \right]-E\left[ Y\left( 1 \right)|T=0 \right] \right\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 1 \right)|T=1 \right]\)&lt;/span&gt; represents, given treated, the average outcome of treated group (observed in data).
+&lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 0 \right)|T=1 \right]\)&lt;/span&gt; represents, given treated, the average outcome of treated group if they were controlled (unobserved).
+&lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 0 \right)|T=0 \right]\)&lt;/span&gt; represents, given controlled, the average outcome of controlled group (observed in data).
+&lt;span class=&#34;math inline&#34;&gt;\(E\left[ Y\left( 1 \right)|T=0 \right]\)&lt;/span&gt; represents, given controlled, the average outcome of controlled group if they were treated (unobserved).&lt;/p&gt;
+&lt;p&gt;We can also correct this estimate with sampling weights as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ATE=\lambda \left\{ E\left[ Y\left( 1 \right)|T=1 \right]-E\left[ Y\left( 0 \right)|T=1 \right] \right\}-\left( 1-\lambda  \right)\left\{ E\left[ Y\left( 0 \right)|T=0 \right]-E\left[ Y\left( 1 \right)|T=0 \right] \right\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where, &lt;span class=&#34;math inline&#34;&gt;\(\lambda =\frac{{{N}_{Tr}}}{N}\)&lt;/span&gt; or proportion of treated group and &lt;span class=&#34;math inline&#34;&gt;\(1-\lambda =1-\frac{{{N}_{Tr}}}{N}=\frac{{{N}_{co}}}{N}\)&lt;/span&gt; proportion of control group.&lt;/p&gt;
+&lt;p&gt;If we closely look at estimate of &lt;span class=&#34;math inline&#34;&gt;\(ATE\)&lt;/span&gt; we find that each counterfactual of treated and control group is missing data problem, this is the fundamental problem of causal inference.&lt;/p&gt;
+&lt;p&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

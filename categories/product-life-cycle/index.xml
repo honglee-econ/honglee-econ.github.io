@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Product Life Cycle | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/categories/product-life-cycle/</link>
+      <atom:link href="https://ShishirShakya.github.io/categories/product-life-cycle/index.xml" rel="self" type="application/rss+xml" />
+    <description>Product Life Cycle</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright><lastBuildDate>Fri, 21 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Product Life Cycle</title>
+      <link>https://ShishirShakya.github.io/categories/product-life-cycle/</link>
+    </image>
+    
+    <item>
+      <title>Product Diffusion Model</title>
+      <link>https://ShishirShakya.github.io/post/2020-02-21-product-life-cycle/</link>
+      <pubDate>Fri, 21 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/post/2020-02-21-product-life-cycle/</guid>
+      <description>
+&lt;script src=&#34;https://ShishirShakya.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;the-bass-diffusion-model&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Bass Diffusion model&lt;/h1&gt;
+&lt;p&gt;The Bass Diffusion model elaborates on how a new product diffusion occurs in society and, therefore, can help to analyze the innovation diffusion.&lt;/p&gt;
+&lt;p&gt;This model is very interesting. It uses some assumption that relates to consumer’s behavior, then, based on those assumptions, develops a model in functional form. Then, one can fit the real data on that functional form to solve the parameters.&lt;/p&gt;
+&lt;p&gt;This model has three assumptions:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;There is no repetitive purchase or consumer purchase for one time i.e., consumer durable good;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There is no supply shock and;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The probability that an initial purchase at time &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; i.e., given that no purchase has yet made &lt;span class=&#34;math inline&#34;&gt;\(P\left( T \right)~\)&lt;/span&gt;, is a linear function of the number of previous buyers.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left( T \right)~~~=\text{ }p\text{ }+\text{ }\left( q/m \right)Y\left( T \right)\to (1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(q/m\)&lt;/span&gt; are constants. &lt;span class=&#34;math inline&#34;&gt;\(Y\left( T \right)\)&lt;/span&gt; is the number of previous buyers.&lt;/p&gt;
+&lt;p&gt;For &lt;span class=&#34;math inline&#34;&gt;\(T=0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(Y\left( 0 \right)=0\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; represents the probability of an initial purchase at &lt;span class=&#34;math inline&#34;&gt;\(T=0\)&lt;/span&gt;, and its magnitude reflects the importance of innovators in the social system. The &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is the fraction of all adopter who adopts products as it launches. These are the people who buy the product as the product appear in the market.&lt;/p&gt;
+&lt;p&gt;Let’s define &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; as the size of potential market size, then &lt;span class=&#34;math inline&#34;&gt;\((q/m)\)&lt;/span&gt; is the portion of the market that has not yet purchased the product.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\((q/m)\)&lt;/span&gt; times &lt;span class=&#34;math inline&#34;&gt;\(Y(T )\)&lt;/span&gt; reflects the pressures operating on imitators as the number of previous buyers increases.&lt;/p&gt;
+&lt;p&gt;Interestingly, &lt;span class=&#34;math inline&#34;&gt;\(Y(T)/m\)&lt;/span&gt; is portion of total purchase at time &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;. Let’s denote this by a function as &lt;span class=&#34;math inline&#34;&gt;\(F(t)\)&lt;/span&gt;. i.e&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{Y(T)}{m}=F(T)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s denote the likelihood of purchase at &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;as&lt;span class=&#34;math inline&#34;&gt;\(f(t)\)&lt;/span&gt;, then we can write &lt;span class=&#34;math inline&#34;&gt;\(F(t)=\int\limits_{0}^{T}{f(t)dt}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Now, by definition for &lt;span class=&#34;math inline&#34;&gt;\(p(T)\)&lt;/span&gt; (The probability that an initial purchase will be made at &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; i.e., given that no purchase has yet been made) can be written as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{f(T)}{1-F(T)}=P(T)=p+(q/m)Y(T)=p+qF(T)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now, let’s solve for &lt;span class=&#34;math inline&#34;&gt;\(f(t)\)&lt;/span&gt; only,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
+
+  &amp;amp; f(T)=[p+qF(T)][1-F(T)] \\
+
+ &amp;amp; or, f(T)=p-pF(T)+qF(T)-q{{[F(T)]}^{2}} \\
+
+ &amp;amp; or, f(T)=p+(q-p)F(T)-q{{[F(T)]}^{2}} \\
+
+ &amp;amp; or, f(T)=\frac{dF}{dt}=p+(q-p)F(T)-q{{[F(T)]}^{2}} \\
+
+ &amp;amp; \therefore {F}&amp;#39;(T)=p+(q-p)F(T)-q{{[F(T)]}^{2}} \\
+
+\end{align}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This above equation is a nonlinear differential equation. Before I begin to solve this, please kindly open the visualization externally in &lt;a href=&#34;https://www.wolframcloud.com/objects/64098d95-a588-4c20-bbfc-9e81dd1af6ac&#34;&gt;Wolfram Mathematica Cloud&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Please change the sliders &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and see what happens to the curve. The &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; are coefficient of innovation, coefficient of imitation, and potential size of the market.&lt;/p&gt;
+&lt;p&gt;Let’s do some nonlinear econometrics and estimate the values of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; based upon the real dataset using &lt;code&gt;R&lt;/code&gt;.&lt;/p&gt;
+&lt;div id=&#34;clean-the-environment.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Clean the environment.&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rm(list = ls())
+dev.off(dev.list()[&amp;quot;RStudioGD&amp;quot;])&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;install-required-packages.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Install required packages.&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Load all the required packages
+ipak &amp;lt;- function(pkg){
+  new.pkg &amp;lt;- pkg[!(pkg %in% installed.packages()[, &amp;quot;Package&amp;quot;])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+ipak(c(&amp;quot;nlstools&amp;quot;, &amp;quot;fBasics&amp;quot;, &amp;quot;tseries&amp;quot;, &amp;quot;rstudioapi&amp;quot;, &amp;quot;forecast&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   nlstools    fBasics    tseries rstudioapi   forecast 
+##       TRUE       TRUE       TRUE       TRUE       TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;setup-working-directory.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Setup Working Directory.&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;path &amp;lt;- dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(path)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
