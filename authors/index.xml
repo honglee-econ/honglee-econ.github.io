@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors | Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/authors/</link>
+      <atom:link href="https://ShishirShakya.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Authors</title>
+      <link>https://ShishirShakya.github.io/authors/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>https://ShishirShakya.github.io/authors/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://ShishirShakya.github.io/authors/admin/</guid>
+      <description>&lt;p&gt;I am an Assistant Professor at the Department of Economics, Walker College of Business, Appalachian State University. I am also a Research Fellow of the Knee Center for the Study of Occupational Regulation at West Virginia University.&lt;/p&gt;
+&lt;p&gt;I am an applied economist specializing in healthcare provider labor, licensing, and regulation markets. I am passionate about finding solutions that improve healthcare access and quality at reduced costs.&lt;/p&gt;
+&lt;p&gt;I use various applied econometric, spatial, and policy evaluation techniques and supplement my empirical knowledge with the practice of technology-driven methods such as data-scrapping, big data, predictive, and causal machine learning approaches.&lt;/p&gt;
+&lt;p&gt;I have published in numerous peer-reviewed academic journals, including the &lt;em&gt;World Development&lt;/em&gt;, &lt;em&gt;Annals of Regional Science&lt;/em&gt;, &lt;em&gt;Energy Economics&lt;/em&gt;, &lt;em&gt;Contemporary Economic Policy&lt;/em&gt;, &lt;em&gt;Drug and Alcohol Dependence&lt;/em&gt;, &lt;em&gt;Spatial Economic Analysis&lt;/em&gt;, &lt;em&gt;Applied Economics Letters&lt;/em&gt;, &lt;em&gt;Journal of Labor Research&lt;/em&gt;, and others.&lt;/p&gt;
+&lt;p&gt;I will teach Business and Economic Statistics II and Timeseries Forecasting in Fall 2023. Previously, I have taught Regional Economics, Economic Analysis of Big Data, Principles of Economics, Macroeconomics, Managerial Economics, Business Data Visualization, and Elementary Business &amp;amp; Economic Statistics.&lt;/p&gt;
+&lt;p&gt;For any questions about my research or other scholarly activities, please get in touch with me by email &lt;a href=&#34;mailto:shakyas@appstate.edu&#34;&gt;shakyas@appstate.edu&lt;/a&gt;. You can also reach me on Twitter &lt;a href=&#34;https://twitter.com/econshishir&#34;&gt;@econshishir&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shishir Shakya</title>
+    <link>https://ShishirShakya.github.io/authors/admin/</link>
+      <atom:link href="https://ShishirShakya.github.io/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    <description>Shishir Shakya</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2023` Shishir Shakya</copyright>
+    <image>
+      <url>https://ShishirShakya.github.io/img/icon-192.png</url>
+      <title>Shishir Shakya</title>
+      <link>https://ShishirShakya.github.io/authors/admin/</link>
+    </image>
+    
+  </channel>
+</rss>
