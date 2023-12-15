@@ -786,18 +786,19 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+      var searchIcon = document.querySelector('.js-search');
       var searchFormWrapper = document.querySelector('.search-form-wrapper');
       var searchForm = document.querySelector('.search-form');
       var searchInput = document.querySelector('.search-input');
   
-      document.querySelector('.js-search').addEventListener('click', function (event) {
+      searchIcon.addEventListener('click', function (event) {
           event.preventDefault();
           searchFormWrapper.classList.toggle('active');
           searchInput.focus();
       });
   
       document.addEventListener('click', function (event) {
-          if (!searchFormWrapper.contains(event.target)) {
+          if (!searchFormWrapper.contains(event.target) && event.target !== searchIcon) {
               searchFormWrapper.classList.remove('active');
           }
       });
