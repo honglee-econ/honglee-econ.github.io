@@ -781,5 +781,43 @@
   </div>
 </div>
 
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      var searchFormWrapper = document.querySelector('.search-form-wrapper');
+      var searchForm = document.querySelector('.search-form');
+      var searchInput = document.querySelector('.search-input');
+  
+      document.querySelector('.js-search').addEventListener('click', function (event) {
+          event.preventDefault();
+          searchFormWrapper.classList.toggle('active');
+          searchInput.focus();
+      });
+  
+      document.addEventListener('click', function (event) {
+          if (!searchFormWrapper.contains(event.target)) {
+              searchFormWrapper.classList.remove('active');
+          }
+      });
+  
+      searchForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var searchQuery = searchInput.value;
+          performSearch(searchQuery);
+      });
+  
+      function performSearch(query) {
+          // Implement your search logic here
+          // You might want to use AJAX to fetch search results or manipulate the DOM accordingly
+          console.log('Search query: ', query);
+          // Add your search logic here, e.g., update the page content with search results.
+      }
+  });
+  </script>
+
+
+
 </body>
 </html>
