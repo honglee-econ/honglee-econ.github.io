@@ -671,49 +671,53 @@
         'post': "Posts",
         'project': "Projects",
         'publication' : "Publications",
-        'my_resources' : "my_resources",
         'talk' : "Talks"
         };
 
+
+
         document.addEventListener('DOMContentLoaded', function () {
-    fetchGitHubRepositoryContents('/path-to-your-repository')
-      .then(buildSearchIndex)
-      .then(startSearch);
+          fetchGitHubRepositoryContents('/honglee-econ.github.io') // Update to your repository name
+            .then(buildSearchIndex)
+            .then(startSearch);
 
-    function fetchGitHubRepositoryContents(repositoryPath) {
-      return fetch(`https://api.github.com/repos/YourUsername/YourRepository/contents${repositoryPath}`)
-        .then(response => response.json());
-    }
+          function fetchGitHubRepositoryContents(repositoryPath) {
+            return fetch(`https://api.github.com/repos/honglee-econ/honglee-econ.github.io/contents${repositoryPath}`)
+              .then(response => response.json());
+          }
+          
+          function buildSearchIndex(contents) {
+            const promises = contents.map(item => {
+              if (item.type === 'file' && item.name.endsWith('.md')) {
+                return fetch(item.download_url)
+                  .then(response => response.text())
+                  .then(content => ({
+                    title: item.name,
+                    path: item.path,
+                    content: content
+                  }));
+              } else if (item.type === 'dir') {
+                return fetchGitHubRepositoryContents(item.path)
+                  .then(buildSearchIndex);
+              }
+              return null;
+            });
 
-    function buildSearchIndex(contents) {
-      const promises = contents.map(item => {
-        if (item.type === 'file' && item.name.endsWith('.md')) {
-          return fetch(item.download_url)
-            .then(response => response.text())
-            .then(content => ({
-              title: item.name,
-              path: item.path,
-              content: content
-            }));
-        } else if (item.type === 'dir') {
-          return fetchGitHubRepositoryContents(item.path)
-            .then(buildSearchIndex);
-        }
-        return null;
-      });
+            return Promise.all(promises)
+              .then(results => results.flat().filter(Boolean));
+          }
 
-      return Promise.all(promises)
-        .then(results => results.flat().filter(Boolean));
-    }
-
-    function startSearch(searchData) {
-      // Now you have the searchData which is an array of objects with title, path, and content
-      console.log('Search data:', searchData);
+          function startSearch(searchData) {
+            // Now you have the searchData which is an array of objects with title, path, and content
+            console.log('Search data:', searchData);
 
       // Implement the rest of your search logic here
       // ...
     }
   });
+
+
+
     </script>
     
 
