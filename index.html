@@ -178,7 +178,7 @@
 
 </head>
 
-<body id="top" class="dark-theme" data-spy="scroll" data-offset="70" data-target="#navbar-main" >
+<body id="top" class="dark-theme" data-spy="scroll" data-offset="70" data-target="#navbar-main" > <!-- 1. added class="dark-theme"-->
 
   <aside class="search-results" id="search">
   <div class="container">
@@ -892,7 +892,17 @@
       }
   </script>
   
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add dark-theme class by default
+        document.body.classList.add('dark-theme');
 
+        // If the user clicks the toggle, switch between light and dark
+        document.querySelector('.js-dark-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+        });
+    });
+</script>
 
 </body>
 </html>
